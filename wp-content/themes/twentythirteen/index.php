@@ -18,6 +18,7 @@ get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<div id="content" class="site-content" role="main">
+		<h1><?php echo __FILE__	 ?></h1>
 		<?php if ( have_posts() ) : ?>
 
 			<?php /* The loop */ ?>

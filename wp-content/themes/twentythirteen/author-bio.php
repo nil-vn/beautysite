@@ -7,7 +7,6 @@
  * @since Twenty Thirteen 1.0
  */
 ?>
-
 <div class="author-info">
 	<div class="author-avatar">
 		<?php
