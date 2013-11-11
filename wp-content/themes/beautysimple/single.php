@@ -16,7 +16,6 @@ get_header(); ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 <?php setPostViews(get_the_ID()); ?>
 				<?php get_template_part( 'content', get_post_format() ); ?>
-				<?php twentythirteen_post_nav(); ?>
 				<?php comments_template(); ?>
 
 			<?php endwhile; ?>

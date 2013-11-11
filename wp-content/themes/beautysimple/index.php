@@ -16,178 +16,245 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<div id="content" class="site-content" role="main">
+<div class="contentsWrap pageTypeIndex">
+<div class="contentsWrapInner">
+<div class="contents">
 
-		<?php 
+		<?php
 		// is home
 		if (is_home()) { ?>
-		
+		<article class="topInfoArea">
 
-		<h1>Pick up section</h1>
+
 		<?php
 
 		// Query get all pick up post for home page
 		// dunghd add code 8/11/2013
 
 		// args
-	
+
 		// get results
 		$the_query = get_pickup(3);
 		// $GLOBALS['DebugMyPlugin']->panels['main']->addPR('pick up query:',$the_query,__FILE__,__LINE__ );
 		// The Loop
 		?>
-		<?php if( $the_query->have_posts() ): ?>
+		<?php
+		$counter = 0;
+		if( $the_query->have_posts() ): ?>
 			<ul>
 			<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-				<li>
-					<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-				</li>
 
-				<?php echo 'pick up:' . get_field('pick_up') ?>
+				<?php $counter++; ?>
+				<?php switch ($counter) {
+					case 1:
+						?>
+						<section class="topInfo01 leftSide"><a href="<?php the_permalink(); ?>">
+						<div class="txt">
+						<h1><?php the_title(); ?></h1>
+						<p> <?php the_excerpt(); ?> </p>
+						</div>
+						<div class="pic">   <?php the_post_thumbnail(array(600,400)); ?></div>
+						</a></section>
+				<?php
+						break;
+						case 2:
+						?>
+						<div class="rightSide">
+						<section class="topInfo02"><a href="<?php the_permalink(); ?>">
+						<div class="txt">
+						<h1><?php the_title(); ?></h1>
+						<p> <?php the_excerpt(); ?> </p>
+						</div>
+						<div class="pic"><?php the_post_thumbnail(array(300,200)); ?></div>
+						</a></section>
+				<?php
+						break;
+						case 3:
+						?>
+						<section class="topInfo03"><a href="<?php the_permalink(); ?>">
+						<div class="txt">
+						<h1><?php the_title(); ?></h1>
+						<p> <?php the_excerpt(); ?> </p>
+						</div>
+						<div class="pic"><?php the_post_thumbnail(array(300,200)); ?></div>
+						</a></section>
+						</div>
+				<?php
+					default:
+						# code...
+						break;
+				}
 
-			<?php endwhile; ?>
+
+			 endwhile; ?>
 			</ul>
 		<?php endif; ?>
-		 
+
 		<?php wp_reset_query();  // Restore global post data stomped by the_post(). ?>
+		</article>
+		<!--//.topNewsArea-->
 
 
-		<h1>Popular ranking</h1>
 
+
+
+		<article class="rankingArea">
+		<header>
+		<h1>人気ランキング</h1>
+		<ul>
+		<li class="ranknav01"><a href="#">総合ランキング</a></li>
+		<li class="ranknav02"><a href="category.html">美容と健康</a></li>
+		<li class="ranknav03"><a href="category_yellow.html">メイク・コスメ</a></li>
+		<li class="ranknav04"><a href="category_blue.html">お悩み・効果</a></li>
+		<li class="ranknav05"><a href="category_purple.html">成分・特徴</a></li>
+		</ul>
+		</header>
+
+		<div class="inner">
 		<?php
 
-		// Query get all popular for all category
-		// dunghd add code 8/11/2013
-		$args = array(
-			'type'                     => 'post',
-			'parent'                   => 0,
-			// 'orderby'                  => 'name',
-			// 'order'                    => 'ASC',
-			// 'hide_empty'               => 1,
-			// 'hierarchical'             => 1,
-			// 'exclude'                  => '',
-			// 'include'                  => '',
-			'number'                   => 5,
-			'taxonomy'                 => 'category',
-			'pad_counts'               => false 
-
-		); 
-
-
-		$category = get_categories($args);
-		// $GLOBALS['DebugMyPlugin']->panels['main']->addPR('category:',$category,__FILE__,__LINE__ );
+		$category = array('');
 
 		foreach ($category as $key => $cat) :
 		// get results
-		$the_query = get_rankink($cat->cat_ID);
-		// $GLOBALS['DebugMyPlugin']->panels['main']->addPR('pick up category:',$cat,__FILE__,__LINE__ );
+		$the_query = get_rankink_byname($cat);
 		// The Loop
 		?>
 		<?php if( $the_query->have_posts() ): ?>
-			<h3><?php echo $cat->cat_name ?></h3>
 			<ul>
-			<?php while ( $the_query->have_posts() ) : $the_query->the_post(); 
-					// $GLOBALS['DebugMyPlugin']->panels['main']->addPR('post:',$cat,__FILE__,__LINE__ );
-					// $count_key = 'post_views_count';
-				    // $count = get_post_meta(get_the_ID(), $count_key . 'log', true);
-				    // echo $count;
+			<?php
+			 $counter = 0;
+			 while ( $the_query->have_posts() ) : $the_query->the_post();
+					$counter++;
 			?>
-
-				<li>
-					<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-				</li>
-
+			<section><a href="<?php the_permalink(); ?>">
+			<div class="rank"><img src="<?php echo get_template_directory_uri(); ?>/img/contents/icon_no<?php echo $counter ?>.png" alt="No.<?php echo $counter ?>"></div>
+			<div class="pic"><?php the_post_thumbnail(array(300,200)); ?></div>
+			<h1><?php the_title(); ?></h1>
+			<p> <?php the_excerpt(); ?> </p>
+			<footer>
+			<span class="date">(<?php echo get_the_date( 'Y/m/d' ); ?>)</span>
+			<div class="tagMark"><div><span><?php 
+			$posttags = get_the_tags();
+				$count=0;
+				if ($posttags) {
+				  foreach($posttags as $tag) {
+				    $count++;
+				    if (1 == $count) {
+				      echo $tag->name . ' ';
+				    }
+				  }
+				}
+ 			?></span></div></div>
+			</footer>
+			</a></section>
 
 			<?php endwhile; ?>
 			</ul>
 		<?php endif; ?>
-		 
+
 		<?php wp_reset_query();  // Restore global post data stomped by the_post().
 
 		endforeach;
 		 ?>
 
+		</div>
+		<!--//.inner-->
+		</article>
+		<!--//.rankingArea-->
 
-		<h1> New articles by category </h1>
+
+
+		<article class="eachCateNewsArea">
+		<header>
+		<h1>カテゴリ別新着記事</h1>
+		</header>
+
+		<div class="inner">
 
 		<?php
 
-				// Query get all popular for all category
-				// dunghd add code 8/11/2013
-				$args = array(
-					'type'                     => 'post',
-					'parent'                   => 0,
-					// 'orderby'                  => 'name',
-					// 'order'                    => 'ASC',
-					// 'hide_empty'               => 1,
-					// 'hierarchical'             => 1,
-					// 'exclude'                  => '',
-					// 'include'                  => '',
-					'number'                   => 4,
-					'taxonomy'                 => 'category',
-					'pad_counts'               => false 
-
-				); 
-
-
-				$category = get_categories($args);
-				// $GLOBALS['DebugMyPlugin']->panels['main']->addPR('category:',$category,__FILE__,__LINE__ );
-
+				$category = array('health' => array('name' => '美容と健康' , 'class' => '' , 'link' => '/category/health' ,'color' => '' ) ,'cosme' => array('name' => '美容・コスメ' , 'class' => 'listYellow', 'link' => '/category/cosme' ,'color' => 'yellow'),'trouble' => array('name' => 'お悩み・効果' , 'class' => 'listBlue', 'link' => '/category/trouble','color' => 'blue') ,'component' => array('name' => '成分・特長' , 'class' => 'listPurple' , 'link' => '/category/component' ,'color' => 'purple' ));
 				foreach ($category as $key => $cat) :
 
 				// get results
-				$the_query = get_articles($cat->cat_ID);
-				// $GLOBALS['DebugMyPlugin']->panels['main']->addPR('pick up category:',$cat,__FILE__,__LINE__ );
+				$the_query = get_articles_byname($key);
 				// The Loop
 				?>
 				<?php if( $the_query->have_posts() ): ?>
-					<h3><?php echo $cat->cat_name ?></h3>
-					<ul>
-					<?php while ( $the_query->have_posts() ) : $the_query->the_post(); 
+
+					<div class="newsList <?php echo $cat['class'] ?>">
+					<div class="cateTtl"><a href="<?php echo $cat['link'] ?>"><?php echo $cat['name'] ?></a></div>
+					<ol>
+					<?php while ( $the_query->have_posts() ) : $the_query->the_post();
 							// $GLOBALS['DebugMyPlugin']->panels['main']->addPR('post:',$cat,__FILE__,__LINE__ );
 
 					?>
-
-						<li>
-							<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-						</li>
-
-
+						<li><a href="<?php echo get_permalink() ?>">
+						<div class="newsTtl"><span class="entryMark">new</span><?php the_title(); ?></div>
+						<footer>
+						<span class="date">(<?php echo get_the_date( 'Y/m/d' ); ?>)</span>
+						<div class="tagMark <?php echo $cat['color'] ?>"><div><span>美容と健康</span></div></div>
+						</footer>
+						</a></li>
 					<?php endwhile; ?>
-					</ul>
+					</ol>
+					</div>
 				<?php endif; ?>
-				 
+
 				<?php wp_reset_query();  // Restore global post data stomped by the_post().
 
 				endforeach;
 				 ?>
 
 
-		<h1> Recommended articled </h1>
+		</div>
+		<!--//.inner-->
+		</article>
+		<!--//.eachCateNewsArea-->
+
+		<article class="recommendArea">
+		<header>
+		<h1>旬のおすすめ記事</h1>
+		</header>
+
+		<div class="inner">
 
 		<?php
 
 		// get results
-		$the_query = get_recommended();
-		// $GLOBALS['DebugMyPlugin']->panels['main']->addPR('pick up query:',$the_query,__FILE__,__LINE__ );
+		$the_query = get_recommended(4);
+		// $GLOBALS['DebugMyPlugin']->panels['main']->addPR('recommended query:',$the_query,__FILE__,__LINE__ );
 		// The Loop
 		?>
 		<?php if( $the_query->have_posts() ): ?>
-			<ul>
 			<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-				<li>
-					<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-				</li>
-
-				<?php echo 'recommended:' . get_field('recommended') ?>
-
+				<section>
+				<a href="<?php echo get_permalink(); ?>"><span class="entryMark">new</span>
+				<div class="pic"><?php the_post_thumbnail(array(245,163)); ?></div>
+				<h1><?php the_title(); ?></h1>
+				<p> <?php the_excerpt(); ?> </p>
+				<footer>
+				<span class="date">(<?php echo get_the_date( 'Y/m/d' ); ?>)</span>
+				<div class="tagMark"><div><span>美容と健康</span></div></div>
+				</footer>
+				</a></section>
 			<?php endwhile; ?>
-			</ul>
 		<?php endif; ?>
-		 
-		<?php wp_reset_query();  // Restore global post data stomped by the_post(). ?>
 
+		<?php wp_reset_query();  // Restore global post data stomped by the_post(). ?>
+		</div>
+		<!--//.inner-->
+		</article>
+		<!--//.recommendArea-->
+
+
+</div>
+<!--//.contents-->
+</div>
+<!--//.contentsWrapInner-->
+</div>
+<!--//.contentsWrap-->
 
 		<?php } else { ?>
 

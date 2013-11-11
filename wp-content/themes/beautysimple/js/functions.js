@@ -4,11 +4,8 @@ c: 20131107
 m: 20131108
 */
 
-
-//要素の高さ調整
-$(function() {
-	//index
-	$(".rankingArea section a").tile();
+jQuery(document).ready(function($){
+    $(".rankingArea section a").tile();
 	$(".newsList").tile();
 	$(".recommendArea section a").tile();
 	$(".contentsNav dl").tile();
@@ -17,10 +14,7 @@ $(function() {
 	//下層
 	$(".recommendList ul li a").tile();
 	$(".recommendList02 ul li a").tile(3);
-});
 
-// フォーム入力補助
-$(function(){
 	$(window).load(function(){
 		$('input[type=text],input[type=password],input[type=tel],input[type=email],textarea').each(function(){
 			var thisTitle = $(this).attr('title');
@@ -63,10 +57,7 @@ $(function(){
 			}
 		});
 	});
-});
 
-//ページ上部へ戻る
-$(function() {
 	$('.toppageLink').hover(
 		function(){$(this).fadeTo(0, 0.8).fadeTo('normal', 1.0);},
 		function(){$(this).fadeTo('fast', 1.0);}
@@ -77,4 +68,3 @@ $(function() {
 	});
 
 });
-

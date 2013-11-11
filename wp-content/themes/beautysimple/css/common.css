@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-/* c:20131101 m:20131108 */
+/* c:20131101 m:20131111 */
 
 /* 
 html5doctor.com Reset Stylesheet
@@ -413,7 +413,7 @@ a:hover{
 .globalFooter .footerContent02 .inner ul li a:hover {
 	border-bottom: 1px dashed #fff;
 }
-.globalFooter .footerContent02 .inner .copyright {
+.globalFooter .footerContent02 .inner small {
 	float: right;
 }
 

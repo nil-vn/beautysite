@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<!--[if IE 7]>
-<html class="ie ie7" <?php language_attributes(); ?>>
-<![endif]-->
-<!--[if IE 8]>
-<html class="ie ie8" <?php language_attributes(); ?>>
-<![endif]-->
-<!--[if !(IE 7) | !(IE 8)  ]><!-->
-<html <?php language_attributes(); ?>>
-<!--<![endif]-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width">
@@ -20,22 +14,35 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
-	<div id="page" class="hfeed site">
-		<header id="masthead" class="site-header" role="banner">
-			<a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-				<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
-				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-			</a>
+<body>
 
-			<div id="navbar" class="navbar">
-				<nav id="site-navigation" class="navigation main-navigation" role="navigation">
-					<h3 class="menu-toggle"><?php _e( 'Menu', 'twentythirteen' ); ?></h3>
-					<a class="screen-reader-text skip-link" href="#content" title="<?php esc_attr_e( 'Skip to content', 'twentythirteen' ); ?>"><?php _e( 'Skip to content', 'twentythirteen' ); ?></a>
-					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) ); ?>
-					<?php get_search_form(); ?>
-				</nav><!-- #site-navigation -->
-			</div><!-- #navbar -->
-		</header><!-- #masthead -->
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1&appId=250318501786630";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
 
-		<div id="main" class="site-main">
+	<header class="globalHeader">
+	<div class="headLine clearfix">
+	<h1><?php bloginfo( 'description' ); ?></h1>
+	<div class="searchFormArea">
+
+	<?php get_search_form(); ?>
+
+	</div>
+	<!--//.searchFormArea-->
+	</div>
+	<!--//.headLine-->
+
+	<div class="headerContents clearfix">
+	<div class="siteLogo"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo get_template_directory_uri(); ?>/img/common/logo.png" alt="Cosmehouse"></a></div>
+	 <?php 
+	 wp_nav_menu( array( 'theme_location' => 'primary', 	'container'       => 'nav','container_class' => 'globalNav','container_id'    => '', 'items_wrap' => '<ul>%3$s</ul>' ) ); ?>
+
+	<div class="viewAllBtn"><a href="#">美容コラムを全て見る</a></div>
+	</div>
+	<!--//.headerContents-->
+	</header>

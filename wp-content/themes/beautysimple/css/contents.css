@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-/* c:20131105 m:20131108 */
+/* c:20131105 m:20131111 */
 
 
 /* contentsWrap
@@ -110,6 +110,9 @@
 .mainCol .tagLinks {
 	padding: 0 4px;
 	text-align: left;
+}
+.mainCol .tagLinks span {
+	vertical-align: text-top;
 }
 .mainCol .tagLinks a {
 	display: inline-block;
@@ -272,8 +275,32 @@
 }
 .snsBtns ul li {
 	display: inline-block;
-	margin: 0 2px;
+	margin: 0 3px;
 	vertical-align: middle;
+}
+.snsBtns ul li.twtr {
+	overflow: hidden;
+	width: 98px;
+}
+
+/* sideBox */
+.sideBox {
+	position: fixed;
+	left: 5px;
+	bottom: 50px;
+	z-index: 10000;
+	width: 88px;
+	min-height: 315px;
+	border: 6px solid #49A9A9;
+	background: #fff;
+}
+.sideBox ul.snsBtns {
+	margin: 0;
+	padding: 8px 0;
+}
+.sideBox ul.snsBtns li {
+	margin: 0 0 8px 0;
+	text-align: center;
 }
 
 
@@ -312,6 +339,17 @@
 	font-size: 116%;
 	font-weight: normal;
 	line-height: 1.5;
+}
+
+.pageTypeCategory .entryPiece a .entryOverview .txt {
+	color: #333;
+	-webkit-transition: none 0 ease;
+	-moz-transition: none 0 ease;
+	-o-transition: none 0 ease;
+	transition: none 0 ease;
+}
+.pageTypeCategory .entryPiece a:hover .entryOverview .txt {
+	color: #333;
 }
 .entryPiece .entryOverview .txt p {
 	font-weight: normal;
@@ -760,13 +798,14 @@ a .tagMark {
 .tagMark div,
 a .tagMark div {
 	display: inline-block;
-	padding: 0.25em 1.1em;
+	padding: 0.25em 1.1em 0.15em 1.1em;
 	border-radius: 19px;
 	background: #FF9797;	
 	color: #fff;
 	font-size: 10px;
 	font-weight: normal !important;
 	line-height: 1.1;
+	vertical-align: middle;
 	behavior: url(border-radius.htc);
 	position: relative;
 	z-index: 1000;
@@ -775,13 +814,9 @@ a .tagMark div {
 a .tagMark div span {
 	position: relative;
 	z-index: 1001;
+	vertical-align: middle;
 }
 
-:hover > .tagMark div,
-a:hover > .tagMark div {
-	opacity: 0.7;
-	filter: alpha(opacity=70);
-}
 .tagMark.yellow div {	background: #F1B767;}
 .tagMark.blue div {	background: #3399CC;}
 .tagMark.purple div {	background: #A293DB;}

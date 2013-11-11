@@ -1,5 +1,5 @@
 <footer class="globalFooter">
-<div class="toppageLink"><span><img src="img/common/icon_pagetop.png" alt="ページの上部へ戻る"></span></div>
+<div class="toppageLink"><span><img src="<?php echo get_template_directory_uri(); ?>/img/common/icon_pagetop.png" alt="ページの上部へ戻る"></span></div>
 
 <div class="footerContent01">
 <div class="inner clearfix">
@@ -67,13 +67,11 @@
 <section class="sns">
 <h1>フォローで最新情報ゲット</h1>
 <ul>
-<li><a href="#"><img src="img/common/icon_facebook.png" alt="facebook"></a></li>
-<li><a href="#"><img src="img/common/icon_twitter.png" alt="twitter"></a></li>
+<li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/common/icon_facebook.png" alt="facebook"></a></li>
+<li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/common/icon_twitter.png" alt="twitter"></a></li>
 </ul> 
 <div class="fbArea">
-facebook<br />
-<a href="#">facebook</a><br />
-<a href="#">facebook</a>
+<div class="fb-like-box" data-href="http://www.facebook.com/FacebookDevelopers" data-colorscheme="light" data-show-faces="false" data-header="true" data-stream="false" data-show-border="true"></div>
 </div>
 </section>
 </div>
@@ -97,8 +95,6 @@ facebook<br />
 </footer>
 
 
-<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.tile.js" type="text/javascript"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/js/functions.js" type="text/javascript"></script>
 <?php wp_footer(); ?>
 
 </body>
