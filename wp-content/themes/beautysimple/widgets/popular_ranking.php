@@ -26,7 +26,7 @@ class Popular_Ranking_Widget extends WP_Widget {
 	public function widget( $args, $instance ) {
 		$title = apply_filters( 'widget_title', $instance['title'] );
 
-		
+
 		if ( ! empty( $instance['all'] ) && $instance['all'] )
 		{
 					$the_query = get_rankink('',$instance['limit']);
@@ -34,40 +34,53 @@ class Popular_Ranking_Widget extends WP_Widget {
 		else
 		{
 					$category = get_the_category();
-					
+
 					// fix for display in page
 					if (!count($category)) {
 						return;
 					}
-					$cat = $category[0];
+					$arrCat = array();
+					foreach ($category as $key => $cat) {
+						$arrCat[] = $cat->cat_ID;
+						if (! in_array($cat->category_parent, $arrCat)) {
+							$arrCat[] = $cat->category_parent;
+						}
+					}
 
-					$the_query = get_rankink($cat->cat_ID,$instance['limit']);
+					$the_query = get_rankink( implode(',', $arrCat) ,$instance['limit']);
 		}
 
-		echo $args['before_widget'];
-		if ( ! empty( $title ) )
-			echo $args['before_title'] . $title . $args['after_title'];
+		// echo $args['before_widget'];
+		// if ( ! empty( $title ) )
+		// 	echo $args['before_title'] . $title . $args['after_title'];
 
 
 		// The Loop
 		?>
+		<section class="entryRanking">
+		<h1 class="sideTtl"><?php echo $title ?></h1>
 		<?php if( $the_query->have_posts() ): ?>
-			<ul>
-			<?php while ( $the_query->have_posts() ) : $the_query->the_post();
+			<ol>
+			<?php
+			$counter = 0;
+			while ( $the_query->have_posts() ) : $the_query->the_post();
+			$counter++;
 			?>
-
-				<li>
-					<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-				</li>
-
-
+				<li class="rank<?php echo $counter ?>"><a href="<?php the_permalink(); ?>">
+				<div class="rank">No.<?php echo $counter ?></div>
+				<?php if ($counter <=3):?>
+				<div class="pic"> <?php the_post_thumbnail(array('126'  ,'82' )); ?> </div>
+				<?php endif; ?>
+				<div class="txt"><p class="ttl"><?php the_title(); ?></p></div>
+				</a></li>
 			<?php endwhile; ?>
-			</ul>
+			</ol>
 		<?php endif; ?>
-		 
+		</section>
+<!--//.entryRanking-->
 		<?php wp_reset_query();  // Restore global post data stomped by the_post().
 
-		echo $args['after_widget'];
+		// echo $args['after_widget'];
 	}
 
 	/**
@@ -100,21 +113,21 @@ class Popular_Ranking_Widget extends WP_Widget {
 		}
 		?>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
+		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
 
 		<p>
-		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'All category:' ); ?></label> 
+		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'All category:' ); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id( 'all' ); ?>" name="<?php echo $this->get_field_name( 'all' ); ?>" type="checkbox" value="1" <?php checked(1,$all); ?>
  />
 		</p>
 
 		<p>
-		<label for="<?php echo $this->get_field_id( 'limit' ); ?>"><?php _e( 'Limit:' ); ?></label> 
+		<label for="<?php echo $this->get_field_id( 'limit' ); ?>"><?php _e( 'Limit:' ); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id( 'limit' ); ?>" name="<?php echo $this->get_field_name( 'limit' ); ?>" type="text" value="<?php echo esc_attr( $limit ); ?>" />
 		</p>
-		<?php 
+		<?php
 	}
 
 	/**

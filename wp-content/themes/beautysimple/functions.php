@@ -115,7 +115,10 @@ function special_nav_class($classes, $item){
 // Truncate string for home page
 
 function custom_excerpt_length( $length ) {
-	return 10;
+	if (is_home()) {
+		return 10;
+	}
+	else return 32;
 }
 add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 

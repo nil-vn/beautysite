@@ -61,11 +61,87 @@ get_header(); ?>
 
 </header>
 
+
+
+<?php if ( have_posts() ) : ?>
+	<section class="entryList">
+
+	<?php /* The loop */ ?>
+	<?php while ( have_posts() ) : the_post(); ?>
+		<article class="entryPiece">
+			<a href="<?php the_permalink(); ?>">
+		<header class="entryHeader">
+		<div class="entryInfo">
+		<span class="entryDate"><?php echo get_the_date("Y/m/d" ); ?></span>
+		<?php if (date("Y/m/d") == get_the_date("Y/m/d" )) {
+			echo '<span class="entryMark">new</span>';
+		}
+		?>
+		</div>
+		<!--//.entryInfo-->
+		<h1><?php the_title( ); ?></h1>
+		</header>
+
+		<div class="entryOverview">
+		<div class="pic"> <?php the_post_thumbnail( array(300,200) ); ?> </div>
+		<div class="txt">
+		<?php the_excerpt() ?>
+		<div class="viewMore"><span>続きを見る</span></div>
+		</div>
+		</div>
+		<!--//.entryOverview-->
+		</a></article>
+
+	<?php endwhile; ?>
+	</section>
+	<?php
+
+	global $wp_query;
+
+	// Don't print empty markup if there's only one page.
+	if ( $wp_query->max_num_pages >= 2 ):
+		if(function_exists('wp_paginate')) {
+		    wp_paginate();
+		}
+		else
+		{
+		$big = 999999999; // need an unlikely integer
+
+		echo paginate_links( array(
+			'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+			'format' => '?paged=%#%',
+			'current' => max( 1, get_query_var('paged') ),
+			'total' => $wp_query->max_num_pages
+		) );
+		}
+	?>
+
+<!-- 	<div class="pagination">
+	<div class="pageMove">
+	<a href="#" class="prevLink">前のページ</a>
+	<span class="currentLink">1</span>
+	<a href="#" class="pageLink">2</a>
+	<a href="#" class="pageLink">3</a>
+	<a href="#" class="pageLink">4</a>
+	<a href="#" class="pageLink">5</a>
+	<a href="#" class="pageLink">6</a>
+	<a href="#" class="pageLink">7</a>
+	<a href="#" class="pageLink">8</a>
+	<a href="#" class="pageLink">9</a>
+	<span class="chain">…</span>
+	<a href="#" class="pageLink">99</a>
+	<a href="#" class="nextLink">次のページ</a>
+	</div>
+	<p class="status">200件中 1 - 10 を表示</p>
+	</div> -->
+	<!--//.pagination-->
+	<?php endif; ?>
+<?php else : ?>
+	<?php get_template_part( 'content', 'none' ); ?>
+<?php endif; ?>
+
 </div>
 <!--//.mainCol-->
-
-
-
 <!--////////////////////////////////////////////////////////////////////////////////
 ↑↑↑main
 
