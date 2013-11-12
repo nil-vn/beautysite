@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-/* c:20131105 m:20131108 */
+/* c:20131105 m:20131111 */
 
 
 .pageTypeIndex {}
@@ -164,26 +164,32 @@
 .rankingArea header ul li {
 	float: left;
 	margin: 0 0 0 10px;
-}
-.rankingArea header ul li a {
-	display: block;
 	background:url(../img/contents/ranknav.png) top left no-repeat;
 	text-indent: -9999px;
 }
-.rankingArea header ul li.ranknav01 a { width:140px; height:50px; background-position:-10px -550px; }
-.rankingArea header ul li.ranknav02 a { width:150px; height:50px; background-position:-10px -490px; }
-.rankingArea header ul li.ranknav03 a { width:150px; height:50px; background-position:-10px -430px; }
-.rankingArea header ul li.ranknav04 a { width:150px; height:50px; background-position:-10px -190px; }
-.rankingArea header ul li.ranknav05 a { width:150px; height:50px; background-position:-10px -70px; }
-.rankingArea header ul li.ranknav01 a:hover { width:140px; height:50px; background-position:-10px -370px; }
-.rankingArea header ul li.ranknav02 a:hover { width:150px; height:50px; background-position:-10px -310px; }
-.rankingArea header ul li.ranknav03 a:hover { width:150px; height:50px; background-position:-10px -250px; }
-.rankingArea header ul li.ranknav04 a:hover { width:150px; height:50px; background-position:-10px -130px; }
-.rankingArea header ul li.ranknav05 a:hover { width:150px; height:50px; background-position:-10px -10px; }
+.rankingArea header ul li:hover {
+	cursor: pointer;
+}
+.rankingArea header ul li.ranknav01 { width:140px; height:50px; background-position:-10px -550px; }
+.rankingArea header ul li.ranknav02 { width:150px; height:50px; background-position:-10px -490px; }
+.rankingArea header ul li.ranknav03 { width:150px; height:50px; background-position:-10px -430px; }
+.rankingArea header ul li.ranknav04 { width:150px; height:50px; background-position:-10px -190px; }
+.rankingArea header ul li.ranknav05 { width:150px; height:50px; background-position:-10px -70px; }
+.rankingArea header ul li.ranknav01:hover,
+.rankingArea header ul li.ranknav01.active { width:140px; height:50px; background-position:-10px -370px; }
+.rankingArea header ul li.ranknav02:hover,
+.rankingArea header ul li.ranknav02.active { width:150px; height:50px; background-position:-10px -310px; }
+.rankingArea header ul li.ranknav03:hover,
+.rankingArea header ul li.ranknav03.active { width:150px; height:50px; background-position:-10px -250px; }
+.rankingArea header ul li.ranknav04:hover,
+.rankingArea header ul li.ranknav04.active { width:150px; height:50px; background-position:-10px -130px; }
+.rankingArea header ul li.ranknav05:hover,
+.rankingArea header ul li.ranknav05.active { width:150px; height:50px; background-position:-10px -10px; }
 
 .rankingArea .inner {
 	text-align: center;
 }
+.disnon {	display: none;}
 .rankingArea .inner section {
 	display: inline-block;
 	vertical-align: top;

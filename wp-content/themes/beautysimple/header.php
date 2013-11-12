@@ -40,7 +40,7 @@
 	<div class="headerContents clearfix">
 	<div class="siteLogo"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo get_template_directory_uri(); ?>/img/common/logo.png" alt="Cosmehouse"></a></div>
 	 <?php 
-	 wp_nav_menu( array( 'theme_location' => 'primary', 	'container'       => 'nav','container_class' => 'globalNav','container_id'    => '', 'items_wrap' => '<ul>%3$s</ul>' ) ); ?>
+	 wp_nav_menu( array( 'theme_location' => 'primary', 	'container'       => 'nav','container_class' => 'globalNav','container_id'    => '', 'items_wrap' => '<ul>%3$s</ul>' , 'walker' => new beautysite_walker_nav_menu ) ); ?>
 
 	<div class="viewAllBtn"><a href="#">美容コラムを全て見る</a></div>
 	</div>

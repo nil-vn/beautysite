@@ -5,13 +5,14 @@ m: 20131108
 */
 
 jQuery(document).ready(function($){
-    $(".rankingArea section a").tile();
+    	//index
+	$(".rankingArea section a").tile();
 	$(".newsList").tile();
 	$(".recommendArea section a").tile();
 	$(".contentsNav dl").tile();
-	//‹¤’Ê
+	//å…±é€š
 	$(".contentsNav dl").tile();
-	//‰º‘w
+	//ä¸‹å±¤
 	$(".recommendList ul li a").tile();
 	$(".recommendList02 ul li a").tile(3);
 
@@ -67,12 +68,27 @@ jQuery(document).ready(function($){
 		return false;
 	});
 
-	$('.rankingArea li a').click(function(event) {
-		var id = $(this).parent().attr('class');
-		$('#' + id).show('400', function() {
-			$(this).siblings().hide();
-		});
+	// ie 8
+	$(".entryRanking ol li[class*='rank'] .rank").css("min-height","45px");
+    $(".entryRanking ol li[class*='rank'] .txt").css("width","179px");
+	//topic path
+    $(".topicPath li:not(:last)").append("ï¼ž");
 
-	});
+
+    $(".rankingArea header ul li").click(function() {
+        var num = $(".rankingArea header ul li").index(this);
+        $(".rankingArea .inner").addClass('disnon');
+        $(".rankingArea .inner").eq(num).removeClass('disnon');
+        $(".rankingArea header ul li").removeClass('active');
+        $(this).addClass('active');
+    });
+
+	// $('.rankingArea li a').click(function(event) {
+	// 	var id = $(this).parent().attr('class');
+	// 	$('#' + id).show('400', function() {
+	// 		$(this).siblings().hide();
+	// 	});
+
+	// });
 
 });

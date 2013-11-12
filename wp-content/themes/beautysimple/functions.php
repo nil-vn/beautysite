@@ -112,6 +112,55 @@ function special_nav_class($classes, $item){
      return $classes;
 }
 
+// Truncate string for home page
+
+function custom_excerpt_length( $length ) {
+	return 10;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+
+function new_excerpt_more( $more ) {
+	return ' ...';
+}
+add_filter('excerpt_more', 'new_excerpt_more');
+
+class beautysite_walker_nav_menu extends Walker_Nav_Menu {
+
+// add main/sub classes to li's and links
+	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+    global $wp_query;
+ 
+    // passed classes
+    $classes = empty( $item->classes ) ? array() : (array) $item->classes;
+    $class_names = esc_attr( implode( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) ) );
+
+    // build html
+    $output .=  '<li class="' . $class_names . '">';
+
+    // link attributes
+    $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
+    $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
+    $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
+    $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
+
+    // check active category
+	if (is_category( $item->title )) {
+     $attributes .= ' class="active"';
+    }
+
+    $item_output = sprintf( '%1$s<a%2$s>%3$s%4$s%5$s</a>%6$s',
+        $args->before,
+        $attributes,
+        $args->link_before,
+        apply_filters( 'the_title', $item->title, $item->ID ),
+        $args->link_after,
+        $args->after
+    );
+
+    // build html
+    $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+}
+}
 
 /**
  * Enqueue scripts and styles for the front end.

@@ -11,32 +11,76 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<div id="content" class="site-content" role="main">
 
-		<?php if ( have_posts() ) : ?>
-			<header class="archive-header">
-				<h1 class="archive-title"><?php printf( __( 'Category Archives: %s', 'twentythirteen' ), single_cat_title( '', false ) ); ?></h1>
 
-				<?php if ( category_description() ) : // Show an optional category description ?>
-				<div class="archive-meta"><?php echo category_description(); ?></div>
-				<?php endif; ?>
-			</header><!-- .archive-header -->
-		<p><?php wp_list_categories( array('child_of' => get_cat_id( single_cat_title("",false) )) ); ?></p>
-		<?php  
-		$GLOBALS['DebugMyPlugin']->panels['main']->addPR('category:',get_cat_id( single_cat_title("",false) ),__FILE__,__LINE__ );
-		 ?>
-			<?php /* The loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>
-				<?php get_template_part( 'content', get_post_format() ); ?>
-			<?php endwhile; ?>
+<div class="contentsWrap pageTypeCategory">
+<div class="contentsWrapInner">
+<div class="contents">
 
-		<?php else : ?>
-			<?php get_template_part( 'content', 'none' ); ?>
-		<?php endif; ?>
 
-		</div><!-- #content -->
-	</div><!-- #primary -->
+<div class="layout2Col">
+
+<div class="mainCol">
+
+<header class="mainColHeader">
+<ol class="topicPath">
+<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">TOP</a></li>
+<li>美容と健康</li>
+</ol>
+
+<div class="pageTtl">
+<h1>美容と健康</h1>
+</div>
+
+<div class="pageOverview">
+<p>グラビアアイドルやモデルさんみたいにキュッと引き締まったヒップになりたい！</p>
+<p>でも現実はセルライトがたくさんついてぶよぶよ、、そんなお悩みに、簡単にできるリンパマッサージのやり方をご紹介します！</p>
+</div>
+
+<div class="tagLinks"><span>カテゴリ：</span>
+<a href="tag.html">ダイエット</a>
+<a href="#">運動</a>
+<a href="#">イベント</a>
+<a href="#">食生活</a>
+<a href="#">酵素</a>
+<a href="#">サプリメント</a>
+<a href="#">便秘解消</a>
+<a href="#">冷え性</a>
+<a href="#">花粉症</a>
+</div>
+
+</header>
+
+</div>
+<!--//.mainCol-->
+
+
+
+<!--////////////////////////////////////////////////////////////////////////////////
+↑↑↑main
+
+↓↓↓side
+///////////////////////////////////////////////////////////////////////////////////-->
+
+
+
+<div class="subCol">
+
+
 
 <?php get_sidebar(); ?>
+
+</div>
+<!--//.subCol-->
+
+</div>
+<!--//.layout2Col-->
+
+
+</div>
+<!--//.contents-->
+</div>
+<!--//.contentsWrapInner-->
+</div>
+<!--//.contentsWrap-->
 <?php get_footer(); ?>

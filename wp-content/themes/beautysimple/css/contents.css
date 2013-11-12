@@ -90,6 +90,11 @@
 	background: url(../img/contents/icon_pr.png) no-repeat 6px top;
 	color: #A293DB;
 }
+.all .pageTtl h1{
+    background: none;
+    color:#45A0A0;
+    padding: 0;
+}
 
 .pageTtl .flowLink {
 	margin: -1.4em 0 0 0;
@@ -120,7 +125,7 @@
 	padding: 0.25em 0.5em 0.15em 0.5em;
 	background: #FFA8A8;
 	color: #fff;
-	line-heiht: 1.1;
+	line-height: 1.1;
 }
 .mainCol .tagLinks a:hover,
 .mainCol .tagLinks a.active {
@@ -182,8 +187,8 @@
 	display: inline-block;
 	width: 40px;
 	height: 17px;
-	padding: 1px 0 0 5px;
-	background: url(../img/contents/bg_flag_red.png) no-repeat left bottom;
+	padding: 2px 0 0 5px;
+	background: url(../img/contents/bg_flag_red.png) no-repeat left center;
 	color: #fff;
 	text-transform: uppercase;
 }
@@ -195,6 +200,13 @@
 	font-size: 250%;
 	font-weight: normal;
 	line-height: 1.25;
+}
+.entryOverview .tagMark{
+    margin:0 0 6px 0;
+    text-align: left;
+}
+.entryOverview .tagMark span{
+    font-size: 12px;
 }
 .pageTypeSingle .entryHeader > h1 {
 	margin-bottom: 20px;
@@ -308,16 +320,26 @@
 /*	entryOverview
 -----------------------------------------------*/
 .entryPiece .entryOverview {
-	overflow: hidden;
 	margin: 0 20px 28px 20px;
 	padding: 0 0 30px 0;
 	background: url(../img/contents/line_green_l.png) no-repeat left bottom;
+	/zoom: 1;
+}
+.entryPiece .entryOverview:after {
+	content:".";
+	display:block;
+	height:0;
+	clear: both;
+	visibility:hidden;
+	font-size:0;
+	line-height:0;
 }
 .entryPiece .entryOverview .pic {
 	float: left;
 }
 .entryPiece .entryOverview .pic img {
 	max-width: 294px;
+	width: 294px;
 	padding: 3px;
 	border: 1px solid #DCEDEA;
 }
@@ -614,20 +636,29 @@
 .entryRanking ol li {
 }
 .entryRanking ol li a {
-	overflow: hidden;
-	display: table;
+	display: block;
 	width: 360px;
 	padding: 1em 0;
 	border-bottom: 1px solid #DCEDEA;
 	line-height: 1.4;
 	vertical-align: top;
+	/zoom: 1;
+}
+.entryRanking ol li a:after {
+	content:".";
+	display:block;
+	height:0;
+	clear: both;
+	visibility:hidden;
+	font-size:0;
+	line-height:0;
 }
 .entryRanking ol li .rank {
-	display: table-cell;
+	float: left;
 	width: 40px;
-	padding: 0 6px 0 0;
+	padding: 2px 6px 0 0;
 	color: #45A0A0;
-	vertical-align: middle;
+	/*vertical-align: middle;*/
 }
 .entryRanking ol li a:hover .rank {
 	opacity: 0.7;
@@ -638,7 +669,7 @@
 	transition: opacity 0.2s ease;
 }
 .entryRanking ol li .pic {
-	display: table-cell;
+	float: left;
 	width: 120px;
 	padding: 0 6px 0 0;
 	vertical-align: top;
@@ -657,7 +688,8 @@
 	transition: opacity 0.2s ease;
 }
 .entryRanking ol li .txt {
-	display: table-cell;
+	float: left;
+	width: 305px;
 	padding: 0 6px 0 3px;
 	vertical-align: top;
 }
@@ -798,7 +830,8 @@ a .tagMark {
 .tagMark div,
 a .tagMark div {
 	display: inline-block;
-	padding: 0.25em 1.1em 0.15em 1.1em;
+	padding: 3px 1.1em;
+    padding: 4px 1.1em 2px 1.1em\9; /* IE8 and below */
 	border-radius: 19px;
 	background: #FF9797;	
 	color: #fff;
@@ -836,15 +869,15 @@ a .tagMark div span {
 	float: left;
 	padding: 0 0 0 0.35em;
 }
-.topicPath li:after {
+/*.topicPath li:after {
 	content: " ＞";
 }
 .topicPath li:last-child:after {
 	content: none;
-}
+}*/
 .topicPath li a {
 	display: inline-block;
-	padding: 0 0.35em 0 0;
+	padding: 0 0.5em 0 0;
 }
 
 
@@ -935,7 +968,7 @@ a .tagMark div span {
 	color: #333;
 	line-height: 24px;
 	text-indent: 0;
-	vettical-align: middle;
+	vertical-align: middle;
 }
 .pageTypeSingle .pagination .pageMove .prevLink {
 	margin: 0 10px 0 0;
@@ -947,4 +980,41 @@ a .tagMark div span {
 	padding: 0 24px 0 0;
 	background: url(../img/contents/icon_arrow_l.gif) no-repeat right top;
 }
+
+
+/*
+	static page
+-----------------------------------------------*/
+.all .static{
+    margin: 0 10px 0 40px;
+}
+.all .static p{
+    font-size: 14px;
+    margin:0 0 2em 0;
+    line-height:1.7;
+}
+.all .static h1{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.all .static h2{
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+
+.static .first{
+    margin-left: 30px;
+}
+.static ul li{
+    font-size: 14px;
+    line-height:2;
+    margin-bottom: 10px;    
+}
+.static .second li{
+    margin: 0 0 0 10px;
+}
+
+
+
 

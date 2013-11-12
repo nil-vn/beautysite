@@ -51,7 +51,7 @@ get_header(); ?>
 						<section class="topInfo01 leftSide"><a href="<?php the_permalink(); ?>">
 						<div class="txt">
 						<h1><?php the_title(); ?></h1>
-						<p> <?php the_excerpt(); ?> </p>
+						<p> <?php echo get_the_excerpt(); ?> (<?php echo get_the_date( 'm/d' ); ?>)</p>
 						</div>
 						<div class="pic">   <?php the_post_thumbnail(array(600,400)); ?></div>
 						</a></section>
@@ -63,7 +63,7 @@ get_header(); ?>
 						<section class="topInfo02"><a href="<?php the_permalink(); ?>">
 						<div class="txt">
 						<h1><?php the_title(); ?></h1>
-						<p> <?php the_excerpt(); ?> </p>
+						<p> <?php echo get_the_excerpt(); ?> (<?php echo get_the_date( 'm/d' ); ?>)</p>
 						</div>
 						<div class="pic"><?php the_post_thumbnail(array(300,200)); ?></div>
 						</a></section>
@@ -74,7 +74,7 @@ get_header(); ?>
 						<section class="topInfo03"><a href="<?php the_permalink(); ?>">
 						<div class="txt">
 						<h1><?php the_title(); ?></h1>
-						<p> <?php the_excerpt(); ?> </p>
+						<p> <?php echo get_the_excerpt(); ?> (<?php echo get_the_date( 'm/d' ); ?>)</p>
 						</div>
 						<div class="pic"><?php the_post_thumbnail(array(300,200)); ?></div>
 						</a></section>
@@ -102,7 +102,7 @@ get_header(); ?>
 		<header>
 		<h1>人気ランキング</h1>
 		<ul>
-		<li class="ranknav01"><a href="#overall">総合ランキング</a></li>
+		<li class="ranknav01 active"><a href="#overall">総合ランキング</a></li>
 		<li class="ranknav02"><a href="#health">美容と健康</a></li>
 		<li class="ranknav03"><a href="#cosme">メイク・コスメ</a></li>
 		<li class="ranknav04"><a href="#trouble">お悩み・効果</a></li>
@@ -110,7 +110,7 @@ get_header(); ?>
 		</ul>
 		</header>
 
-		<div class="inner">
+		
 		<?php
 
 		$category = array('','health','cosme','trouble','component');
@@ -121,7 +121,7 @@ get_header(); ?>
 		// The Loop
 		?>
 		<?php if( $the_query->have_posts() ): ?>
-			<div class="rank_section" id="ranknav0<?php echo ($key +1)  ?>" <?php if ($key) echo 'style="display:none;"';?> >
+			<div class="inner <?php if ($key) echo 'disnon';?>">
 			<ul>
 			<?php
 			 $counter = 0;
@@ -154,8 +154,6 @@ get_header(); ?>
 		endforeach;
 		 ?>
 
-		</div>
-		<!--//.inner-->
 		</article>
 		<!--//.rankingArea-->
 
@@ -190,7 +188,11 @@ get_header(); ?>
 						<div class="newsTtl"><span class="entryMark">new</span><?php the_title(); ?></div>
 						<footer>
 						<span class="date">(<?php echo get_the_date( 'Y/m/d' ); ?>)</span>
-						<div class="tagMark <?php echo $cat['color'] ?>"><div><span>美容と健康</span></div></div>
+						<div class="tagMark <?php echo $cat['color'] ?>"><div><span><?php 
+						$category = get_the_category(); 
+						if (isset($category[0])) 
+							echo $category[0]->cat_name; 
+						?></span></div></div>
 						</footer>
 						</a></li>
 					<?php endwhile; ?>
@@ -232,7 +234,11 @@ get_header(); ?>
 				<p> <?php the_excerpt(); ?> </p>
 				<footer>
 				<span class="date">(<?php echo get_the_date( 'Y/m/d' ); ?>)</span>
-				<div class="tagMark"><div><span>美容と健康</span></div></div>
+				<div class="tagMark"><div><span><?php 
+				$category = get_the_category(); 
+				if (isset($category[0])) 
+					echo $category[0]->cat_name; 
+				?></span></div></div>
 				</footer>
 				</a></section>
 			<?php endwhile; ?>
