@@ -67,4 +67,12 @@ jQuery(document).ready(function($){
 		return false;
 	});
 
+	$('.rankingArea li a').click(function(event) {
+		var id = $(this).parent().attr('class');
+		$('#' + id).show('400', function() {
+			$(this).siblings().hide();
+		});
+
+	});
+
 });

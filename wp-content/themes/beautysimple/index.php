@@ -102,18 +102,18 @@ get_header(); ?>
 		<header>
 		<h1>人気ランキング</h1>
 		<ul>
-		<li class="ranknav01"><a href="#">総合ランキング</a></li>
-		<li class="ranknav02"><a href="category.html">美容と健康</a></li>
-		<li class="ranknav03"><a href="category_yellow.html">メイク・コスメ</a></li>
-		<li class="ranknav04"><a href="category_blue.html">お悩み・効果</a></li>
-		<li class="ranknav05"><a href="category_purple.html">成分・特徴</a></li>
+		<li class="ranknav01"><a href="#overall">総合ランキング</a></li>
+		<li class="ranknav02"><a href="#health">美容と健康</a></li>
+		<li class="ranknav03"><a href="#cosme">メイク・コスメ</a></li>
+		<li class="ranknav04"><a href="#trouble">お悩み・効果</a></li>
+		<li class="ranknav05"><a href="#component">成分・特徴</a></li>
 		</ul>
 		</header>
 
 		<div class="inner">
 		<?php
 
-		$category = array('');
+		$category = array('','health','cosme','trouble','component');
 
 		foreach ($category as $key => $cat) :
 		// get results
@@ -121,6 +121,7 @@ get_header(); ?>
 		// The Loop
 		?>
 		<?php if( $the_query->have_posts() ): ?>
+			<div class="rank_section" id="ranknav0<?php echo ($key +1)  ?>" <?php if ($key) echo 'style="display:none;"';?> >
 			<ul>
 			<?php
 			 $counter = 0;
@@ -135,22 +136,17 @@ get_header(); ?>
 			<footer>
 			<span class="date">(<?php echo get_the_date( 'Y/m/d' ); ?>)</span>
 			<div class="tagMark"><div><span><?php 
-			$posttags = get_the_tags();
-				$count=0;
-				if ($posttags) {
-				  foreach($posttags as $tag) {
-				    $count++;
-				    if (1 == $count) {
-				      echo $tag->name . ' ';
-				    }
-				  }
-				}
+			$category = get_the_category(); 
+			if (isset($category[0])) 
+				echo $category[0]->cat_name;
+
  			?></span></div></div>
 			</footer>
 			</a></section>
 
 			<?php endwhile; ?>
 			</ul>
+			</div>
 		<?php endif; ?>
 
 		<?php wp_reset_query();  // Restore global post data stomped by the_post().
