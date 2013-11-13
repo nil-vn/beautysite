@@ -53,9 +53,11 @@ get_header(); ?>
 
 <div class="tagLinks"><span>カテゴリ：</span>
 <?php // list child categories
- $this_cat = get_query_var('cat'); // get the category of this category archive page
-  the_category(' ' , $this_cat ); // list child categories
-?>
+ 	$this_cat = get_query_var('cat'); // get the category of this category archive page
+	$result = get_categories( array('child_of' => $this_cat) ); // list child categories
+  	 foreach ($result as $key => $cat) {
+  	 	echo '<a href="' . get_category_link( $cat->term_id ) . '">' . $cat->name . '</a>';
+  	 }?>
 
 </div>
 

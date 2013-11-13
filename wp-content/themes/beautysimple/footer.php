@@ -5,61 +5,39 @@
 <div class="inner clearfix">
 <nav class="contentsNav">
 <dl>
-<dt><a href="#">ライフスタイル</a></dt>
+<dt><a href="/category/health">ライフスタイル</a></dt>
 <dd>
-<ul>
-<li><a href="#">美容と健康</a></li>
-<li><a href="#">ダイエット</a></li>
-<li><a href="#">運動</a></li>
-<li><a href="#">食生活</a></li>
-<li><a href="#">酵素</a></li>
-<li><a href="#">サプリメント</a></li>
-<li><a href="#">イベント</a></li>
-</ul>
+<?php 
+	 $this_cat = get_category_by_slug('health' ); // get the category of this category archive page
+  	 wp_list_categories( array('child_of' => $this_cat->cat_ID) ); // list child categories
+?>
 </dd>
 </dl>
 <dl>
-<dt><a href="#">美容・コスメ</a></dt>
+<dt><a href="/category/cosme">美容・コスメ</a></dt>
 <dd>
-<ul>
-<li><a href="#">スキンケア</a></li>
-<li><a href="#">メイクアップ</a></li>
-<li><a href="#">美容家電・美顔器</a></li>
-<li><a href="#">ヘアケア</a></li>
-<li><a href="#">ネイルケア</a></li>
-<li><a href="#">ハンドケア</a></li>
-<li><a href="#">ボディケア</a></li>
-</ul>
+<?php 
+	 $this_cat = get_category_by_slug('cosme' ); // get the category of this category archive page
+  	 wp_list_categories( array('child_of' => $this_cat->cat_ID) ); // list child categories
+?>
 </dd>
 </dl>
 <dl>
-<dt><a href="#">お悩み・効果</a></dt>
+<dt><a href="/category/trouble">お悩み・効果</a></dt>
 <dd>
-<ul>
-<li><a href="#">美白</a></li>
-<li><a href="#">アンチエイジング</a></li>
-<li><a href="#">ダイエット毛穴</a></li>
-<li><a href="#">ニキビ</a></li>
-<li><a href="#">日焼け・しみ</a></li>
-<li><a href="#">うるおい</a></li>
-<li><a href="#">角質ケア</a></li>
-<li><a href="#">肌荒れ</a></li>
-</ul>
+<?php 
+	 $this_cat = get_category_by_slug('trouble' ); // get the category of this category archive page
+  	 wp_list_categories( array('child_of' => $this_cat->cat_ID) ); // list child categories
+?>
 </dd>
 </dl>
 <dl>
-<dt><a href="#">成分・特徴</a></dt>
+<dt><a href="/category/component">成分・特徴</a></dt>
 <dd>
-<ul>
-<li><a href="#">コラーゲン</a></li>
-<li><a href="#">ヒアルロン酸</a></li>
-<li><a href="#">ノンシリコン</a></li>
-<li><a href="#">プラセンタ</a></li>
-<li><a href="#">ビタミンC</a></li>
-<li><a href="#">トラネキサム酸</a></li>
-<li><a href="#">コエンザイムQ１０</a></li>
-<li><a href="#">添加物について</a></li>
-</ul>
+<?php 
+	 $this_cat = get_category_by_slug('component' ); // get the category of this category archive page
+  	 wp_list_categories( array('child_of' => $this_cat->cat_ID) ); // list child categories
+?>
 </dd>
 </dl>
 </nav>

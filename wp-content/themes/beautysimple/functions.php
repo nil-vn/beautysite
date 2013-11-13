@@ -23,6 +23,7 @@
  * @since Comestic 1.0
  */
 require_once('widgets/popular_ranking.php');
+require_once('widgets/beauty_category.php');
 
 /**
  * Comestic setup.
