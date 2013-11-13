@@ -42,7 +42,7 @@
 	 <?php 
 	 wp_nav_menu( array( 'theme_location' => 'primary', 	'container'       => 'nav','container_class' => 'globalNav','container_id'    => '', 'items_wrap' => '<ul>%3$s</ul>' , 'walker' => new beautysite_walker_nav_menu ) ); ?>
 
-	<div class="viewAllBtn"><a href="/category">美容コラムを全て見る</a></div>
+	<div class="viewAllBtn"><a href="/all_category">美容コラムを全て見る</a></div>
 	</div>
 	<!--//.headerContents-->
 	</header>
