@@ -69,7 +69,7 @@ class Popular_Ranking_Widget extends WP_Widget {
 				<li class="rank<?php echo $counter ?>"><a href="<?php the_permalink(); ?>">
 				<div class="rank">No.<?php echo $counter ?></div>
 				<?php if ($counter <=3):?>
-				<div class="pic"> <?php the_post_thumbnail(array('126'  ,'82' )); ?> </div>
+				<div class="pic"> <?php the_post_thumbnail('sidebar-thumb'); ?> </div>
 				<?php endif; ?>
 				<div class="txt"><p class="ttl"><?php the_title(); ?></p></div>
 				</a></li>
