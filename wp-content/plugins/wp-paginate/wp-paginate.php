@@ -135,11 +135,11 @@ if (!class_exists('WPPaginate')) {
 			$output = stripslashes($before);
 			if ($pages > 1) {
 				$output .= sprintf('<ol class="wp-paginate%s">', ($this->type === 'posts') ? '' : ' wp-paginate-comments');
-				$output .= sprintf('<li><span class="title">%s</span></li>', stripslashes($title));
+				// $output .= sprintf('<li><span class="title">%s</span></li>', stripslashes($title));
 				$ellipsis = "<li><span class='gap'>...</span></li>";
 
 				if ($page > 1 && !empty($previouspage)) {
-					$output .= sprintf('<li><a href="%s" class="prev">%s</a></li>', $prevlink, stripslashes($previouspage));
+					$output .= sprintf('<li><a href="%s" class="prevLink">%s</a></li>', $prevlink, stripslashes($previouspage));
 				}
 
 				$min_links = $range * 2 + 1;
@@ -176,7 +176,7 @@ if (!class_exists('WPPaginate')) {
 				}
 
 				if ($page < $pages && !empty($nextpage)) {
-					$output .= sprintf('<li><a href="%s" class="next">%s</a></li>', $nextlink, stripslashes($nextpage));
+					$output .= sprintf('<li><a href="%s" class="nextLink">%s</a></li>', $nextlink, stripslashes($nextpage));
 				}
 				$output .= "</ol>";
 			}
@@ -195,8 +195,8 @@ if (!class_exists('WPPaginate')) {
 			for ($i = $start; $i <= $max; $i++) {
 				$p = ($this->type === 'posts') ? esc_url(get_pagenum_link($i)) : get_comments_pagenum_link($i);
 				$output .= ($page == intval($i))
-					? "<li><span class='page current'>$i</span></li>"
-					: "<li><a href='$p' title='$i' class='page'>$i</a></li>";
+					? "<li><span class='page currentLink'>$i</span></li>"
+					: "<li><a href='$p' title='$i' class='pageLink'>$i</a></li>";
 			}
 			return $output;
 		}

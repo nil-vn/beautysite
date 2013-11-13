@@ -60,10 +60,10 @@
 <div class="footerContent02">
 <div class="inner clearfix">
 <ul>
-<li><a href="#">利用規約</a></li>
-<li><a href="#">プライバシーポリシー</a></li>
-<li><a href="#">サイトマップ</a></li>
-<li><a href="#">運営会社</a></li>
+<li><a href="/terms">利用規約</a></li>
+<li><a href="/privacy">プライバシーポリシー</a></li>
+<li><a href="/sitemap">サイトマップ</a></li>
+<li><a href="/company">運営会社</a></li>
 </ul>
 <p class="copyright">Copyright &copy; Cosume house All Rights Reserved.</p>
 </div>

@@ -22,7 +22,10 @@ get_header(); ?>
 
 <div class="mainCol">
 
-<header class="mainColHeader">
+<header class="mainColHeader <?php if (is_category('cosme' )) { ?>
+categoryYellow<?php } else if (is_category('trouble' )) { ?>
+categoryBlue<?php } elseif (is_category('component' )) { ?>
+categoryPurple<?php } ?>">
 <ol class="topicPath">
 <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">TOP</a></li>
 <?php if (is_category('health' )) { ?>
@@ -87,7 +90,7 @@ get_header(); ?>
 		<div class="entryOverview">
 		<div class="pic"> <?php the_post_thumbnail( array(300,200) ); ?> </div>
 		<div class="txt">
-		<?php the_excerpt() ?>
+		<?php the_content('',FALSE,'');?>
 		<div class="viewMore"><span>続きを見る</span></div>
 		</div>
 		</div>
@@ -99,11 +102,22 @@ get_header(); ?>
 	<?php
 
 	global $wp_query;
-
-	// Don't print empty markup if there's only one page.
+ 	// Don't print empty markup if there's only one page.
 	if ( $wp_query->max_num_pages >= 2 ):
 		if(function_exists('wp_paginate')) {
-		    wp_paginate();
+		    echo '<div class="pagination">';
+		     wp_paginate();
+		     $current_page = isset( $wp_query->query['paged']) ?  $wp_query->query['paged'] :1;
+		     $total_items = $wp_query->found_posts;
+		     $items_per_page = $wp_query->query_vars['posts_per_page'];
+		     $from = ($current_page-1)* $items_per_page +1;
+		     $to = ($current_page == $wp_query->max_num_pages)? $total_items : $current_page * $items_per_page  ;
+		     echo '<p class="status">'.$total_items.'件中 '. $from  .' - '.$to.' を表示</p>';
+		    echo  '</div>';
+		} 
+		elseif (function_exists('wp_pagenavi'))
+		{
+			wp_pagenavi();
 		}
 		else
 		{
@@ -117,8 +131,8 @@ get_header(); ?>
 		) );
 		}
 	?>
-
-<!-- 	<div class="pagination">
+<!-- 
+	<div class="pagination">
 	<div class="pageMove">
 	<a href="#" class="prevLink">前のページ</a>
 	<span class="currentLink">1</span>
