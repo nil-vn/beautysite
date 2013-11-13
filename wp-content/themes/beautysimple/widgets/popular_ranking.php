@@ -33,21 +33,21 @@ class Popular_Ranking_Widget extends WP_Widget {
 		}
 		else
 		{
-					$category = get_the_category();
 
-					// fix for display in page
-					if (!count($category)) {
-						return;
-					}
-					$arrCat = array();
-					foreach ($category as $key => $cat) {
-						$arrCat[] = $cat->cat_ID;
-						if (! in_array($cat->category_parent, $arrCat)) {
-							$arrCat[] = $cat->category_parent;
+					 	$this_cat = get_query_var('cat'); // get the category of this category archive page
+					 	if (empty($this_cat)) {
+					 		return;
+					 	}
+						$result = get_categories( array('child_of' => $this_cat) ); // list child categories
+						$arrCat = array( $this_cat);
+						foreach ($result as $key => $cat) {
+							$arrCat[] = $cat->cat_ID;
+							if (! in_array($cat->category_parent, $arrCat)) {
+								$arrCat[] = $cat->category_parent;
+							}
 						}
-					}
 
-					$the_query = get_rankink( implode(',', $arrCat) ,$instance['limit']);
+						$the_query = get_rankink( implode(',', $arrCat) ,$instance['limit']);
 		}
 
 		// echo $args['before_widget'];
@@ -65,6 +65,9 @@ class Popular_Ranking_Widget extends WP_Widget {
 			$counter = 0;
 			while ( $the_query->have_posts() ) : $the_query->the_post();
 			$counter++;
+			// $count_key = 'post_views_count';
+			// $countlog = get_post_meta( get_the_ID() , $count_key . 'log', true) ;
+			// echo $countlog;
 			?>
 				<li class="rank<?php echo $counter ?>"><a href="<?php the_permalink(); ?>">
 				<div class="rank">No.<?php echo $counter ?></div>
