@@ -21,20 +21,27 @@ get_header(); ?>
 <div class="layout2Col">
 
 <div class="mainCol">
-
-<header class="mainColHeader <?php if (is_category('cosme' )) { ?>
-categoryYellow<?php } else if (is_category('trouble' )) { ?>
-categoryBlue<?php } elseif (is_category('component' )) { ?>
+<?php 
+$healthCat = get_category_by_slug('health' );
+$cosmeCat = get_category_by_slug('cosme' );
+$troubleCat = get_category_by_slug('trouble' );
+$componentCat = get_category_by_slug('component' );
+?>
+<header class="mainColHeader <?php if (is_category('cosme' ) || cat_is_ancestor_of( $cosmeCat->cat_ID, get_query_var('cat') )) { ?>
+categoryYellow<?php } else if (is_category('trouble' ) || cat_is_ancestor_of( $troubleCat->cat_ID, get_query_var('cat') )) { ?>
+categoryBlue<?php } elseif (is_category('component' ) || cat_is_ancestor_of( $componentCat->cat_ID, get_query_var('cat') )) { ?>
 categoryPurple<?php } ?>">
 <ol class="topicPath">
 <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">TOP</a></li>
-<?php if (is_category('health' )) { ?>
+<?php 
+
+if (is_category('health' ) || cat_is_ancestor_of( $healthCat->cat_ID, get_query_var('cat') )) { ?>
 <li>美容と健康</li>
-<?php } else if (is_category('cosme' )) { ?>
+<?php } else if (is_category('cosme' ) || cat_is_ancestor_of( $cosmeCat->cat_ID, get_query_var('cat') )) { ?>
 <li>お悩み・効果</li>
-<?php } else if (is_category('trouble' )) { ?>
+<?php } else if (is_category('trouble' ) || cat_is_ancestor_of( $troubleCat->cat_ID, get_query_var('cat') )) { ?>
 <li>お悩み・効果</li>
-<?php } elseif (is_category('component' )) { ?>
+<?php } elseif (is_category('component' ) || cat_is_ancestor_of( $componentCat->cat_ID, get_query_var('cat') )) { ?>
 <li>成分・特長</li>
 <?php } ?>
 </ol>
@@ -47,19 +54,51 @@ categoryPurple<?php } ?>">
 <h1>お悩み・効果</h1>
 <?php } elseif (is_category('component' )) { ?>
 <h1>成分・特長</h1>
-<?php } ?></div>
+<?php } else { ?>
+<h1><?php single_cat_title() ?></h1>
+<?php } ?>
+
+<?php if (cat_is_ancestor_of( $healthCat->cat_ID, get_query_var('cat') )): ?>
+	<div class="flowLink"><a href="/category/health">＞カテゴリトップへ</a></div>
+<?php elseif(cat_is_ancestor_of( $cosmeCat->cat_ID, get_query_var('cat') )): ?>
+	<div class="flowLink"><a href="/category/cosme">＞カテゴリトップへ</a></div>
+<?php elseif(cat_is_ancestor_of( $troubleCat->cat_ID, get_query_var('cat') )): ?>
+	<div class="flowLink"><a href="/category/trouble">＞カテゴリトップへ</a></div>
+<?php elseif(cat_is_ancestor_of( $componentCat->cat_ID, get_query_var('cat') )): ?>
+	<div class="flowLink"><a href="/category/component">＞カテゴリトップへ</a></div>
+<?php endif ?>
+
+
+</div>
+<?php if (is_category('health' ) || is_category('cosme' ) || is_category('trouble' ) || is_category('component' ) ): ?>
 
 <div class="pageOverview">
  <?php echo category_description( ); ?> 
 
 </div>
 
+<?php endif; ?>
+
 <div class="tagLinks"><span>カテゴリ：</span>
 <?php // list child categories
  	$this_cat = get_query_var('cat'); // get the category of this category archive page
-	$result = get_categories( array('child_of' => $this_cat) ); // list child categories
+ 	$cat_id = $this_cat;
+ 	if (cat_is_ancestor_of( $healthCat->cat_ID, get_query_var('cat') )) {
+ 		$cat_id = $healthCat->cat_ID;
+ 	} elseif (cat_is_ancestor_of( $cosmeCat->cat_ID, get_query_var('cat') )) {
+ 		$cat_id = $cosmeCat->cat_ID;
+ 	} elseif (cat_is_ancestor_of( $troubleCat->cat_ID, get_query_var('cat') )) {
+ 		$cat_id = $troubleCat->cat_ID;
+ 	} elseif (cat_is_ancestor_of( $componentCat->cat_ID, get_query_var('cat') )) {
+ 		$cat_id = $componentCat->cat_ID;
+ 	}
+	$result = get_categories( array('child_of' => $cat_id) ); // list child categories
   	 foreach ($result as $key => $cat) {
-  	 	echo '<a href="' . get_category_link( $cat->term_id ) . '">' . $cat->name . '</a>';
+  	 	if ($cat->term_id == $this_cat) {
+  	 	echo '<a class="active" href="' . get_category_link( $cat->term_id ) . '">' . $cat->name . '</a>';
+  	 	}
+  	 	else
+  	 	echo '<a  href="' . get_category_link( $cat->term_id ) . '">' . $cat->name . '</a>';
   	 }?>
 
 </div>

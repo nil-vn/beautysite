@@ -150,7 +150,7 @@ class beautysite_walker_nav_menu extends Walker_Nav_Menu {
     $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
 
     // check active category
-	if (is_category( $item->title )) {
+	if (is_category( $item->title ) || cat_is_ancestor_of( $item->object_id, get_query_var('cat') )) {
      $attributes .= ' class="active"';
     }
 
