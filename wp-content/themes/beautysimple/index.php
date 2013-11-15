@@ -110,9 +110,12 @@ get_header(); ?>
 		</ul>
 		</header>
 
-		
-		<?php
 
+		<?php
+		$healthCat = get_category_by_slug('health' );
+		$cosmeCat = get_category_by_slug('cosme' );
+		$troubleCat = get_category_by_slug('trouble' );
+		$componentCat = get_category_by_slug('component' );
 		$category = array('','health','cosme','trouble','component');
 
 		foreach ($category as $key => $cat) :
@@ -135,9 +138,20 @@ get_header(); ?>
 			<p> <?php the_excerpt(); ?> </p>
 			<footer>
 			<span class="date">(<?php echo get_the_date( 'Y/m/d' ); ?>)</span>
-			<div class="tagMark"><div><span><?php 
-			$category = get_the_category(); 
-			if (isset($category[0])) 
+			<?php $category = get_the_category(); 
+			 $color = "";
+			  foreach ($category as $key => $cat) {
+			  	if ($cosmeCat->cat_ID == $cat->cat_ID || cat_is_ancestor_of( $cosmeCat->cat_ID, $cat->cat_ID )) {
+			  		$color = "yellow";
+			  	} elseif ($troubleCat->cat_ID == $cat->cat_ID  || cat_is_ancestor_of( $troubleCat->cat_ID, $cat->cat_ID )) {
+			  		$color = "blue";
+			  	} elseif ($componentCat->cat_ID == $cat->cat_ID || cat_is_ancestor_of( $componentCat->cat_ID, $cat->cat_ID )) {
+			  		$color = "purple";
+			  	}
+			  }
+			 ?>
+			<div class="tagMark <?php echo $color ?>"><div><span><?php
+			if (isset($category[0]))
 				echo $category[0]->cat_name;
 
  			?></span></div></div>
@@ -191,10 +205,10 @@ get_header(); ?>
 						?><?php the_title(); ?></div>
 						<footer>
 						<span class="date">(<?php echo get_the_date( 'Y/m/d' ); ?>)</span>
-						<div class="tagMark <?php echo $cat['color'] ?>"><div><span><?php 
-						$category = get_the_category(); 
-						if (isset($category[0])) 
-							echo $category[0]->cat_name; 
+						<div class="tagMark <?php echo $cat['color'] ?>"><div><span><?php
+						$category = get_the_category();
+						if (isset($category[0]))
+							echo $category[0]->cat_name;
 						?></span></div></div>
 						</footer>
 						</a></li>
@@ -240,10 +254,21 @@ get_header(); ?>
 				<p> <?php the_excerpt(); ?> </p>
 				<footer>
 				<span class="date">(<?php echo get_the_date( 'Y/m/d' ); ?>)</span>
-				<div class="tagMark"><div><span><?php 
-				$category = get_the_category(); 
-				if (isset($category[0])) 
-					echo $category[0]->cat_name; 
+				<?php $category = get_the_category(); 
+				 $color = "";
+				  foreach ($category as $key => $cat) {
+				  	if ($cosmeCat->cat_ID == $cat->cat_ID || cat_is_ancestor_of( $cosmeCat->cat_ID, $cat->cat_ID )) {
+				  		$color = "yellow";
+				  	} elseif ($troubleCat->cat_ID == $cat->cat_ID  || cat_is_ancestor_of( $troubleCat->cat_ID, $cat->cat_ID )) {
+				  		$color = "blue";
+				  	} elseif ($componentCat->cat_ID == $cat->cat_ID || cat_is_ancestor_of( $componentCat->cat_ID, $cat->cat_ID )) {
+				  		$color = "purple";
+				  	}
+				  }
+				 ?>
+				<div class="tagMark <?php echo $color ?>"><div><span><?php
+				if (isset($category[0]))
+					echo $category[0]->cat_name;
 				?></span></div></div>
 				</footer>
 				</a></section>
