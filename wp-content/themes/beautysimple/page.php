@@ -25,6 +25,8 @@ get_header(); ?>
 <header class="mainColHeader">
 <ol class="topicPath">
 <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">TOP</a></li>
+<li><?php the_title(); ?></li>
+
 </ol>
 <?php /* The loop */ ?>
 <?php while ( have_posts() ) : the_post(); ?>

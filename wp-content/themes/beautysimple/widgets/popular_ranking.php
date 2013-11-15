@@ -30,6 +30,10 @@ class Popular_Ranking_Widget extends WP_Widget {
 		if ( ! empty( $instance['all'] ) && $instance['all'] )
 		{
 					$the_query = get_rankink('',$instance['limit']);
+					$healthCat = get_category_by_slug('health' );
+					$cosmeCat = get_category_by_slug('cosme' );
+					$troubleCat = get_category_by_slug('trouble' );
+					$componentCat = get_category_by_slug('component' );
 		}
 		else
 		{
@@ -65,16 +69,37 @@ class Popular_Ranking_Widget extends WP_Widget {
 			$counter = 0;
 			while ( $the_query->have_posts() ) : $the_query->the_post();
 			$counter++;
-			// $count_key = 'post_views_count';
-			// $countlog = get_post_meta( get_the_ID() , $count_key . 'log', true) ;
-			// echo $countlog;
+			if ( ! empty( $instance['all'] ) && $instance['all'] )
+			{
+				$category = get_the_category(); 
+				 $color = "";
+				  foreach ($category as $key => $cat) {
+				  	if ($cosmeCat->cat_ID == $cat->cat_ID || cat_is_ancestor_of( $cosmeCat->cat_ID, $cat->cat_ID )) {
+				  		$color = "yellow";
+				  	} elseif ($troubleCat->cat_ID == $cat->cat_ID  || cat_is_ancestor_of( $troubleCat->cat_ID, $cat->cat_ID )) {
+				  		$color = "blue";
+				  	} elseif ($componentCat->cat_ID == $cat->cat_ID || cat_is_ancestor_of( $componentCat->cat_ID, $cat->cat_ID )) {
+				  		$color = "purple";
+				  	}
+				  }
+			}
 			?>
-				<li class="rank<?php echo $counter ?>"><a href="<?php the_permalink(); ?>">
+				<li <?php if ($counter <=3): ?> class="rank<?php echo $counter ?>" <?php endif; ?> ><a href="<?php the_permalink(); ?>">
 				<div class="rank">No.<?php echo $counter ?></div>
 				<?php if ($counter <=3):?>
 				<div class="pic"> <?php the_post_thumbnail('sidebar-thumb'); ?> </div>
 				<?php endif; ?>
-				<div class="txt"><p class="ttl"><?php the_title(); ?></p></div>
+				<div class="txt"><p class="ttl"><?php the_title(); ?></p>
+					<?php
+					if ( ! empty( $instance['all'] ) && $instance['all'] )
+					{
+					?>
+					<div class="tagMark <?php echo $color ?>"><div><span><?php
+					if (isset($category[0]))
+						echo $category[0]->cat_name;
+					?></span></div></div>
+					<?php } ?>
+				</div>
 				</a></li>
 			<?php endwhile; ?>
 			</ol>

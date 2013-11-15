@@ -173,6 +173,11 @@ add_shortcode('all_category', 'all_category_page');
 
 function all_category_page()
 {
+	$the_query = get_rankink('',$instance['limit']);
+	$healthCat = get_category_by_slug('health' );
+	$cosmeCat = get_category_by_slug('cosme' );
+	$troubleCat = get_category_by_slug('trouble' );
+	$componentCat = get_category_by_slug('component' );
 	$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 	$args= array(
 		'paged' => $paged
@@ -180,6 +185,10 @@ function all_category_page()
 	global $wp_query;
 	$tmp_query = $wp_query;
 	query_posts($args);
+	// fix for more tag in page
+	global $more;
+	$more = 0;
+
 ?>
 	<?php if ( have_posts() ) : ?>
 	<section class="entryList">
@@ -202,6 +211,23 @@ function all_category_page()
 		<div class="entryOverview">
 		<div class="pic"> <?php the_post_thumbnail( array(300,200) ); ?> </div>
 		<div class="txt">
+		<?php
+		$category = get_the_category(); 
+		 $color = "";
+		  foreach ($category as $key => $cat) {
+		  	if ($cosmeCat->cat_ID == $cat->cat_ID || cat_is_ancestor_of( $cosmeCat->cat_ID, $cat->cat_ID )) {
+		  		$color = "yellow";
+		  	} elseif ($troubleCat->cat_ID == $cat->cat_ID  || cat_is_ancestor_of( $troubleCat->cat_ID, $cat->cat_ID )) {
+		  		$color = "blue";
+		  	} elseif ($componentCat->cat_ID == $cat->cat_ID || cat_is_ancestor_of( $componentCat->cat_ID, $cat->cat_ID )) {
+		  		$color = "purple";
+		  	}
+		  } 
+		?>
+		<div class="tagMark <?php echo $color ?>"><div><span><?php
+		if (isset($category[0]))
+			echo $category[0]->cat_name;
+		?></span></div></div>
 		<?php the_content('',FALSE,'');?>
 		<div class="viewMore"><span>続きを見る</span></div>
 		</div>
