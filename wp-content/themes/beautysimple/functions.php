@@ -135,7 +135,7 @@ class beautysite_walker_nav_menu extends Walker_Nav_Menu {
 // add main/sub classes to li's and links
 	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
     global $wp_query;
- 
+
     // passed classes
     $classes = empty( $item->classes ) ? array() : (array) $item->classes;
     $class_names = esc_attr( implode( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) ) );
@@ -212,7 +212,7 @@ function all_category_page()
 		<div class="pic"> <?php the_post_thumbnail( array(300,200) ); ?> </div>
 		<div class="txt">
 		<?php
-		$category = get_the_category(); 
+		$category = get_the_category();
 		 $color = "";
 		  foreach ($category as $key => $cat) {
 		  	if ($cosmeCat->cat_ID == $cat->cat_ID || cat_is_ancestor_of( $cosmeCat->cat_ID, $cat->cat_ID )) {
@@ -222,7 +222,7 @@ function all_category_page()
 		  	} elseif ($componentCat->cat_ID == $cat->cat_ID || cat_is_ancestor_of( $componentCat->cat_ID, $cat->cat_ID )) {
 		  		$color = "purple";
 		  	}
-		  } 
+		  }
 		?>
 		<div class="tagMark <?php echo $color ?>"><div><span><?php
 		if (isset($category[0]))
@@ -251,7 +251,7 @@ function all_category_page()
 		     $to = ($current_page == $wp_query->max_num_pages)? $total_items : $current_page * $items_per_page  ;
 		     echo '<p class="status">'.$total_items.'件中 '. $from  .' - '.$to.' を表示</p>';
 		    echo  '</div>';
-		} 
+		}
 		elseif (function_exists('wp_pagenavi'))
 		{
 			wp_pagenavi();
