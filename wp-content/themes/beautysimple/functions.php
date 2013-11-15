@@ -306,9 +306,9 @@ function beautysite_scripts_styles() {
 	wp_enqueue_style( 'beautysite-style', get_stylesheet_uri(), array(), '2013-11-11' );
 
 	// Loads the Internet Explorer specific stylesheet.
-	wp_enqueue_style( 'beautysite-common', get_template_directory_uri() . '/css/common.css', array( 'beautysite-style' ), '2013-11-11' );
-	wp_enqueue_style( 'beautysite-contents', get_template_directory_uri() . '/css/contents.css', array( 'beautysite-style' ), '2013-11-11' );
-	wp_enqueue_style( 'beautysite-index', get_template_directory_uri() . '/css/index.css', array( 'beautysite-style' ), '2013-11-11' );
+	wp_enqueue_style( 'beautysite-common', get_template_directory_uri() . '/css/common.css', array( 'beautysite-style' ), '2013-11-15' );
+	wp_enqueue_style( 'beautysite-contents', get_template_directory_uri() . '/css/contents.css', array( 'beautysite-style' ), '2013-11-15' );
+	wp_enqueue_style( 'beautysite-index', get_template_directory_uri() . '/css/index.css', array( 'beautysite-style' ), '2013-11-15' );
 	// wp_style_add_data( 'beautysite-ie', 'conditional', 'lt IE 9' );
 }
 add_action( 'wp_enqueue_scripts', 'beautysite_scripts_styles' );

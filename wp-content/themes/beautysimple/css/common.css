@@ -259,6 +259,7 @@ a:hover{
 	border-top: 6px solid #49A9A9;
 	background: #C9F5F3 url(../img/common/bg_dia.png) repeat left top;
 	color: #fff;
+    margin-top: -20px;
 }
 .globalFooter .toppageLink {
 	position: relative;
@@ -373,13 +374,13 @@ a:hover{
 }
 .globalFooter .footerContent01 .sns .fbArea:after {
     top: -40px;
-    left: 55px;
+    left: 40px;
     border: 20px solid transparent;
     border-bottom: 25px solid #ffffff; /*13px*/
 }
 .globalFooter .footerContent01 .sns .fbArea:before {
     top: -40px;
-    left: 55px;
+    left: 40px;
     border: 20px solid transparent;
     border-bottom: 20px solid #ffffff; /*10px*/
 }
