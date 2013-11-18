@@ -40,18 +40,35 @@ class Popular_Ranking_Widget extends WP_Widget {
 
 					 	$this_cat = get_query_var('cat'); // get the category of this category archive page
 					 	if (empty($this_cat)) {
-					 		return;
-					 	}
-						$result = get_categories( array('child_of' => $this_cat) ); // list child categories
-						$arrCat = array( $this_cat);
-						foreach ($result as $key => $cat) {
-							$arrCat[] = $cat->cat_ID;
-							if (! in_array($cat->category_parent, $arrCat)) {
-								$arrCat[] = $cat->category_parent;
-							}
-						}
+					 		$category = get_the_category();
+					 		if (is_single( )) {
+					 			$arrCat = array();
+								foreach ($category as $key => $cat) {
+									$arrCat[] = $cat->cat_ID;
+									if (! in_array($cat->category_parent, $arrCat)) {
+										$arrCat[] = $cat->category_parent;
+									}
+								}
 
-						$the_query = get_rankink( $arrCat ,$instance['limit']);
+								$the_query = get_rankink( $arrCat ,$instance['limit']);
+
+					 		}
+					 		else
+					 			return;
+					 	}
+					 	else
+					 	{
+					 		$result = get_categories( array('child_of' => $this_cat) ); // list child categories
+							$arrCat = array( $this_cat);
+							foreach ($result as $key => $cat) {
+								$arrCat[] = $cat->cat_ID;
+								if (! in_array($cat->category_parent, $arrCat)) {
+									$arrCat[] = $cat->category_parent;
+								}
+							}
+
+							$the_query = get_rankink( $arrCat ,$instance['limit']);
+					 	}
 		}
 
 		// echo $args['before_widget'];
@@ -71,7 +88,7 @@ class Popular_Ranking_Widget extends WP_Widget {
 			$counter++;
 			if ( ! empty( $instance['all'] ) && $instance['all'] )
 			{
-				$category = get_the_category(); 
+				$category = get_the_category();
 				 $color = "";
 				  foreach ($category as $key => $cat) {
 				  	if ($cosmeCat->cat_ID == $cat->cat_ID || cat_is_ancestor_of( $cosmeCat->cat_ID, $cat->cat_ID )) {

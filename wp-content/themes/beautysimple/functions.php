@@ -168,12 +168,114 @@ class beautysite_walker_nav_menu extends Walker_Nav_Menu {
 }
 }
 
+// setup setting for theme
+function setup_theme_admin_menus() {
+    add_submenu_page('themes.php',
+    'setting-beauty', 'Settings', 'manage_options',
+    'setting-beauty-elements', 'theme_all_page_settings');
+
+}
+
+function theme_all_page_settings() {
+	// Check that the user is allowed to update options
+	if (!current_user_can('manage_options')) {
+	    wp_die('You do not have sufficient permissions to access this page.');
+	}
+
+	$gcs_keys = get_option("beautysite_gcs_keys");
+
+	if (isset($_POST["update_settings"])) {
+		$gcs_keys = esc_attr($_POST["gcs_keys"]);
+		update_option("beautysite_gcs_keys", $gcs_keys);
+		?>
+		    <div id="message" class="updated">Settings saved</div>
+		<?php
+	}
+
+?>
+    <div class="wrap">
+    <?php screen_icon('themes'); ?> <h2>Setting page</h2>
+
+    <form method="POST" action="">
+        <table class="form-table">
+            <tr valign="top">
+                <th scope="row">
+                    <label for="gcs_keys">
+                        Google custom search key:
+                    </label>
+                </th>
+                <td>
+                    <input type="text" name="gcs_keys" size="40" value="<?php echo $gcs_keys ?>" />
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" name="update_settings" value="Y" />
+        <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Save Changes"></p>
+    </form>
+</div>
+
+<?php
+}
+
+
+// This tells WordPress to call the function named "setup_theme_admin_menus"
+// when it's time to create the menu pages.
+add_action("admin_menu", "setup_theme_admin_menus");
+
+
+// add short code for display google custom search
+add_shortcode('search_result', 'search_result');
+function search_result()
+{
+?>
+<div id='cse' style='width: 100%;'>Loading</div>
+<script src='//www.google.com/jsapi' type='text/javascript'></script>
+<script type='text/javascript'>
+google.load('search', '1', {language: 'en', style: google.loader.themes.V2_DEFAULT});
+google.setOnLoadCallback(function() {
+  var customSearchOptions = {};
+  var orderByOptions = {};
+  orderByOptions['keys'] = [{label: 'Relevance', key: ''} , {label: 'Date', key: 'date'}];
+  customSearchOptions['enableOrderBy'] = true;
+  customSearchOptions['orderByOptions'] = orderByOptions;
+  customSearchOptions['overlayResults'] = false;
+  var customSearchControl =   new google.search.CustomSearchControl('<?php echo get_option("beautysite_gcs_keys") ?>', customSearchOptions);
+  customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+  var options = new google.search.DrawOptions();
+  options.setAutoComplete(true);
+  customSearchControl.draw('cse', options);
+
+ // do search
+ function parseParamsFromUrl() {
+  var params = {};
+  var parts = window.location.search.substr(1).split('\x26');
+  for (var i = 0; i < parts.length; i++) {
+    var keyValuePair = parts[i].split('=');
+    var key = decodeURIComponent(keyValuePair[0]);
+    params[key] = keyValuePair[1] ?
+        decodeURIComponent(keyValuePair[1].replace(/\+/g, ' ')) :
+        keyValuePair[1];
+  }
+  return params;
+}
+
+var urlParams = parseParamsFromUrl();
+var queryParamName = "q";
+if (urlParams[queryParamName]) {
+  customSearchControl.execute(urlParams[queryParamName]);
+}
+
+
+}, true);
+</script>
+<?
+}
+
 // add short code for display all category
 add_shortcode('all_category', 'all_category_page');
 
 function all_category_page()
 {
-	$the_query = get_rankink('',$instance['limit']);
 	$healthCat = get_category_by_slug('health' );
 	$cosmeCat = get_category_by_slug('cosme' );
 	$troubleCat = get_category_by_slug('trouble' );
@@ -835,7 +937,7 @@ function get_recommended($limit = 3)
 
 function get_rankink_byname($name = '', $limit  = 3)
 {
-		
+
 		$result = get_categories( array('child_of' => $name) ); // list child categories
 		$arrCat = array( $name);
 		foreach ($result as $key => $cat) {
