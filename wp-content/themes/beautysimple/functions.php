@@ -758,7 +758,7 @@ function setPostViews($postID) {
 
 
 
-        update_post_meta($postID, $count_key, $count);
+        update_post_meta($postID, $count_key,  intval( $count));
     }
 }
 
@@ -835,30 +835,27 @@ function get_recommended($limit = 3)
 
 function get_rankink_byname($name = '', $limit  = 3)
 {
-		$args = array(
-		'posts_per_page' => $limit,
-		'category_name' => $name,
-		'post_type' => 'post',
-		'ignore_sticky_posts' => 1,
-		'orderby'      => 'meta_value',  /* this will look at the meta_key you set below */
-		'meta_key'     => 'post_views_count',
-		'order'        => 'DESC',
-		'post_type'    => 'post',
-		'post_status'  => 'publish'
-			);
+		
+		$result = get_categories( array('child_of' => $name) ); // list child categories
+		$arrCat = array( $name);
+		foreach ($result as $key => $cat) {
+			$arrCat[] = $cat->cat_ID;
+			if (! in_array($cat->category_parent, $arrCat)) {
+				$arrCat[] = $cat->category_parent;
+			}
+		}
 
-		// get results
-		return new WP_Query( $args );
+		return get_rankink( $arrCat ,$instance['limit']);
 }
 
-function get_rankink($category_id = '', $limit  = 3)
+function get_rankink($category_ids = array(), $limit  = 3)
 {
 		$args = array(
 		'posts_per_page' => $limit,
-		'cat' => $category_id,
+		'category__in' => $category_ids,
 		'post_type' => 'post',
 		'ignore_sticky_posts' => 1,
-		'orderby'      => 'meta_value',  /* this will look at the meta_key you set below */
+		'orderby'      => 'meta_value_num',  /* this will look at the meta_key you set below */
 		'meta_key'     => 'post_views_count',
 		'order'        => 'DESC',
 		'post_type'    => 'post',

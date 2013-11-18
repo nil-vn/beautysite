@@ -49,16 +49,16 @@ $subCategoryLink = array();
 <ol class="topicPath">
 <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">TOP</a></li>
 <?php if ( $color == "" ) { ?>
-<a href="<?php echo $categorylink ?>"><li>美容と健康</li></a>
+<li><a href="<?php echo $categorylink ?>">美容と健康</a></li>
 <?php } else if ( $color == "categoryYellow" ) { ?>
-<a href="<?php echo $categorylink ?>"><li>お悩み・効果</li></a>
+<li><a href="<?php echo $categorylink ?>">お悩み・効果</a></li>
 <?php } else if ( $color == "categoryBlue" ) { ?>
-<a href="<?php echo $categorylink ?>"><li>お悩み・効果</li></a>
+<li><a href="<?php echo $categorylink ?>">お悩み・効果</a></li>
 <?php } elseif ( $color == "categoryPurple" ) { ?>
-<a href="<?php echo $categorylink ?>"><li>成分・特長</li></a>
+<li><a href="<?php echo $categorylink ?>">成分・特長</a></li>
 <?php } ?>
 <?php if (count($subCategoryLink)): ?>
-  <a href="<?php echo $subCategoryLink['url'] ?>"><li><?php echo $subCategoryLink['name'] ?></li></a>
+  <li><a href="<?php echo $subCategoryLink['url'] ?>"><?php echo $subCategoryLink['name'] ?></a></li>
 <?php endif ?>
 
 <li><?php the_title( ); ?></li>

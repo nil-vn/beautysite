@@ -21,7 +21,7 @@ get_header(); ?>
 <div class="layout2Col">
 
 <div class="mainCol">
-<?php 
+<?php
 $healthCat = get_category_by_slug('health' );
 $cosmeCat = get_category_by_slug('cosme' );
 $troubleCat = get_category_by_slug('trouble' );
@@ -33,16 +33,35 @@ categoryBlue<?php } elseif (is_category('component' ) || cat_is_ancestor_of( $co
 categoryPurple<?php } ?>">
 <ol class="topicPath">
 <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">TOP</a></li>
-<?php 
+<?php
 
 if (is_category('health' ) || cat_is_ancestor_of( $healthCat->cat_ID, get_query_var('cat') )) { ?>
+
+<?php if (cat_is_ancestor_of( $healthCat->cat_ID, get_query_var('cat') )): ?>
+<li><a href="/category/health">カテゴリトップへ</a></li>
+<?php else: ?>
 <li>美容と健康</li>
+
+<?php endif ?>
+
 <?php } else if (is_category('cosme' ) || cat_is_ancestor_of( $cosmeCat->cat_ID, get_query_var('cat') )) { ?>
+<?php if (cat_is_ancestor_of( $cosmeCat->cat_ID, get_query_var('cat') )): ?>
+<li><a href="/category/cosme">カテゴリトップへ</a></li>
+<?php else: ?>
 <li>お悩み・効果</li>
+<?php endif ?>
 <?php } else if (is_category('trouble' ) || cat_is_ancestor_of( $troubleCat->cat_ID, get_query_var('cat') )) { ?>
+<?php if (cat_is_ancestor_of( $troubleCat->cat_ID, get_query_var('cat') )): ?>
+<li><a href="/category/trouble">＞カテゴリトップへ</a></li>
+<?php else: ?>
 <li>お悩み・効果</li>
+<?php endif ?>
 <?php } elseif (is_category('component' ) || cat_is_ancestor_of( $componentCat->cat_ID, get_query_var('cat') )) { ?>
+<?php if (cat_is_ancestor_of( $componentCat->cat_ID, get_query_var('cat') )): ?>
+<li><a href="/category/component">＞カテゴリトップへ</a></li>
+<?php else: ?>
 <li>成分・特長</li>
+<?php endif ?>
 <?php } ?>
 <?php if (cat_is_ancestor_of( $componentCat->cat_ID, get_query_var('cat') ) || cat_is_ancestor_of( $troubleCat->cat_ID, get_query_var('cat') ) || cat_is_ancestor_of( $healthCat->cat_ID, get_query_var('cat') ) || cat_is_ancestor_of( $cosmeCat->cat_ID, get_query_var('cat') )): ?>
 	<li><?php echo get_query_var('category_name') ?></li>
@@ -76,7 +95,7 @@ if (is_category('health' ) || cat_is_ancestor_of( $healthCat->cat_ID, get_query_
 <?php if (is_category('health' ) || is_category('cosme' ) || is_category('trouble' ) || is_category('component' ) ): ?>
 
 <div class="pageOverview">
- <?php echo category_description( ); ?> 
+ <?php echo category_description( ); ?>
 
 </div>
 
@@ -156,7 +175,7 @@ if (is_category('health' ) || cat_is_ancestor_of( $healthCat->cat_ID, get_query_
 		     $to = ($current_page == $wp_query->max_num_pages)? $total_items : $current_page * $items_per_page  ;
 		     echo '<p class="status">'.$total_items.'件中 '. $from  .' - '.$to.' を表示</p>';
 		    echo  '</div>';
-		} 
+		}
 		elseif (function_exists('wp_pagenavi'))
 		{
 			wp_pagenavi();
@@ -173,7 +192,7 @@ if (is_category('health' ) || cat_is_ancestor_of( $healthCat->cat_ID, get_query_
 		) );
 		}
 	?>
-<!-- 
+<!--
 	<div class="pagination">
 	<div class="pageMove">
 	<a href="#" class="prevLink">前のページ</a>

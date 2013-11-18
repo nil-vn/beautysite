@@ -29,7 +29,7 @@ class Popular_Ranking_Widget extends WP_Widget {
 
 		if ( ! empty( $instance['all'] ) && $instance['all'] )
 		{
-					$the_query = get_rankink('',$instance['limit']);
+					$the_query = get_rankink(array(),$instance['limit']);
 					$healthCat = get_category_by_slug('health' );
 					$cosmeCat = get_category_by_slug('cosme' );
 					$troubleCat = get_category_by_slug('trouble' );
@@ -51,7 +51,7 @@ class Popular_Ranking_Widget extends WP_Widget {
 							}
 						}
 
-						$the_query = get_rankink( implode(',', $arrCat) ,$instance['limit']);
+						$the_query = get_rankink( $arrCat ,$instance['limit']);
 		}
 
 		// echo $args['before_widget'];
@@ -83,7 +83,13 @@ class Popular_Ranking_Widget extends WP_Widget {
 				  	}
 				  }
 			}
+			// $count_key = 'post_views_count';
+			// echo get_post_meta( get_the_ID() , $count_key , true) . '<br/>';
+			// $countlog = get_post_meta( get_the_ID() , $count_key . 'log', true) ;
+			// echo $countlog;
+
 			?>
+
 				<li <?php if ($counter <=3): ?> class="rank<?php echo $counter ?>" <?php endif; ?> ><a href="<?php the_permalink(); ?>">
 				<div class="rank">No.<?php echo $counter ?></div>
 				<?php if ($counter <=3):?>

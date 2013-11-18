@@ -116,10 +116,14 @@ get_header(); ?>
 		$cosmeCat = get_category_by_slug('cosme' );
 		$troubleCat = get_category_by_slug('trouble' );
 		$componentCat = get_category_by_slug('component' );
-		$category = array('','health','cosme','trouble','component');
+		$category = array('', $healthCat->cat_ID , $cosmeCat->cat_ID, $troubleCat->cat_ID , $componentCat->cat_ID );
 
 		foreach ($category as $key => $cat) :
 		// get results
+		if (empty($cat)) {
+			$the_query = get_rankink();
+		}
+		else
 		$the_query = get_rankink_byname($cat);
 		// The Loop
 		?>

@@ -1,4 +1,4 @@
-<form role="search" method="get" class="search-form" action="<?php echo home_url( '/' ); ?>">
+<form role="search" method="get" class="search-form" action="<?php echo home_url( '/search' ); ?>">
 	<label>
 		<input type="text" class="search-field" value="" name="s" title="キーワードを入力（例：ニキビ、美白）" />
 	</label>
@@ -6,7 +6,7 @@
 </form>
 <div style="display:none">
 <?php
-display_search_box(DISPLAY_RESULTS_AS_POP_UP);
+display_search_box(DISPLAY_RESULTS_CUSTOM);
 ?>
 <script type="text/javascript">
 jQuery(document).ready(function($){
