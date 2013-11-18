@@ -845,7 +845,7 @@ function get_rankink_byname($name = '', $limit  = 3)
 			}
 		}
 
-		return get_rankink( $arrCat ,$instance['limit']);
+		return get_rankink( $arrCat ,$limit);
 }
 
 function get_rankink($category_ids = array(), $limit  = 3)
