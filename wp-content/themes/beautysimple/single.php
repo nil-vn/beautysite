@@ -80,6 +80,11 @@ $subCategoryLink = array();
 			<?php // dynamic_sidebar( 'sidebar-0' ); ?>
 		<?php // endif; ?>
 
+    <div class="adEntryOut">
+    <div class="inner">
+      <img width="605" src="<?php echo get_option("beautysite_banner_ads_contents") ?>" alt="">
+    </div>
+    </div>
 
 
 </div>

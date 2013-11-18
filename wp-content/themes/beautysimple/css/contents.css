@@ -806,15 +806,15 @@
 
 /*	adArea
 -----------------------------------------------*/
-.layout2Col .subCol .adArea {
+.layout2Col .subCol .qcArea {
 	margin: 0 auto 30px auto;
 }
-.layout2Col .subCol .adArea .inner {
+.layout2Col .subCol .qcArea .inner {
 	max-width: 330px;
 	padding: 9px;
 	border: 1px solid #46A0A0;
 }
-.layout2Col .subCol .adArea .inner img {
+.layout2Col .subCol .qcArea .inner img {
 	vertical-align: bottom;
 }
 

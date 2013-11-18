@@ -177,16 +177,33 @@ function setup_theme_admin_menus() {
 }
 
 function theme_all_page_settings() {
+
+	// init js
+	wp_enqueue_script('thickbox');
+    wp_enqueue_style('thickbox');
+
 	// Check that the user is allowed to update options
 	if (!current_user_can('manage_options')) {
 	    wp_die('You do not have sufficient permissions to access this page.');
 	}
 
 	$gcs_keys = get_option("beautysite_gcs_keys");
-
+	$gads_keys = get_option("beautysite_gads_keys");
+	$banner_ads_contents = get_option("beautysite_banner_ads_contents");
+	$banner_ads_contents_link = get_option("beautysite_banner_ads_contents_link");
 	if (isset($_POST["update_settings"])) {
 		$gcs_keys = esc_attr($_POST["gcs_keys"]);
 		update_option("beautysite_gcs_keys", $gcs_keys);
+
+		$gads_keys = $_POST["gads_keys"];
+		update_option("beautysite_gads_keys", $gads_keys);
+
+		$banner_ads_contents = esc_attr($_POST["banner_ads_contents"]);
+		update_option("beautysite_banner_ads_contents", $banner_ads_contents);
+
+		$banner_ads_contents_link = $_POST["banner_ads_contents_link"];
+		update_option("beautysite_banner_ads_contents_link", $banner_ads_contents_link);
+
 		?>
 		    <div id="message" class="updated">Settings saved</div>
 		<?php
@@ -208,10 +225,64 @@ function theme_all_page_settings() {
                     <input type="text" name="gcs_keys" size="40" value="<?php echo $gcs_keys ?>" />
                 </td>
             </tr>
+
+            <tr valign="top">
+                <th scope="row">
+                    <label for="gads_keys">
+                        Google adsent embed code:
+                    </label>
+                </th>
+                <td>
+                	<textarea class="widefat" name="gads_keys" cols="80" rows="4"><?php echo $gads_keys ?></textarea>
+                </td>
+            </tr>
+            <tr valign="top">
+            	<th scope="row">
+                    <label for="gads_keys">
+                        Image banner url:
+                    </label>
+                </th>
+                <td>
+            	 <input class="widefat tag" placeholder=" URL" type="text" id="banner_ads_contents_link" name="banner_ads_contents_link" value="<?php echo htmlentities($banner_ads_contents_link); ?>" />
+	       		</td>
+	       </tr>
+	       <tr>
+	       		<th scope="row">
+                    <label for="gads_keys">
+                        Image banner:
+                    </label>
+                </th>
+	       		<td>
+	       		<a href="#" class="upload-button" >Click here to upload a new image.</a> You can also paste in an image URL below.
+
+	       		<input class="widefat tag" placeholder="Image URL" type="text" id="upload_img" name="banner_ads_contents" value="<?php echo htmlentities($banner_ads_contents); ?>" />
+	       		</td>
+
+	       </tr>
         </table>
         <input type="hidden" name="update_settings" value="Y" />
         <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Save Changes"></p>
     </form>
+    <script type="text/javascript">
+    jQuery(function($) {
+	    $('.upload-button').live('click', function(e) {
+	        window.adcode_id      = $(e.target).attr('rel');
+	        window.send_to_editor = image_upload_handler;
+
+	        tb_show('', 'media-upload.php?type=image&amp;amp;amp;TB_iframe=true');
+
+	        return false;
+	    });
+
+	    function image_upload_handler(html) {
+	        imgurl = $('img',html).attr('src');
+	        if(!imgurl) imgurl = $(html).attr('src');
+	        $('#upload_img').val(imgurl);
+
+	        tb_remove();
+	    };
+	});
+    </script>
 </div>
 
 <?php
@@ -222,6 +293,12 @@ function theme_all_page_settings() {
 // when it's time to create the menu pages.
 add_action("admin_menu", "setup_theme_admin_menus");
 
+// add short code for display google custom search
+add_shortcode('ads-content', 'ads_content');
+function ads_content()
+{
+ return sprintf('<div class="adEntryIn"><div class="inner">%s</div></div>',get_option("beautysite_gads_keys") );
+}
 
 // add short code for display google custom search
 add_shortcode('search_result', 'search_result');
