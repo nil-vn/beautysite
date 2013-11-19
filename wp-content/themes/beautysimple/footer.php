@@ -46,7 +46,7 @@
 <h1>フォローで最新情報ゲット</h1>
 <ul>
 <li><a href="https://www.facebook.com/cosmehousecom"><img src="<?php echo get_template_directory_uri(); ?>/img/common/icon_facebook.png" alt="facebook"></a></li>
-<li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/common/icon_twitter.png" alt="twitter"></a></li>
+<li><a href="https://twitter.com/intent/follow?original_referer=&region=follow_link&screen_name=twitter&tw_p=followbutton&variant=2.0"><img src="<?php echo get_template_directory_uri(); ?>/img/common/icon_twitter.png" alt="twitter"></a></li>
 </ul> 
 <div class="fbArea">
 <div class="fb-like-box" data-href="https://www.facebook.com/cosmehousecom" data-width="210px" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>

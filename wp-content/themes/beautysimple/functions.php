@@ -88,6 +88,7 @@ function beautysite_setup() {
 	add_image_size('avatar-thumb', 300, 200, true); //custom size
 	add_image_size('sidebar-thumb', 126, 82, true); //custom size
 	add_image_size('related-thumb', 150, 100, true); //custom size
+	add_image_size('hotdaily-thumb', 200, 135, true); //custom size
 
 	// This theme uses its own gallery styles.
 	add_filter( 'use_default_gallery_style', '__return_false' );

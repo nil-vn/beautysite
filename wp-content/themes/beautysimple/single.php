@@ -76,12 +76,6 @@ $subCategoryLink = array();
 
 			<?php endwhile; ?>
 
-    <div class="adEntryOut">
-    <div class="inner">
-        <?php echo get_option("beautysite_banner_ads_contents") ?>    </div>
-    </div>
-
-
 </div>
 <!--//.mainCol-->
 
