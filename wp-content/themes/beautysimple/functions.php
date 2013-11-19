@@ -408,7 +408,7 @@ function all_category_page()
 		</header>
 
 		<div class="entryOverview">
-		<div class="pic"> <?php the_post_thumbnail( array(300,200) ); ?> </div>
+		<div class="pic"> <?php the_post_thumbnail( 'avatar-thumb' ); ?> </div>
 		<div class="txt">
 		<?php
 		$category = get_the_category();

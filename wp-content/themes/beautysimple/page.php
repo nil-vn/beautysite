@@ -34,7 +34,7 @@ get_header(); ?>
 <h1><?php the_title(); ?></h1>
 </div>
 </header>
-<?php if (!is_page('all_category') || !is_page('search')) : ?>
+<?php if (!is_page('all_category') && !is_page('search')) : ?>
 <article class="static">
 <?php the_content(); ?>
 

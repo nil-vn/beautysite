@@ -132,12 +132,14 @@ foreach ($category as $key => $cat) {
 <?php //todo: share like bar ?>
 <!--//.snsBtns-->
 
-<p>Written by: 
-<?php the_author_posts_link(); ?></p>
+<aside class="relatedInfo">
+<div class="pic"> <?php echo get_avatar( get_the_author_meta('email')  ); ?> </div>
+<div class="txt">
+<h1>by <?php the_author_posts_link(); ?></h1>
+<?php echo get_the_author_meta( 'description' )  ?>
+</div>
+</aside>
 
-<?php if ( is_single() && get_the_author_meta( 'description' ) && is_multi_author() ) : ?>
-	<?php get_template_part( 'author-bio' ); ?>
-<?php endif; ?>
 
 <!--//.relatedInfo-->
 
