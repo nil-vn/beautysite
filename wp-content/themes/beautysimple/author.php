@@ -63,6 +63,23 @@ $componentCat = get_category_by_slug('component' );
 		<div class="entryOverview">
 		<div class="pic"> <?php the_post_thumbnail( array(300,200) ); ?> </div>
 		<div class="txt">
+		<?php
+		$category = get_the_category();
+		 $color = "";
+		  foreach ($category as $key => $cat) {
+		  	if ($cosmeCat->cat_ID == $cat->cat_ID || cat_is_ancestor_of( $cosmeCat->cat_ID, $cat->cat_ID )) {
+		  		$color = "yellow";
+		  	} elseif ($troubleCat->cat_ID == $cat->cat_ID  || cat_is_ancestor_of( $troubleCat->cat_ID, $cat->cat_ID )) {
+		  		$color = "blue";
+		  	} elseif ($componentCat->cat_ID == $cat->cat_ID || cat_is_ancestor_of( $componentCat->cat_ID, $cat->cat_ID )) {
+		  		$color = "purple";
+		  	}
+		  }
+		?>
+		<div class="tagMark <?php echo $color ?>"><div><span><?php
+		if (isset($category[0]))
+			echo $category[0]->cat_name;
+		?></span></div></div>
 		<?php the_content('',FALSE,'');?>
 		<div class="viewMore"><span>続きを見る</span></div>
 		</div>
