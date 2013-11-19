@@ -76,10 +76,6 @@ $subCategoryLink = array();
 
 			<?php endwhile; ?>
 
-		<?php //if ( is_active_sidebar( 'sidebar-0' ) ) : ?>
-			<?php // dynamic_sidebar( 'sidebar-0' ); ?>
-		<?php // endif; ?>
-
     <div class="adEntryOut">
     <div class="inner">
         <?php echo get_option("beautysite_banner_ads_contents") ?>    </div>

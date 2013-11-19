@@ -87,6 +87,7 @@ function beautysite_setup() {
 	set_post_thumbnail_size( 600, 400, true );
 	add_image_size('avatar-thumb', 300, 200, true); //custom size
 	add_image_size('sidebar-thumb', 126, 82, true); //custom size
+	add_image_size('related-thumb', 150, 100, true); //custom size
 
 	// This theme uses its own gallery styles.
 	add_filter( 'use_default_gallery_style', '__return_false' );
@@ -167,6 +168,31 @@ class beautysite_walker_nav_menu extends Walker_Nav_Menu {
     $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 }
 }
+
+
+function insert_fb_in_head() {
+	global $post;
+	if ( !is_singular()) //if it is not a post or a page
+		return;
+    echo '<meta property="og:title" content="' . get_the_title() . '"/>';
+    echo '<meta name="twitter:title" content="' . get_the_title() . '"/>';
+    echo '<meta property="og:url" content="' . get_permalink() . '"/>';
+    echo '<meta property="og:description" content="'. get_the_excerpt() .'" />';
+    echo '<meta name="twitter:descriptionn" content="'. get_the_excerpt() .'" />';
+	if(!has_post_thumbnail( $post->ID )) { //the post does not have featured image, use a default image
+		$default_image="http://cosmehouse.com/wp-content/themes/beautysimple/img/common/logo.png"; //replace this with a default image on your server or an image in your media library
+		echo '<meta property="og:image" content="' . $default_image . '"/>';
+		echo '<meta name="twitter:image" content="' . $default_image . '"/>';
+	}
+	else{
+		$thumbnail_src = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium' );
+		echo '<meta property="og:image" content="' . esc_attr( $thumbnail_src[0] ) . '"/>';
+		echo '<meta name="twitter:image"  content="' . esc_attr( $thumbnail_src[0] ) . '"/>';
+	}
+	echo "";
+}
+add_action( 'wp_head', 'insert_fb_in_head', 5 );
+
 
 // setup setting for theme
 function setup_theme_admin_menus() {
@@ -1074,18 +1100,3 @@ function get_articles($category_id = '', $limit = 5)
 	// get results
 	return new WP_Query( $args );
 }
-
-
-// Register sidebar for content
-function beautysite_content_widgets_init() {
-	register_sidebar( array(
-		'name'          => __( 'Post Content Widget Area', 'beautysite' ),
-		'id'            => 'sidebar-0',
-		'description'   => __( 'Appears in below content section of the site.', 'beautysite' ),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
-	) );
-}
-add_action( 'widgets_init', 'beautysite_content_widgets_init' );

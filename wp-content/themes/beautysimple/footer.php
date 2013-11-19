@@ -45,11 +45,11 @@
 <section class="sns">
 <h1>フォローで最新情報ゲット</h1>
 <ul>
-<li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/common/icon_facebook.png" alt="facebook"></a></li>
+<li><a href="https://www.facebook.com/cosmehousecom"><img src="<?php echo get_template_directory_uri(); ?>/img/common/icon_facebook.png" alt="facebook"></a></li>
 <li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/common/icon_twitter.png" alt="twitter"></a></li>
 </ul> 
 <div class="fbArea">
-<div class="fb-like-box" data-href="http://www.facebook.com/FacebookDevelopers" data-colorscheme="light" data-show-faces="false" data-header="true" data-stream="false" data-show-border="true"></div>
+<div class="fb-like-box" data-href="https://www.facebook.com/cosmehousecom" data-width="210px" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>
 </div>
 </section>
 </div>

@@ -184,11 +184,23 @@ class AdWidget_HTMLWidget extends WP_Widget
      {
          extract($args);
 
-         echo $before_widget;
+         if (isset($instance['w_before_html']) && !empty($instance['w_before_html'])) {
+            echo $instance['w_before_html'];
+        }
+        else
+            echo $before_widget;
 
-         echo "<div style='text-align: center;'>{$instance['w_adcode']}</div>";
+        if (isset($instance['w_adv']) && !empty($instance['w_adv'])) {
+            echo '<h1 class="sideTtl">'.$instance['w_adv'].'</h1>';
+        }
 
-         echo $after_widget;
+         echo "<div class='recommendwrap'>{$instance['w_adcode']}</div>";
+
+         if (isset($instance['w_end_html']) && !empty($instance['w_end_html'])) {
+            echo $instance['w_end_html'];
+        }
+        else
+        echo $after_widget;
      }
 
      /**
@@ -203,7 +215,8 @@ class AdWidget_HTMLWidget extends WP_Widget
 
         $instance['w_adcode'] = $new_instance['w_adcode'];
         $instance['w_adv']    = $new_instance['w_adv'];
-
+        $instance['w_before_html']     = $new_instance['w_before_html'];
+        $instance['w_end_html']     = $new_instance['w_end_html'];
         /* New ad? Upload it to Broadstreet */
         // if($instance['w_adcode'] && Broadstreet_Mini_Utility::hasAdserving()) {
 
@@ -253,6 +266,14 @@ class AdWidget_HTMLWidget extends WP_Widget
             <label for="<?php echo $this->get_field_id('w_adv'); ?>">Advertiser Name</label>
             <input class="widefat" type="text" id="<?php echo $this->get_field_id('w_adv'); ?>" name="<?php echo $this->get_field_name('w_adv'); ?>" value="<?php echo $instance['w_adv']; ?>" />
        </p>
+       <p>
+            <label for="<?php echo $this->get_field_id('w_before_html'); ?>">Before HTML:</label><br/>
+            <input class="widefat" type="text" id="<?php echo $this->get_field_id('w_before_html'); ?>" name="<?php echo $this->get_field_name('w_before_html'); ?>" value="<?php echo esc_attr($instance['w_before_html']); ?>" />
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('w_end_html'); ?>">End HTML:</label><br/>
+            <input class="widefat" type="text" id="<?php echo $this->get_field_id('w_end_html'); ?>" name="<?php echo $this->get_field_name('w_end_html'); ?>" value="<?php echo $instance['w_end_html']; ?>" />
+        </p>
         </div>
        <?php
      }

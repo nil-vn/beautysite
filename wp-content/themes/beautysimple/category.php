@@ -192,26 +192,6 @@ if (is_category('health' ) || cat_is_ancestor_of( $healthCat->cat_ID, get_query_
 		) );
 		}
 	?>
-<!--
-	<div class="pagination">
-	<div class="pageMove">
-	<a href="#" class="prevLink">前のページ</a>
-	<span class="currentLink">1</span>
-	<a href="#" class="pageLink">2</a>
-	<a href="#" class="pageLink">3</a>
-	<a href="#" class="pageLink">4</a>
-	<a href="#" class="pageLink">5</a>
-	<a href="#" class="pageLink">6</a>
-	<a href="#" class="pageLink">7</a>
-	<a href="#" class="pageLink">8</a>
-	<a href="#" class="pageLink">9</a>
-	<span class="chain">…</span>
-	<a href="#" class="pageLink">99</a>
-	<a href="#" class="nextLink">次のページ</a>
-	</div>
-	<p class="status">200件中 1 - 10 を表示</p>
-	</div> -->
-	<!--//.pagination-->
 	<?php endif; ?>
 <?php else : ?>
 	<?php get_template_part( 'content', 'none' ); ?>
