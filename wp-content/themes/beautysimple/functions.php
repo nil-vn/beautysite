@@ -190,19 +190,15 @@ function theme_all_page_settings() {
 	$gcs_keys = get_option("beautysite_gcs_keys");
 	$gads_keys = get_option("beautysite_gads_keys");
 	$banner_ads_contents = get_option("beautysite_banner_ads_contents");
-	$banner_ads_contents_link = get_option("beautysite_banner_ads_contents_link");
 	if (isset($_POST["update_settings"])) {
 		$gcs_keys = esc_attr($_POST["gcs_keys"]);
 		update_option("beautysite_gcs_keys", $gcs_keys);
 
-		$gads_keys = $_POST["gads_keys"];
+		$gads_keys =  stripslashes_deep($_POST["gads_keys"]) ;
 		update_option("beautysite_gads_keys", $gads_keys);
 
-		$banner_ads_contents = esc_attr($_POST["banner_ads_contents"]);
+		$banner_ads_contents = stripslashes_deep($_POST["banner_ads_contents"]);
 		update_option("beautysite_banner_ads_contents", $banner_ads_contents);
-
-		$banner_ads_contents_link = $_POST["banner_ads_contents_link"];
-		update_option("beautysite_banner_ads_contents_link", $banner_ads_contents_link);
 
 		?>
 		    <div id="message" class="updated">Settings saved</div>
@@ -213,7 +209,7 @@ function theme_all_page_settings() {
     <div class="wrap">
     <?php screen_icon('themes'); ?> <h2>Setting page</h2>
 
-    <form method="POST" action="">
+    <form method="post" action="">
         <table class="form-table">
             <tr valign="top">
                 <th scope="row">
@@ -239,26 +235,15 @@ function theme_all_page_settings() {
             <tr valign="top">
             	<th scope="row">
                     <label for="gads_keys">
-                        Image banner url:
+                        Ads sections in below content
                     </label>
                 </th>
                 <td>
-            	 <input class="widefat tag" placeholder=" URL" type="text" id="banner_ads_contents_link" name="banner_ads_contents_link" value="<?php echo htmlentities($banner_ads_contents_link); ?>" />
+            	     <textarea class="widefat" name="banner_ads_contents" cols="80" rows="4"><?php echo $banner_ads_contents ?></textarea>
+
 	       		</td>
 	       </tr>
-	       <tr>
-	       		<th scope="row">
-                    <label for="gads_keys">
-                        Image banner:
-                    </label>
-                </th>
-	       		<td>
-	       		<a href="#" class="upload-button" >Click here to upload a new image.</a> You can also paste in an image URL below.
 
-	       		<input class="widefat tag" placeholder="Image URL" type="text" id="upload_img" name="banner_ads_contents" value="<?php echo htmlentities($banner_ads_contents); ?>" />
-	       		</td>
-
-	       </tr>
         </table>
         <input type="hidden" name="update_settings" value="Y" />
         <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Save Changes"></p>
@@ -297,7 +282,15 @@ add_action("admin_menu", "setup_theme_admin_menus");
 add_shortcode('ads-content', 'ads_content');
 function ads_content()
 {
- return sprintf('<div class="adEntryIn"><div class="inner">%s</div></div>',get_option("beautysite_gads_keys") );
+	if (! is_single()) {
+		return '';
+	}
+  	$content = '<div class="adEntryIn"><div class="inner">' .get_option("beautysite_gads_keys") . '</div></div>';
+  	ob_start();
+	eval("?>$content<?php ");
+	$output = ob_get_contents();
+	ob_end_clean();
+	return $output;
 }
 
 // add short code for display google custom search

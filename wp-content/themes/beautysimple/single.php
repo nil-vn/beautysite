@@ -82,8 +82,7 @@ $subCategoryLink = array();
 
     <div class="adEntryOut">
     <div class="inner">
-      <img width="605" src="<?php echo get_option("beautysite_banner_ads_contents") ?>" alt="">
-    </div>
+        <?php echo get_option("beautysite_banner_ads_contents") ?>    </div>
     </div>
 
 
