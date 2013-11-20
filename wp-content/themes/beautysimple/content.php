@@ -128,7 +128,11 @@ foreach ($category as $key => $cat) {
 <!--//.snsBtns-->
 
 <aside class="relatedInfo">
-<div class="pic"> <?php echo get_avatar( get_the_author_meta('email') , 120  ); ?> </div>
+<div class="pic"> 
+<img src="<?php
+echo get_author_image_url(get_the_author_meta('ID'));
+  ?>" width=120 height=120 />
+</div>
 <div class="txt">
 <h1>by <?php the_author_posts_link(); ?></h1>
 <?php echo get_the_author_meta( 'description' )  ?>
