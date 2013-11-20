@@ -392,6 +392,84 @@ function theme_all_page_settings() {
 }
 
 
+// pagination for nextpage in content
+
+function content_pagination($args = false)
+{
+
+	$defaults = array(
+		'before'           => '<p>' . __( 'Pages:' ),
+		'after'            => '</p>',
+		'link_before'      => '',
+		'link_after'       => '',
+		'next_or_number'   => 'number',
+		'separator'        => ' ',
+		'nextpagelink'     => __( 'Next page' ),
+		'previouspagelink' => __( 'Previous page' ),
+		'pagelink'         => '%',
+		'echo'             => 1
+	);
+
+	$r = wp_parse_args( $args, $defaults );
+	$r = apply_filters( 'wp_link_pages_args', $r );
+	extract( $r, EXTR_SKIP );
+	global $page, $numpages, $multipage, $more;
+
+
+	if ($numpages > 1) {
+	$output = '';
+	$output .= $before;
+	
+	if ($page > 1) {
+		$output .= content_page_link($page - 1 ,'prevLink' ) . $previouspagelink . '</a>';
+	}
+
+	for ( $i = 1; $i <= $numpages; $i++ ) {
+		$link = $link_before . str_replace( '%', $i, $pagelink ) . $link_after;
+		if ( $i != $page || ! $more && 1 == $page )
+			$link = content_page_link( $i , 'pageLink' ) . $link . '</a>';
+		else
+			$link = '<span class="currentLink">'.$i.'</span>';
+
+		$link = apply_filters( 'wp_link_pages_link', $link, $i );
+		$output .= $separator . $link;
+	}
+
+	if ($page < $numpages) {
+		$output .= content_page_link($page + 1 ,'nextLink' ) . $nextpagelink . '</a>';
+	}
+
+	$output .= $after;
+
+
+
+	$output = apply_filters( 'wp_link_pages', $output, $args );
+
+	echo $output;
+	}
+
+}
+
+// helper function add class for a link in pagination
+function content_page_link( $i , $class='') {
+	global $wp_rewrite;
+	$post = get_post();
+
+	if ( 1 == $i ) {
+		$url = get_permalink();
+	} else {
+		if ( '' == get_option('permalink_structure') || in_array($post->post_status, array('draft', 'pending')) )
+			$url = add_query_arg( 'page', $i, get_permalink() );
+		elseif ( 'page' == get_option('show_on_front') && get_option('page_on_front') == $post->ID )
+			$url = trailingslashit(get_permalink()) . user_trailingslashit("$wp_rewrite->pagination_base/" . $i, 'single_paged');
+		else
+			$url = trailingslashit(get_permalink()) . user_trailingslashit($i, 'single_paged');
+	}
+
+	return '<a class="' . $class . '" href="' . esc_url( $url ) . '">';
+}
+
+
 // This tells WordPress to call the function named "setup_theme_admin_menus"
 // when it's time to create the menu pages.
 add_action("admin_menu", "setup_theme_admin_menus");

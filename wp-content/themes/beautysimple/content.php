@@ -30,7 +30,7 @@ echo get_the_post_thumbnail($item->ID ,'related-thumb');
 
 	 // split content if too long
 	 echo wp_html_excerpt($item->post_content,35) ;
-	 
+
 ?></p>
 <?php
 $category = get_the_category($item->ID);
@@ -93,7 +93,17 @@ foreach ($category as $key => $cat) {
 
 
 
-<?php wp_link_pages(); ?>
+<?php
+ content_pagination(
+	array(
+		'before' => '<div class="pagination"><div class="pageMove">',
+		'after' => '</div></div>',
+		'previouspagelink' => '前のページ',
+		'nextpagelink' => '次のページ',
+		'next_or_number'=>'number',
+		)
+);
+?>
 <!-- <div class="pagination">
 <div class="pageMove">
 <span class="prevLink">前のページ</span>
@@ -110,7 +120,7 @@ foreach ($category as $key => $cat) {
 
 <div class="adEntryOut">
 <div class="inner">
-    <?php echo get_option("beautysite_banner_ads_contents") ?>   
+    <?php echo get_option("beautysite_banner_ads_contents") ?>
 </div>
 </div>
 
@@ -128,7 +138,7 @@ foreach ($category as $key => $cat) {
 <!--//.snsBtns-->
 
 <aside class="relatedInfo">
-<div class="pic"> 
+<div class="pic">
 <img src="<?php
 echo get_author_image_url(get_the_author_meta('ID'));
   ?>" width=120 height=120 />
@@ -143,7 +153,7 @@ echo get_author_image_url(get_the_author_meta('ID'));
 <!--//.relatedInfo-->
 
 
-<?php 
+<?php
 $top_daily = tptn_pop_posts( array(
 		'is_widget' => FALSE,
 		'daily' => TRUE,
@@ -151,7 +161,7 @@ $top_daily = tptn_pop_posts( array(
 		'strict_limit' => TRUE,
 		'posts_only' => TRUE, 'limit' => 6)) ;
 
-?> 
+?>
 
 <?php if (count($top_daily)) { ?>
 <section class="recommendList02">
