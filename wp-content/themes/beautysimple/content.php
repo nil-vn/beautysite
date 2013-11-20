@@ -29,7 +29,7 @@ echo get_the_post_thumbnail($item->ID ,'related-thumb');
 <p class="txt"><?php
 
 	 // split content if too long
-	 echo wp_html_excerpt($item->post_content,35) ;
+	 echo wp_html_excerpt($item->post_content,35,' ...')  ;
 
 ?></p>
 <?php
@@ -183,7 +183,7 @@ $top_daily = tptn_pop_posts( array(
 <p class="txt"><?php
 
 	 // split content if too long
-	 	 echo wp_html_excerpt($item->post_content,35) ;
+	 	 echo wp_html_excerpt($item->post_content,35,' ...') ;
 
 ?></p>
 <footer>

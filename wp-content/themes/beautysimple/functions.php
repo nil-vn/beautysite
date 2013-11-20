@@ -469,7 +469,6 @@ function content_page_link( $i , $class='') {
 	return '<a class="' . $class . '" href="' . esc_url( $url ) . '">';
 }
 
-
 // This tells WordPress to call the function named "setup_theme_admin_menus"
 // when it's time to create the menu pages.
 add_action("admin_menu", "setup_theme_admin_menus");
@@ -1134,7 +1133,7 @@ function setPostViews($postID) {
 add_filter('manage_posts_columns', 'posts_column_views');
 add_action('manage_posts_custom_column', 'posts_custom_column_views',5,2);
 function posts_column_views($defaults){
-    $defaults['post_views'] = __('Views');
+    $defaults['post_views'] = __('7 Days Views');
     return $defaults;
 }
 function posts_custom_column_views($column_name, $id){
@@ -1142,6 +1141,15 @@ function posts_custom_column_views($column_name, $id){
         echo getPostViews(get_the_ID());
     }
 }
+
+// Register the column as sortable
+function author_column_register_sortable( $columns ) {
+    $columns['author'] = 'author';
+
+    return $columns;
+}
+add_filter( 'manage_edit-post_sortable_columns', 'author_column_register_sortable' );
+
 
 /* function for helper for this theme */
 
