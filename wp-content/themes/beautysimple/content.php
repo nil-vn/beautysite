@@ -29,28 +29,8 @@ echo get_the_post_thumbnail($item->ID ,'related-thumb');
 <p class="txt"><?php
 
 	 // split content if too long
-	 $post_content = $item->post_content;
-	 $output = '';
-	 $has_teaser = false;
-
-	 if ( preg_match( '/<!--more(.*?)?-->/', $post_content, $matches ) ) {
-		$post_content = explode( $matches[0], $post_content, 2 );
-		if ( ! empty( $matches[1] ) && ! empty( $more_link_text ) )
-			$more_link_text = strip_tags( wp_kses_no_null( trim( $matches[1] ) ) );
-
-		$has_teaser = true;
-	} else {
-		$post_content = array( $post_content );
-	}
-
-	$teaser = $post_content[0];
-
-	$output .= $teaser;
-
-	$output = force_balance_tags( $output );
-
-
-	 echo $output;
+	 echo wp_html_excerpt($item->post_content,35) ;
+	 
 ?></p>
 <?php
 $category = get_the_category($item->ID);
@@ -81,11 +61,18 @@ foreach ($category as $key => $cat) {
 ?>
 
 
-<?php
-	//:todo
-	// snb share like bar
-?>
+
+<div class="snsBtns">
+<ul>
+<li><a href="http://line.naver.jp/R/msg/text/?LINE%E3%81%A7%E9%80%81%E3%82%8B%0D%0Ahttp%3A%2F%2Fline.naver.jp%2F"><img src="<?php echo get_template_directory_uri(); ?>/img/contents/linebutton.png" width="88" height="20" alt="LINEで送る" /></a></li>
+<li><div class="fb-like" data-href="<?php get_permalink()  ?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div></li>
+<li class="twtr"><a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja">ツイート</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></li>
+<li><a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async></script></li>
+</ul>
+</div>
 <!--//.snsBtns-->
+
 </header>
 
 
@@ -106,6 +93,7 @@ foreach ($category as $key => $cat) {
 
 
 
+<?php wp_link_pages(); ?>
 <!-- <div class="pagination">
 <div class="pageMove">
 <span class="prevLink">前のページ</span>
@@ -128,12 +116,19 @@ foreach ($category as $key => $cat) {
 
 <!--//.adEntryOut-->
 
-
-<?php //todo: share like bar ?>
+<div class="snsBtns">
+<ul>
+<li><a href="http://line.naver.jp/R/msg/text/?LINE%E3%81%A7%E9%80%81%E3%82%8B%0D%0Ahttp%3A%2F%2Fline.naver.jp%2F"><img src="<?php echo get_template_directory_uri(); ?>/img/contents/linebutton.png" width="88" height="20" alt="LINEで送る" /></a></li>
+<li><div class="fb-like" data-href="<?php get_permalink( ); ?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div></li>
+<li class="twtr"><a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja">ツイート</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></li>
+<li><a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async></script></li>
+</ul>
+</div>
 <!--//.snsBtns-->
 
 <aside class="relatedInfo">
-<div class="pic"> <?php echo get_avatar( get_the_author_meta('email')  ); ?> </div>
+<div class="pic"> <?php echo get_avatar( get_the_author_meta('email') , 120  ); ?> </div>
 <div class="txt">
 <h1>by <?php the_author_posts_link(); ?></h1>
 <?php echo get_the_author_meta( 'description' )  ?>
@@ -174,28 +169,8 @@ $top_daily = tptn_pop_posts( array(
 <p class="txt"><?php
 
 	 // split content if too long
-	 $post_content = $item->post_content;
-	 $output = '';
-	 $has_teaser = false;
+	 	 echo wp_html_excerpt($item->post_content,35) ;
 
-	 if ( preg_match( '/<!--more(.*?)?-->/', $post_content, $matches ) ) {
-		$post_content = explode( $matches[0], $post_content, 2 );
-		if ( ! empty( $matches[1] ) && ! empty( $more_link_text ) )
-			$more_link_text = strip_tags( wp_kses_no_null( trim( $matches[1] ) ) );
-
-		$has_teaser = true;
-	} else {
-		$post_content = array( $post_content );
-	}
-
-	$teaser = $post_content[0];
-
-	$output .= $teaser;
-
-	$output = force_balance_tags( $output );
-
-
-	 echo $output;
 ?></p>
 <footer>
 <span class="date">(<?php echo date("Y/m/d", strtotime($item->post_date)) ?>)</span>
