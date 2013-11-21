@@ -9,7 +9,11 @@
 <dd>
 <?php 
 	 $this_cat = get_category_by_slug('health' ); // get the category of this category archive page
-  	 wp_list_categories( array('child_of' => $this_cat->cat_ID) ); // list child categories
+  	 wp_list_categories( array(
+  	 	'child_of' => $this_cat->cat_ID,
+  	 	'title_li' => '',
+		'show_option_none'   => '',
+	) ); // list child categories
 ?>
 </dd>
 </dl>
@@ -18,7 +22,11 @@
 <dd>
 <?php 
 	 $this_cat = get_category_by_slug('cosme' ); // get the category of this category archive page
-  	 wp_list_categories( array('child_of' => $this_cat->cat_ID) ); // list child categories
+	 wp_list_categories( array(
+  	 	'child_of' => $this_cat->cat_ID,
+  	 	'title_li' => '',
+		'show_option_none'   => '',
+	) ); // list child categories
 ?>
 </dd>
 </dl>
@@ -27,7 +35,11 @@
 <dd>
 <?php 
 	 $this_cat = get_category_by_slug('trouble' ); // get the category of this category archive page
-  	 wp_list_categories( array('child_of' => $this_cat->cat_ID) ); // list child categories
+ 	wp_list_categories( array(
+  	 	'child_of' => $this_cat->cat_ID,
+  	 	'title_li' => '',
+		'show_option_none'   => '',
+	) ); // list child categories
 ?>
 </dd>
 </dl>
@@ -36,7 +48,11 @@
 <dd>
 <?php 
 	 $this_cat = get_category_by_slug('component' ); // get the category of this category archive page
-  	 wp_list_categories( array('child_of' => $this_cat->cat_ID) ); // list child categories
+ 	wp_list_categories( array(
+  	 	'child_of' => $this_cat->cat_ID,
+  	 	'title_li' => '',
+		'show_option_none'   => '',
+	) ); // list child categories
 ?>
 </dd>
 </dl>
