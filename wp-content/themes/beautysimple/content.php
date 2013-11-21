@@ -30,27 +30,8 @@ echo get_the_post_thumbnail($item->ID ,'related-thumb');
 
 	 // split content if too long
 	 $post_content = $item->post_content;
-	 $output = '';
-	 $has_teaser = false;
 
-	 if ( preg_match( '/<!--more(.*?)?-->/', $post_content, $matches ) ) {
-		$post_content = explode( $matches[0], $post_content, 2 );
-		if ( ! empty( $matches[1] ) && ! empty( $more_link_text ) )
-			$more_link_text = strip_tags( wp_kses_no_null( trim( $matches[1] ) ) );
-
-		$has_teaser = true;
-	} else {
-		$post_content = array( $post_content );
-	}
-
-	$teaser = $post_content[0];
-
-	$output .= $teaser;
-
-	$output = force_balance_tags( $output );
-
-
-	 echo $output;
+	 echo wp_html_excerpt($post_content,35,' ...' );
 ?></p>
 <?php
 $category = get_the_category($item->ID);
@@ -175,27 +156,8 @@ $top_daily = tptn_pop_posts( array(
 
 	 // split content if too long
 	 $post_content = $item->post_content;
-	 $output = '';
-	 $has_teaser = false;
+	 echo wp_html_excerpt($post_content,35,' ...' );
 
-	 if ( preg_match( '/<!--more(.*?)?-->/', $post_content, $matches ) ) {
-		$post_content = explode( $matches[0], $post_content, 2 );
-		if ( ! empty( $matches[1] ) && ! empty( $more_link_text ) )
-			$more_link_text = strip_tags( wp_kses_no_null( trim( $matches[1] ) ) );
-
-		$has_teaser = true;
-	} else {
-		$post_content = array( $post_content );
-	}
-
-	$teaser = $post_content[0];
-
-	$output .= $teaser;
-
-	$output = force_balance_tags( $output );
-
-
-	 echo $output;
 ?></p>
 <footer>
 <span class="date">(<?php echo date("Y/m/d", strtotime($item->post_date)) ?>)</span>
