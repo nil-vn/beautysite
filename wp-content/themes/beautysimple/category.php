@@ -92,14 +92,27 @@ if (is_category('health' ) || cat_is_ancestor_of( $healthCat->cat_ID, get_query_
 
 
 </div>
-<?php if (is_category('health' ) || is_category('cosme' ) || is_category('trouble' ) || is_category('component' ) ): ?>
-
 <div class="pageOverview">
- <?php echo category_description( ); ?>
 
-</div>
+<?php if (is_category('health' ) || cat_is_ancestor_of( $healthCat->cat_ID, get_query_var('cat') )) : ?>
+
+ <?php echo category_description( $healthCat->cat_ID); ?>
+
+
+<?php elseif (is_category('cosme' ) || cat_is_ancestor_of( $cosmeCat->cat_ID, get_query_var('cat') )): ?>
+
+ <?php echo category_description( $cosmeCat->cat_ID); ?>
+
+<?php elseif (is_category('trouble' ) || cat_is_ancestor_of( $troubleCat->cat_ID, get_query_var('cat') )): ?>
+
+	 <?php echo category_description( $troubleCat->cat_ID); ?>
+
+<?php else: ?>
+
+	 <?php echo category_description( $componentCat->cat_ID); ?>
 
 <?php endif; ?>
+</div>
 
 <div class="tagLinks"><span>カテゴリ：</span>
 <?php // list child categories
