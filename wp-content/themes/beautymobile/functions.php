@@ -87,7 +87,7 @@ function beautymobile_setup() {
 	set_post_thumbnail_size( 600, 400, true );
 	add_image_size('mobile-avatar-thumb', 320, 213, true); //custom size
 	add_image_size('mobile-sidebar-thumb', 110, 73, true); //custom size
-	add_image_size('related-thumb', 150, 100, true); //custom size
+	add_image_size('mobile-category-thumb', 90, 60, true); //custom size
 	add_image_size('hotdaily-thumb', 200, 135, true); //custom size
 
 	// This theme uses its own gallery styles.
