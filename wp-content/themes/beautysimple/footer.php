@@ -9,7 +9,11 @@
 <dd>
 <?php 
 	 $this_cat = get_category_by_slug('health' ); // get the category of this category archive page
-  	 wp_list_categories( array('child_of' => $this_cat->cat_ID) ); // list child categories
+  	 wp_list_categories( array(
+  	 	'child_of' => $this_cat->cat_ID,
+  	 	'title_li' => '',
+		'show_option_none'   => '',
+	) ); // list child categories
 ?>
 </dd>
 </dl>
@@ -18,7 +22,11 @@
 <dd>
 <?php 
 	 $this_cat = get_category_by_slug('cosme' ); // get the category of this category archive page
-  	 wp_list_categories( array('child_of' => $this_cat->cat_ID) ); // list child categories
+	 wp_list_categories( array(
+  	 	'child_of' => $this_cat->cat_ID,
+  	 	'title_li' => '',
+		'show_option_none'   => '',
+	) ); // list child categories
 ?>
 </dd>
 </dl>
@@ -27,7 +35,11 @@
 <dd>
 <?php 
 	 $this_cat = get_category_by_slug('trouble' ); // get the category of this category archive page
-  	 wp_list_categories( array('child_of' => $this_cat->cat_ID) ); // list child categories
+ 	wp_list_categories( array(
+  	 	'child_of' => $this_cat->cat_ID,
+  	 	'title_li' => '',
+		'show_option_none'   => '',
+	) ); // list child categories
 ?>
 </dd>
 </dl>
@@ -36,7 +48,11 @@
 <dd>
 <?php 
 	 $this_cat = get_category_by_slug('component' ); // get the category of this category archive page
-  	 wp_list_categories( array('child_of' => $this_cat->cat_ID) ); // list child categories
+ 	wp_list_categories( array(
+  	 	'child_of' => $this_cat->cat_ID,
+  	 	'title_li' => '',
+		'show_option_none'   => '',
+	) ); // list child categories
 ?>
 </dd>
 </dl>
@@ -46,7 +62,7 @@
 <h1>フォローで最新情報ゲット</h1>
 <ul>
 <li><a href="https://www.facebook.com/cosmehousecom"><img src="<?php echo get_template_directory_uri(); ?>/img/common/icon_facebook.png" alt="facebook"></a></li>
-<li><a href="https://twitter.com/intent/follow?original_referer=&region=follow_link&screen_name=twitter&tw_p=followbutton&variant=2.0"><img src="<?php echo get_template_directory_uri(); ?>/img/common/icon_twitter.png" alt="twitter"></a></li>
+<li><a href="https://twitter.com/intent/follow?original_referer=&region=follow_link&screen_name=cosme_house&tw_p=followbutton&variant=2.0"><img src="<?php echo get_template_directory_uri(); ?>/img/common/icon_twitter.png" alt="twitter"></a></li>
 </ul> 
 <div class="fbArea">
 <div class="fb-like-box" data-href="https://www.facebook.com/cosmehousecom" data-width="210px" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>

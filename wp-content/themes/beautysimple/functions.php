@@ -89,6 +89,7 @@ function beautysite_setup() {
 	add_image_size('sidebar-thumb', 126, 82, true); //custom size
 	add_image_size('related-thumb', 150, 100, true); //custom size
 	add_image_size('hotdaily-thumb', 200, 135, true); //custom size
+	add_image_size('author-thumb', 120, 120, true); //custom size
 
 	// This theme uses its own gallery styles.
 	add_filter( 'use_default_gallery_style', '__return_false' );
@@ -170,7 +171,97 @@ class beautysite_walker_nav_menu extends Walker_Nav_Menu {
 }
 }
 
+// get avatar url
+function get_avatar_url( $id_or_email, $size = '96', $default = '', $alt = false ) {
+	if ( ! get_option('show_avatars') )
+		return false;
 
+	if ( false === $alt)
+		$safe_alt = '';
+	else
+		$safe_alt = esc_attr( $alt );
+
+	if ( !is_numeric($size) )
+		$size = '96';
+
+	$email = '';
+	if ( is_numeric($id_or_email) ) {
+		$id = (int) $id_or_email;
+		$user = get_userdata($id);
+		if ( $user )
+			$email = $user->user_email;
+	} elseif ( is_object($id_or_email) ) {
+		// No avatar for pingbacks or trackbacks
+		$allowed_comment_types = apply_filters( 'get_avatar_comment_types', array( 'comment' ) );
+		if ( ! empty( $id_or_email->comment_type ) && ! in_array( $id_or_email->comment_type, (array) $allowed_comment_types ) )
+			return false;
+
+		if ( !empty($id_or_email->user_id) ) {
+			$id = (int) $id_or_email->user_id;
+			$user = get_userdata($id);
+			if ( $user)
+				$email = $user->user_email;
+		} elseif ( !empty($id_or_email->comment_author_email) ) {
+			$email = $id_or_email->comment_author_email;
+		}
+	} else {
+		$email = $id_or_email;
+	}
+
+	if ( empty($default) ) {
+		$avatar_default = get_option('avatar_default');
+		if ( empty($avatar_default) )
+			$default = 'mystery';
+		else
+			$default = $avatar_default;
+	}
+
+	if ( !empty($email) )
+		$email_hash = md5( strtolower( trim( $email ) ) );
+
+	if ( is_ssl() ) {
+		$host = 'https://secure.gravatar.com';
+	} else {
+		if ( !empty($email) )
+			$host = sprintf( "http://%d.gravatar.com", ( hexdec( $email_hash[0] ) % 2 ) );
+		else
+			$host = 'http://0.gravatar.com';
+	}
+
+	if ( 'mystery' == $default )
+		$default = "$host/avatar/ad516503a11cd5ca435acc9bb6523536?s={$size}"; // ad516503a11cd5ca435acc9bb6523536 == md5('unknown@gravatar.com')
+	elseif ( 'blank' == $default )
+		$default = $email ? 'blank' : includes_url( 'images/blank.gif' );
+	elseif ( !empty($email) && 'gravatar_default' == $default )
+		$default = '';
+	elseif ( 'gravatar_default' == $default )
+		$default = "$host/avatar/?s={$size}";
+	elseif ( empty($email) )
+		$default = "$host/avatar/?d=$default&amp;s={$size}";
+	elseif ( strpos($default, 'http://') === 0 )
+		$default = add_query_arg( 's', $size, $default );
+
+	if ( !empty($email) ) {
+		$out = "$host/avatar/";
+		$out .= $email_hash;
+		$out .= '?s='.$size;
+		$out .= '&amp;d=' . urlencode( $default );
+
+		$rating = get_option('avatar_rating');
+		if ( !empty( $rating ) )
+			$out .= "&amp;r={$rating}";
+
+		$out = str_replace( '&#038;', '&amp;', esc_url( $out ) );
+		$avatar = $out;
+	} else {
+		$avatar = $default;
+	}
+	return $avatar;
+
+
+}
+
+// add meta data tag for fb and twitter
 function insert_fb_in_head() {
 	global $post;
 	if ( !is_singular()) //if it is not a post or a page
@@ -300,6 +391,83 @@ function theme_all_page_settings() {
 <?php
 }
 
+
+// pagination for nextpage in content
+
+function content_pagination($args = false)
+{
+
+	$defaults = array(
+		'before'           => '<p>' . __( 'Pages:' ),
+		'after'            => '</p>',
+		'link_before'      => '',
+		'link_after'       => '',
+		'next_or_number'   => 'number',
+		'separator'        => ' ',
+		'nextpagelink'     => __( 'Next page' ),
+		'previouspagelink' => __( 'Previous page' ),
+		'pagelink'         => '%',
+		'echo'             => 1
+	);
+
+	$r = wp_parse_args( $args, $defaults );
+	$r = apply_filters( 'wp_link_pages_args', $r );
+	extract( $r, EXTR_SKIP );
+	global $page, $numpages, $multipage, $more;
+
+
+	if ($numpages > 1) {
+	$output = '';
+	$output .= $before;
+	
+	if ($page > 1) {
+		$output .= content_page_link($page - 1 ,'prevLink' ) . $previouspagelink . '</a>';
+	}
+
+	for ( $i = 1; $i <= $numpages; $i++ ) {
+		$link = $link_before . str_replace( '%', $i, $pagelink ) . $link_after;
+		if ( $i != $page || ! $more && 1 == $page )
+			$link = content_page_link( $i , 'pageLink' ) . $link . '</a>';
+		else
+			$link = '<span class="currentLink">'.$i.'</span>';
+
+		$link = apply_filters( 'wp_link_pages_link', $link, $i );
+		$output .= $separator . $link;
+	}
+
+	if ($page < $numpages) {
+		$output .= content_page_link($page + 1 ,'nextLink' ) . $nextpagelink . '</a>';
+	}
+
+	$output .= $after;
+
+
+
+	$output = apply_filters( 'wp_link_pages', $output, $args );
+
+	echo $output;
+	}
+
+}
+
+// helper function add class for a link in pagination
+function content_page_link( $i , $class='') {
+	global $wp_rewrite;
+	$post = get_post();
+
+	if ( 1 == $i ) {
+		$url = get_permalink();
+	} else {
+		if ( '' == get_option('permalink_structure') || in_array($post->post_status, array('draft', 'pending')) )
+			$url = add_query_arg( 'page', $i, get_permalink() );
+		elseif ( 'page' == get_option('show_on_front') && get_option('page_on_front') == $post->ID )
+			$url = trailingslashit(get_permalink()) . user_trailingslashit("$wp_rewrite->pagination_base/" . $i, 'single_paged');
+		else
+			$url = trailingslashit(get_permalink()) . user_trailingslashit($i, 'single_paged');
+	}
+
+	return '<a class="' . $class . '" href="' . esc_url( $url ) . '">';
+}
 
 // This tells WordPress to call the function named "setup_theme_admin_menus"
 // when it's time to create the menu pages.
@@ -965,7 +1133,7 @@ function setPostViews($postID) {
 add_filter('manage_posts_columns', 'posts_column_views');
 add_action('manage_posts_custom_column', 'posts_custom_column_views',5,2);
 function posts_column_views($defaults){
-    $defaults['post_views'] = __('Views');
+    $defaults['post_views'] = __('7 Days Views');
     return $defaults;
 }
 function posts_custom_column_views($column_name, $id){
@@ -973,6 +1141,15 @@ function posts_custom_column_views($column_name, $id){
         echo getPostViews(get_the_ID());
     }
 }
+
+// Register the column as sortable
+function author_column_register_sortable( $columns ) {
+    $columns['author'] = 'author';
+
+    return $columns;
+}
+add_filter( 'manage_edit-post_sortable_columns', 'author_column_register_sortable' );
+
 
 /* function for helper for this theme */
 
