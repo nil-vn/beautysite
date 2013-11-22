@@ -229,6 +229,7 @@ function theme_all_page_settings() {
 
 	$gcs_keys = get_option("beautysite_gcs_keys");
 	$gads_keys = get_option("beautysite_gads_keys");
+	$fads_keys = get_option("beautysite_fads_keys");
 	$banner_ads_contents = get_option("beautysite_banner_ads_contents");
 	if (isset($_POST["update_settings"])) {
 		$gcs_keys = esc_attr($_POST["gcs_keys"]);
@@ -236,6 +237,9 @@ function theme_all_page_settings() {
 
 		$gads_keys =  stripslashes_deep($_POST["gads_keys"]) ;
 		update_option("beautysite_gads_keys", $gads_keys);
+
+		$fads_keys =  stripslashes_deep($_POST["fads_keys"]) ;
+		update_option("beautysite_fads_keys", $fads_keys);
 
 		$banner_ads_contents = stripslashes_deep($_POST["banner_ads_contents"]);
 		update_option("beautysite_banner_ads_contents", $banner_ads_contents);
@@ -270,6 +274,16 @@ function theme_all_page_settings() {
                 </th>
                 <td>
                 	<textarea class="widefat" name="gads_keys" cols="80" rows="4"><?php echo $gads_keys ?></textarea>
+                </td>
+            </tr>  
+            <tr valign="top">
+                <th scope="row">
+                    <label for="fads_keys">
+                        Footer Ads embed code:
+                    </label>
+                </th>
+                <td>
+                	<textarea class="widefat" name="fads_keys" cols="80" rows="4"><?php echo $fads_keys ?></textarea>
                 </td>
             </tr>
             <tr valign="top">

@@ -77,7 +77,9 @@ $subCategoryLink = array();
 </ul>
 </section>
 <!--//.snsBox-->
-
+<div class="adBox">
+	<?php echo get_option("beautysite_gads_keys") ?>
+</div>
 <section class="entryBody">
 	<div class="pic"> <?php the_post_thumbnail( ); ?> </div>
 
@@ -189,7 +191,8 @@ foreach ($category as $key => $cat) {
 <!--//.snsBtns-->
 
 <div class="adBox">
-Implement ads soon !
+   		<?php 
+   		echo get_option("beautysite_fads_keys") ?>
 </div>
 <!--//.adBox-->
 

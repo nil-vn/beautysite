@@ -243,9 +243,8 @@ get_header(); ?>
 
 
 		<div class="adBox">
-		Implement ads soon !
    		<?php 
-   		// echo get_option("beautysite_banner_ads_contents") ?>
+   		echo get_option("beautysite_fads_keys") ?>
 		</div>
 		<!--//.adBox-->
 

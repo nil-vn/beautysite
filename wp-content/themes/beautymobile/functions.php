@@ -219,6 +219,12 @@ function beautymobile_customize_preview_js() {
 }
 add_action( 'customize_preview_init', 'beautymobile_customize_preview_js' );
 
+// add short code for display google custom search
+add_shortcode('ads-content', 'ads_content');
+function ads_content()
+{
+	return '';
+}
 
 // pagination for nextpage in content
 
