@@ -65,7 +65,7 @@ catePurple<?php } ?>">
 	<?php /* The loop */ ?>
 	<?php while ( have_posts() ) : the_post(); ?>
 
-		<article class="entryPiece"><a href="detail_blue.html">
+		<article class="entryPiece"><a href="<?php the_permalink(); ?>">
 		<div class="pic"><?php the_post_thumbnail( 'mobile-category-thumb' ); ?></div>
 		<div class="txt">
 		<h1><?php if (date("Y/m/d") == get_the_date("Y/m/d" )) {

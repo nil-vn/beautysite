@@ -103,7 +103,7 @@ get_header(); ?>
 			?>
 
 
-			<li><a href="detail.html">
+			<li><a href="<?php the_permalink() ?>">
 			<div class="rank"><img src="<?php echo get_template_directory_uri(); ?>/img/contents/icon_rank0<?php echo $counter ?>.gif" alt="no.<?php echo $counter ?>" width="60" height="17"></div>
 			<section class="entry">
 			<div class="pic"><?php the_post_thumbnail('mobile-sidebar-thumb'); ?></div>
