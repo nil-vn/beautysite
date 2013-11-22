@@ -138,7 +138,13 @@ class beautysite_walker_nav_menu extends Walker_Nav_Menu {
 // add main/sub classes to li's and links
 	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
     global $wp_query;
-
+    $category_ids = array();
+    if (is_singular()) {
+    	$category = get_the_category();
+    	foreach ($category as $key => $cat) {
+    		$category_ids[] = $cat->cat_ID;
+    	}
+    }
     // passed classes
     $classes = empty( $item->classes ) ? array() : (array) $item->classes;
     $class_names = esc_attr( implode( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) ) );
@@ -157,6 +163,12 @@ class beautysite_walker_nav_menu extends Walker_Nav_Menu {
      $attributes .= ' class="active"';
     }
 
+    if (count($category_ids)) {
+    	if ($item->object_id == $category_ids[0] || cat_is_ancestor_of( $item->object_id,  $category_ids[0]  )) {
+	     $attributes .= ' class="active"';
+	    }
+    }
+
     $item_output = sprintf( '%1$s<a%2$s>%3$s%4$s%5$s</a>%6$s',
         $args->before,
         $attributes,
@@ -169,96 +181,6 @@ class beautysite_walker_nav_menu extends Walker_Nav_Menu {
     // build html
     $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 }
-}
-
-// get avatar url
-function get_avatar_url( $id_or_email, $size = '96', $default = '', $alt = false ) {
-	if ( ! get_option('show_avatars') )
-		return false;
-
-	if ( false === $alt)
-		$safe_alt = '';
-	else
-		$safe_alt = esc_attr( $alt );
-
-	if ( !is_numeric($size) )
-		$size = '96';
-
-	$email = '';
-	if ( is_numeric($id_or_email) ) {
-		$id = (int) $id_or_email;
-		$user = get_userdata($id);
-		if ( $user )
-			$email = $user->user_email;
-	} elseif ( is_object($id_or_email) ) {
-		// No avatar for pingbacks or trackbacks
-		$allowed_comment_types = apply_filters( 'get_avatar_comment_types', array( 'comment' ) );
-		if ( ! empty( $id_or_email->comment_type ) && ! in_array( $id_or_email->comment_type, (array) $allowed_comment_types ) )
-			return false;
-
-		if ( !empty($id_or_email->user_id) ) {
-			$id = (int) $id_or_email->user_id;
-			$user = get_userdata($id);
-			if ( $user)
-				$email = $user->user_email;
-		} elseif ( !empty($id_or_email->comment_author_email) ) {
-			$email = $id_or_email->comment_author_email;
-		}
-	} else {
-		$email = $id_or_email;
-	}
-
-	if ( empty($default) ) {
-		$avatar_default = get_option('avatar_default');
-		if ( empty($avatar_default) )
-			$default = 'mystery';
-		else
-			$default = $avatar_default;
-	}
-
-	if ( !empty($email) )
-		$email_hash = md5( strtolower( trim( $email ) ) );
-
-	if ( is_ssl() ) {
-		$host = 'https://secure.gravatar.com';
-	} else {
-		if ( !empty($email) )
-			$host = sprintf( "http://%d.gravatar.com", ( hexdec( $email_hash[0] ) % 2 ) );
-		else
-			$host = 'http://0.gravatar.com';
-	}
-
-	if ( 'mystery' == $default )
-		$default = "$host/avatar/ad516503a11cd5ca435acc9bb6523536?s={$size}"; // ad516503a11cd5ca435acc9bb6523536 == md5('unknown@gravatar.com')
-	elseif ( 'blank' == $default )
-		$default = $email ? 'blank' : includes_url( 'images/blank.gif' );
-	elseif ( !empty($email) && 'gravatar_default' == $default )
-		$default = '';
-	elseif ( 'gravatar_default' == $default )
-		$default = "$host/avatar/?s={$size}";
-	elseif ( empty($email) )
-		$default = "$host/avatar/?d=$default&amp;s={$size}";
-	elseif ( strpos($default, 'http://') === 0 )
-		$default = add_query_arg( 's', $size, $default );
-
-	if ( !empty($email) ) {
-		$out = "$host/avatar/";
-		$out .= $email_hash;
-		$out .= '?s='.$size;
-		$out .= '&amp;d=' . urlencode( $default );
-
-		$rating = get_option('avatar_rating');
-		if ( !empty( $rating ) )
-			$out .= "&amp;r={$rating}";
-
-		$out = str_replace( '&#038;', '&amp;', esc_url( $out ) );
-		$avatar = $out;
-	} else {
-		$avatar = $default;
-	}
-	return $avatar;
-
-
 }
 
 // add meta data tag for fb and twitter
@@ -744,220 +666,6 @@ function beautysite_widgets_init() {
 }
 add_action( 'widgets_init', 'beautysite_widgets_init' );
 
-if ( ! function_exists( 'beautysite_entry_meta' ) ) :
-/**
- * Print HTML with meta information for current post: categories, tags, permalink, author, and date.
- *
- * Create your own beautysite_entry_meta() to override in a child theme.
- *
- * @since Comestic 1.0
- *
- * @return void
- */
-function beautysite_entry_meta() {
-	if ( is_sticky() && is_home() && ! is_paged() )
-		echo '<span class="featured-post">' . __( 'Sticky', 'beautysite' ) . '</span>';
-
-	if ( ! has_post_format( 'link' ) && 'post' == get_post_type() )
-		beautysite_entry_date();
-
-	// Translators: used between list items, there is a space after the comma.
-	$categories_list = get_the_category_list( __( ', ', 'beautysite' ) );
-	if ( $categories_list ) {
-		echo '<span class="categories-links">' . $categories_list . '</span>';
-	}
-
-	// Translators: used between list items, there is a space after the comma.
-	$tag_list = get_the_tag_list( '', __( ', ', 'beautysite' ) );
-	if ( $tag_list ) {
-		echo '<span class="tags-links">' . $tag_list . '</span>';
-	}
-
-	// Post author
-	if ( 'post' == get_post_type() ) {
-		printf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>',
-			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-			esc_attr( sprintf( __( 'View all posts by %s', 'beautysite' ), get_the_author() ) ),
-			get_the_author()
-		);
-	}
-}
-endif;
-
-if ( ! function_exists( 'beautysite_entry_date' ) ) :
-/**
- * Print HTML with date information for current post.
- *
- * Create your own beautysite_entry_date() to override in a child theme.
- *
- * @since Comestic 1.0
- *
- * @param boolean $echo (optional) Whether to echo the date. Default true.
- * @return string The HTML-formatted post date.
- */
-function beautysite_entry_date( $echo = true ) {
-	if ( has_post_format( array( 'chat', 'status' ) ) )
-		$format_prefix = _x( '%1$s on %2$s', '1: post format name. 2: date', 'beautysite' );
-	else
-		$format_prefix = '%2$s';
-
-	$date = sprintf( '<span class="date"><a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s">%4$s</time></a></span>',
-		esc_url( get_permalink() ),
-		esc_attr( sprintf( __( 'Permalink to %s', 'beautysite' ), the_title_attribute( 'echo=0' ) ) ),
-		esc_attr( get_the_date( 'c' ) ),
-		esc_html( sprintf( $format_prefix, get_post_format_string( get_post_format() ), get_the_date() ) )
-	);
-
-	if ( $echo )
-		echo $date;
-
-	return $date;
-}
-endif;
-
-if ( ! function_exists( 'beautysite_the_attached_image' ) ) :
-/**
- * Print the attached image with a link to the next attached image.
- *
- * @since Comestic 1.0
- *
- * @return void
- */
-function beautysite_the_attached_image() {
-	/**
-	 * Filter the image attachment size to use.
-	 *
-	 * @since Comestic 1.0
-	 *
-	 * @param array $size {
-	 *     @type int The attachment height in pixels.
-	 *     @type int The attachment width in pixels.
-	 * }
-	 */
-	$attachment_size     = apply_filters( 'beautysite_attachment_size', array( 724, 724 ) );
-	$next_attachment_url = wp_get_attachment_url();
-	$post                = get_post();
-
-	/*
-	 * Grab the IDs of all the image attachments in a gallery so we can get the URL
-	 * of the next adjacent image in a gallery, or the first image (if we're
-	 * looking at the last image in a gallery), or, in a gallery of one, just the
-	 * link to that image file.
-	 */
-	$attachment_ids = get_posts( array(
-		'post_parent'    => $post->post_parent,
-		'fields'         => 'ids',
-		'numberposts'    => -1,
-		'post_status'    => 'inherit',
-		'post_type'      => 'attachment',
-		'post_mime_type' => 'image',
-		'order'          => 'ASC',
-		'orderby'        => 'menu_order ID'
-	) );
-
-	// If there is more than 1 attachment in a gallery...
-	if ( count( $attachment_ids ) > 1 ) {
-		foreach ( $attachment_ids as $attachment_id ) {
-			if ( $attachment_id == $post->ID ) {
-				$next_id = current( $attachment_ids );
-				break;
-			}
-		}
-
-		// get the URL of the next image attachment...
-		if ( $next_id )
-			$next_attachment_url = get_attachment_link( $next_id );
-
-		// or get the URL of the first image attachment.
-		else
-			$next_attachment_url = get_attachment_link( array_shift( $attachment_ids ) );
-	}
-
-	printf( '<a href="%1$s" title="%2$s" rel="attachment">%3$s</a>',
-		esc_url( $next_attachment_url ),
-		the_title_attribute( array( 'echo' => false ) ),
-		wp_get_attachment_image( $post->ID, $attachment_size )
-	);
-}
-endif;
-
-/**
- * Return the post URL.
- *
- * @uses get_url_in_content() to get the URL in the post meta (if it exists) or
- * the first link found in the post content.
- *
- * Falls back to the post permalink if no URL is found in the post.
- *
- * @since Comestic 1.0
- *
- * @return string The Link format URL.
- */
-function beautysite_get_link_url() {
-	$content = get_the_content();
-	$has_url = get_url_in_content( $content );
-
-	return ( $has_url ) ? $has_url : apply_filters( 'the_permalink', get_permalink() );
-}
-
-/**
- * Extend the default WordPress body classes.
- *
- * Adds body classes to denote:
- * 1. Single or multiple authors.
- * 2. Active widgets in the sidebar to change the layout and spacing.
- * 3. When avatars are disabled in discussion settings.
- *
- * @since Comestic 1.0
- *
- * @param array $classes A list of existing body class values.
- * @return array The filtered body class list.
- */
-function beautysite_body_class( $classes ) {
-	if ( ! is_multi_author() )
-		$classes[] = 'single-author';
-
-	if ( is_active_sidebar( 'sidebar-2' ) && ! is_attachment() && ! is_404() )
-		$classes[] = 'sidebar';
-
-	if ( ! get_option( 'show_avatars' ) )
-		$classes[] = 'no-avatars';
-
-	return $classes;
-}
-add_filter( 'body_class', 'beautysite_body_class' );
-
-/**
- * Adjust content_width value for video post formats and attachment templates.
- *
- * @since Comestic 1.0
- *
- * @return void
- */
-function beautysite_content_width() {
-	global $content_width;
-
-	if ( is_attachment() )
-		$content_width = 724;
-	elseif ( has_post_format( 'audio' ) )
-		$content_width = 484;
-}
-add_action( 'template_redirect', 'beautysite_content_width' );
-
-/**
- * Add postMessage support for site title and description for the Customizer.
- *
- * @since Comestic 1.0
- *
- * @param WP_Customize_Manager $wp_customize Customizer object.
- * @return void
- */
-function beautysite_customize_register( $wp_customize ) {
-	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
-	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
-	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
-}
-add_action( 'customize_register', 'beautysite_customize_register' );
 
 /**
  * Enqueue Javascript postMessage handlers for the Customizer.
