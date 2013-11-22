@@ -269,8 +269,8 @@ function insert_fb_in_head() {
     echo '<meta property="og:title" content="' . get_the_title() . '"/>';
     echo '<meta name="twitter:title" content="' . get_the_title() . '"/>';
     echo '<meta property="og:url" content="' . get_permalink() . '"/>';
-    echo '<meta property="og:description" content="'. get_the_excerpt() .'" />';
-    echo '<meta name="twitter:descriptionn" content="'. get_the_excerpt() .'" />';
+    echo '<meta property="og:description" content="'. wp_html_excerpt($post->post_content,200,' ...').'" />';
+    echo '<meta name="twitter:descriptionn" content="'. wp_html_excerpt($post->post_content,200,' ...') .'" />';
 	if(!has_post_thumbnail( $post->ID )) { //the post does not have featured image, use a default image
 		$default_image="http://cosmehouse.com/wp-content/themes/beautysimple/img/common/logo.png"; //replace this with a default image on your server or an image in your media library
 		echo '<meta property="og:image" content="' . $default_image . '"/>';
@@ -743,70 +743,6 @@ function beautysite_widgets_init() {
 	) );
 }
 add_action( 'widgets_init', 'beautysite_widgets_init' );
-
-if ( ! function_exists( 'beautysite_paging_nav' ) ) :
-/**
- * Display navigation to next/previous set of posts when applicable.
- *
- * @since Comestic 1.0
- *
- * @return void
- */
-function beautysite_paging_nav() {
-	global $wp_query;
-
-	// Don't print empty markup if there's only one page.
-	if ( $wp_query->max_num_pages < 2 )
-		return;
-	?>
-	<nav class="navigation paging-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php _e( 'Posts navigation', 'beautysite' ); ?></h1>
-		<div class="nav-links">
-
-			<?php if ( get_next_posts_link() ) : ?>
-			<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'beautysite' ) ); ?></div>
-			<?php endif; ?>
-
-			<?php if ( get_previous_posts_link() ) : ?>
-			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'beautysite' ) ); ?></div>
-			<?php endif; ?>
-
-		</div><!-- .nav-links -->
-	</nav><!-- .navigation -->
-	<?php
-}
-endif;
-
-if ( ! function_exists( 'beautysite_post_nav' ) ) :
-/**
- * Display navigation to next/previous post when applicable.
-*
-* @since Comestic 1.0
-*
-* @return void
-*/
-function beautysite_post_nav() {
-	global $post;
-
-	// Don't print empty markup if there's nowhere to navigate.
-	$previous = ( is_attachment() ) ? get_post( $post->post_parent ) : get_adjacent_post( false, '', true );
-	$next     = get_adjacent_post( false, '', false );
-
-	if ( ! $next && ! $previous )
-		return;
-	?>
-	<nav class="navigation post-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'beautysite' ); ?></h1>
-		<div class="nav-links">
-
-			<?php previous_post_link( '%link', _x( '<span class="meta-nav">&larr;</span> %title', 'Previous post link', 'beautysite' ) ); ?>
-			<?php next_post_link( '%link', _x( '%title <span class="meta-nav">&rarr;</span>', 'Next post link', 'beautysite' ) ); ?>
-
-		</div><!-- .nav-links -->
-	</nav><!-- .navigation -->
-	<?php
-}
-endif;
 
 if ( ! function_exists( 'beautysite_entry_meta' ) ) :
 /**
