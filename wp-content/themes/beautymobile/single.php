@@ -188,4 +188,9 @@ foreach ($category as $key => $cat) {
 </section>
 <!--//.snsBtns-->
 
+<div class="adBox">
+Implement ads soon !
+</div>
+<!--//.adBox-->
+
 <?php get_footer(); ?>
