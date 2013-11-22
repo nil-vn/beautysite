@@ -27,7 +27,7 @@ catePurple<?php } ?>">
 <?php if (is_category('health' )  || cat_is_ancestor_of( $healthCat->cat_ID, get_query_var('cat') ) ) { ?>
 <h1>美容と健康<a href="#">＋</a></h1>
 <?php } elseif (is_category('cosme' )  || cat_is_ancestor_of( $cosmeCat->cat_ID, get_query_var('cat') )) { ?>
-<h1>お悩み・効果<a href="#">＋</a></h1>
+<h1>メイク・コスメ<a href="#">＋</a></h1>
 <?php } elseif (is_category('trouble' ) || cat_is_ancestor_of( $troubleCat->cat_ID, get_query_var('cat') )) { ?>
 <h1>お悩み・効果<a href="#">＋</a></h1>
 <?php } elseif (is_category('component' ) || cat_is_ancestor_of( $componentCat->cat_ID, get_query_var('cat') )) { ?>
