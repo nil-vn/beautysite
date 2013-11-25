@@ -51,7 +51,7 @@ get_header(); ?>
 						<section class="topInfo01 leftSide"><a href="<?php the_permalink(); ?>">
 						<div class="txt">
 						<h1><?php the_title(); ?></h1>
-						<p> <?php echo get_the_excerpt(); ?> (<?php echo get_the_date( 'm/d' ); ?>)</p>
+						<p> <?php echo wp_html_excerpt(get_the_content( ),35,' ...'); ?> (<?php echo get_the_date( 'm/d' ); ?>)</p>
 						</div>
 						<div class="pic">   <?php the_post_thumbnail(array(600,400)); ?></div>
 						</a></section>
@@ -63,7 +63,7 @@ get_header(); ?>
 						<section class="topInfo02"><a href="<?php the_permalink(); ?>">
 						<div class="txt">
 						<h1><?php the_title(); ?></h1>
-						<p> <?php echo get_the_excerpt(); ?> (<?php echo get_the_date( 'm/d' ); ?>)</p>
+						<p> <?php echo wp_html_excerpt(get_the_content( ),35,' ...'); ?> (<?php echo get_the_date( 'm/d' ); ?>)</p>
 						</div>
 						<div class="pic"><?php the_post_thumbnail(array(300,200)); ?></div>
 						</a></section>
@@ -74,7 +74,7 @@ get_header(); ?>
 						<section class="topInfo03"><a href="<?php the_permalink(); ?>">
 						<div class="txt">
 						<h1><?php the_title(); ?></h1>
-						<p> <?php echo get_the_excerpt(); ?> (<?php echo get_the_date( 'm/d' ); ?>)</p>
+						<p> <?php echo wp_html_excerpt(get_the_content( ),35,' ...'); ?> (<?php echo get_the_date( 'm/d' ); ?>)</p>
 						</div>
 						<div class="pic"><?php the_post_thumbnail(array(300,200)); ?></div>
 						</a></section>

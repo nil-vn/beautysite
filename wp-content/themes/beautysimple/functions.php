@@ -99,19 +99,19 @@ add_action( 'after_setup_theme', 'beautysite_setup' );
 // fix for menu class
 add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
 function special_nav_class($classes, $item){
-     if ( stripos($item->title, "health") !== false ) {
+     if ( stripos($item->url, "health") !== false ) {
      	$classes = array('nav01');
      }
 
-     if ( stripos($item->title, "cosme") !== false ) {
+     if ( stripos($item->url, "cosme") !== false ) {
      	$classes = array('nav02');
      }
 
-     if ( stripos($item->title, "trouble") !== false ) {
+     if ( stripos($item->url, "trouble") !== false ) {
      	$classes = array('nav03');
      }
 
-     if ( stripos($item->title, "component") !== false ) {
+     if ( stripos($item->url, "component") !== false ) {
      	$classes = array('nav04');
      }
 
@@ -469,7 +469,7 @@ if (urlParams[queryParamName]) {
 
 }, true);
 </script>
-<?
+<?php
 }
 
 // add short code for display all category
@@ -788,17 +788,17 @@ function setPostViews($postID) {
 }
 
 // Add it to a column in WP-Admin - (Optional)
-add_filter('manage_posts_columns', 'posts_column_views');
-add_action('manage_posts_custom_column', 'posts_custom_column_views',5,2);
-function posts_column_views($defaults){
-    $defaults['post_views'] = __('7 Days Views');
-    return $defaults;
-}
-function posts_custom_column_views($column_name, $id){
-	if($column_name === 'post_views'){
-        echo getPostViews(get_the_ID());
-    }
-}
+// add_filter('manage_posts_columns', 'posts_column_views');
+// add_action('manage_posts_custom_column', 'posts_custom_column_views',5,2);
+// function posts_column_views($defaults){
+//     $defaults['post_views'] = __('7 Days Views');
+//     return $defaults;
+// }
+// function posts_custom_column_views($column_name, $id){
+// 	if($column_name === 'post_views'){
+//         echo getPostViews(get_the_ID());
+//     }
+// }
 
 // Register the column as sortable
 function author_column_register_sortable( $columns ) {
@@ -935,4 +935,30 @@ function get_articles($category_id = '', $limit = 5)
 
 	// get results
 	return new WP_Query( $args );
+}
+/**
+* Function create a tagMark for the post (color tag, category name).
+* Return string $color, string $cat_name.
+* Note: This function may be used inside of The Loop, to use post_id.
+*/
+function get_tagMark(){
+$healthCat = get_category_by_slug('health' );
+$cosmeCat = get_category_by_slug('cosme' );
+$troubleCat = get_category_by_slug('trouble' );
+$componentCat = get_category_by_slug('component' );
+
+$category = get_the_category(); 
+$color = "";
+foreach ($category as $key => $cat) {
+if ($cosmeCat->cat_ID == $cat->cat_ID || cat_is_ancestor_of( $cosmeCat->cat_ID, $cat->cat_ID )) {
+$color = "yellow";
+} elseif ($troubleCat->cat_ID == $cat->cat_ID  || cat_is_ancestor_of( $troubleCat->cat_ID, $cat->cat_ID )) {
+$color = "blue";
+} elseif ($componentCat->cat_ID == $cat->cat_ID || cat_is_ancestor_of( $componentCat->cat_ID, $cat->cat_ID )) {
+$color = "purple";
+}
+}
+if (isset($category[0])){
+$cat_name = $category[0]->cat_name;}
+echo "<div class='tagMark ".$color."'><div><span>".$cat_name."</span></div></div>";
 }

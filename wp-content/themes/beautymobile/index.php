@@ -48,7 +48,7 @@ get_header(); ?>
 			<h1><?php the_title(); ?>(<?php echo get_the_date( 'm/d' ); ?>)</h1>
 			</a></div>
 
-			<? endwhile; ?>
+			<?php endwhile; ?>
 		<?php endif; ?>
 
 		<?php wp_reset_query();  // Restore global post data stomped by the_post(). ?>
