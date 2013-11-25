@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-/* c:20131101 m:20131111 */
+/* c:20131101 m:20131122 */
 
 /* 
 html5doctor.com Reset Stylesheet
@@ -31,6 +31,7 @@ time, mark, audio, video {
 }
 body {
     line-height:1;
+	min-width:1300px;
 }
 article,aside,details,figcaption,figure,
 footer,header,hgroup,menu,nav,section { 
@@ -154,11 +155,22 @@ a:hover{
 .globalHeader {
 	width: 1100px;
 	margin: 0 auto;
+	padding: 0 100px;
 }
 
 /* headLine */
 .globalHeader .headLine {
 	height: 37px;
+	/zoom: 1;
+}
+.globalHeader .headLine:after {
+	content:".";
+	display:block;
+	height:0;
+	clear: both;
+	visibility:hidden;
+	font-size:0;
+	line-height:0;
 }
 .globalHeader .headLine h1 {
 	float: left;
@@ -200,6 +212,16 @@ a:hover{
 .globalHeader .headerContents {
 	position: relative;
 	height: 71px;
+	/zoom: 1;
+}
+.globalHeader .headerContents:after {
+	content:".";
+	display:block;
+	height:0;
+	clear: both;
+	visibility:hidden;
+	font-size:0;
+	line-height:0;
 }
 .globalHeader .headerContents .siteLogo {
 	float: left;
@@ -254,6 +276,7 @@ a:hover{
 /* footer
 ------------------------------------------------------------*/
 .globalFooter {
+	display: block;
 	width: 100%;
 	padding: 6px 0 0 0;
 	border-top: 6px solid #49A9A9;
@@ -288,7 +311,7 @@ a:hover{
 .globalFooter .footerContent01 > .inner {
 	width: 1100px;
 	margin: 0 auto;
-	padding: 35px 0;
+	padding: 35px 100px;
 }
 .globalFooter .footerContent01 .inner .contentsNav {
 	float: left;
@@ -360,7 +383,7 @@ a:hover{
     position: relative;
     display: block;
     margin: 35px 5px 5px 5px;
-    padding: 15px 20px;
+    padding: 10px 15px 15px 15px;
     text-align:left;
 	background: #fff;
 	color: #333;
@@ -376,13 +399,13 @@ a:hover{
     top: -40px;
     left: 40px;
     border: 20px solid transparent;
-    border-bottom: 25px solid #ffffff; /*13px*/
+    border-bottom: 25px solid #ffffff; 
 }
 .globalFooter .footerContent01 .sns .fbArea:before {
     top: -40px;
     left: 40px;
     border: 20px solid transparent;
-    border-bottom: 20px solid #ffffff; /*10px*/
+    border-bottom: 20px solid #ffffff;
 }
 
 /* ===== .footerContent02 ===== */
@@ -397,7 +420,7 @@ a:hover{
 .globalFooter .footerContent02 .inner {
 	width: 1100px;
 	margin: 0 auto;
-	padding: 20px 0 30px 0;
+	padding: 20px 100px 30px 100px;
 }
 .globalFooter .footerContent02 .inner ul {
 	float: left;

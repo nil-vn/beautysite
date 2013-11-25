@@ -1,11 +1,13 @@
 /*
 functions.js
 c: 20131107
-m: 20131108
+m: 20131122
 */
 
+
+//要素の高さ調整
 jQuery(document).ready(function($){
-    	//index
+	//index
 	$(".rankingArea section a").tile();
 	$(".newsList").tile();
 	$(".recommendArea section a").tile();
@@ -15,7 +17,10 @@ jQuery(document).ready(function($){
 	//下層
 	$(".recommendList ul li a").tile();
 	$(".recommendList02 ul li a").tile(3);
+});
 
+// フォーム入力補助
+jQuery(document).ready(function($){
 	$(window).load(function(){
 		$('input[type=text],input[type=password],input[type=tel],input[type=email],textarea').each(function(){
 			var thisTitle = $(this).attr('title');
@@ -58,7 +63,10 @@ jQuery(document).ready(function($){
 			}
 		});
 	});
+});
 
+//ページ上部へ戻る
+jQuery(document).ready(function($){
 	$('.toppageLink').hover(
 		function(){$(this).fadeTo(0, 0.8).fadeTo('normal', 1.0);},
 		function(){$(this).fadeTo('fast', 1.0);}
@@ -68,13 +76,10 @@ jQuery(document).ready(function($){
 		return false;
 	});
 
-	// ie 8
-	$(".entryRanking ol li[class*='rank'] .rank").css("min-height","45px");
-    $(".entryRanking ol li[class*='rank'] .txt").css("width","179px");
-	//topic path
-    $(".topicPath li:not(:last)").append("＞");
+});
 
-
+//index ランキングタブ切り替え
+jQuery(document).ready(function($){
     $(".rankingArea header ul li").click(function() {
         var num = $(".rankingArea header ul li").index(this);
         $(".rankingArea .inner").addClass('disnon');
@@ -82,13 +87,24 @@ jQuery(document).ready(function($){
         $(".rankingArea header ul li").removeClass('active');
         $(this).addClass('active');
     });
+});
 
-	// $('.rankingArea li a').click(function(event) {
-	// 	var id = $(this).parent().attr('class');
-	// 	$('#' + id).show('400', function() {
-	// 		$(this).siblings().hide();
-	// 	});
+// 
+jQuery(document).ready(function($){
+    //下層　サイド ランキングレイアウト
+	$(".entryRanking ol li[class*='rank'] .rank").css("min-height","45px");
+    $(".entryRanking ol li[class*='rank'] .txt").css("width","179px");
+	//topic path
+    $(".topicPath li:not(:last)").append("＞");
+});
 
-	// });
-
+// 記事詳細　サイドボックス操作
+jQuery(document).ready(function($){
+	var topPos = 250;
+	
+	$(window).scroll(function(){
+		var value = $(this).scrollTop();
+		var sideBoxMove = Math.floor(topPos +  value);
+		$(".sideBox").css("top", sideBoxMove+"px");	
+	});	
 });

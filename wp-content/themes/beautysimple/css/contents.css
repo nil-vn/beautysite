@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-/* c:20131105 m:20131111 */
+/* c:20131105 m:20131122 */
 
 
 /* contentsWrap
@@ -8,19 +8,19 @@
 .contentsWrap {
 	width: 1140px;
 	margin: 0 auto;
-	padding: 30px 0 0 0;
-	background: url(../img/common/bg_contents_top.png) no-repeat center top;
+	padding: 30px 80px 0 80px;
+	background: transparent url(../img/common/bg_contents_top.png) no-repeat center top;
 }
 .contentsWrap .contentsWrapInner {
 	width: 1100px;
 	padding: 0 20px;
-	background: #fff url(../img/common/bg_contents.png) repeat-y center top;
+	background: transparent url(../img/common/bg_contents.png) repeat-y center top;
 }
 .contentsWrap .contentsWrapInner .contents {
 	position: relative;
 	top: -25px;
 	width: 1100px;
-	padding: 0 0 40px 0;
+	padding: 0 0 20px 0;
 	background: #fff;
 }
 
@@ -297,9 +297,9 @@
 
 /* sideBox */
 .sideBox {
-	position: fixed;
-	left: 5px;
-	bottom: 50px;
+	position: absolute;
+	top: 250px;
+	left: -100px;
 	z-index: 10000;
 	width: 88px;
 	min-height: 315px;
@@ -804,7 +804,7 @@
 }
 
 
-/*	adArea
+/*	qcArea
 -----------------------------------------------*/
 .layout2Col .subCol .qcArea {
 	margin: 0 auto 30px auto;
