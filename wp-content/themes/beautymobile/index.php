@@ -243,7 +243,7 @@ get_header(); ?>
 
 
 		<div class="adBox">
-   		<?php 
+   		<?php
    		echo get_option("beautysite_fads_keys") ?>
 		</div>
 		<!--//.adBox-->
@@ -267,6 +267,4 @@ get_header(); ?>
 
 		</div><!-- #content -->
 	</div><!-- #primary -->
-
-<?php //get_sidebar(); ?>
 <?php get_footer(); ?>

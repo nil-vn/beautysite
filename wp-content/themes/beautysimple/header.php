@@ -44,7 +44,16 @@
 	  js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1&appId=250318501786630";
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
+	<?php if (wpmp_switcher_is_mobile_browser()): ?>
+		<style type="text/css">
+		body{
+		    margin-top: 200px;
+		    background: #fff url(<?php echo get_template_directory_uri(); ?>/img/common/bg_body.png) repeat-x center 160px;
+		}
+		</style>
 
+		<p class="link_sp"><?php echo wpmp_switcher_link('mobile', 'スマートフォンサイトはこちら'); ?></p>
+	<?php endif; ?>	
 	<header class="globalHeader">
 	<div class="headLine clearfix">
 	<h1><?php bloginfo( 'description' ); ?></h1>

@@ -2,10 +2,20 @@
 
 /* c:20131105 m:20131111 */
 
+/*only_sp*/
 
-.pageTypeIndex {}
-
-
+.link_sp{
+    padding: 40px 0;
+    margin-top: -200px;
+    font-size: 70px;
+    text-align: center;
+    line-height: 1;
+    background-color: #EBFBFB;
+    border-bottom: 10px solid #FF7777;
+}
+.link_sp a{
+    color:#FF7777;
+}
 /*
 	topInfoArea
 =====================================================*/
@@ -50,7 +60,7 @@
 }
 .topInfoArea .topInfo01 .pic {
 	position: absolute;
-	z-index: 0; /* dunghd set from 100 to 0 for google custom search popup*/
+	z-index: 100;
 }
 /* topInfo02 */
 .topInfoArea .topInfo02 {
