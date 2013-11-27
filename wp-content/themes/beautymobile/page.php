@@ -21,7 +21,6 @@ get_header(); ?>
 <h1><?php echo the_title();?></h1>
 </header>
 <?php if (!is_page('all_category') && !is_page('search')) : ?>
-<article class="static">
 
 <section class="snsBox">
 <ul>
@@ -36,9 +35,11 @@ get_header(); ?>
 <div class="adBox">
 <?php echo get_option("beautysite_gads_keys") ?>
 </div>
+<section class="entryBody">
+
 <?php the_content(); ?>
 
-</article>
+</section>
 <?php else: ?>
 <?php the_content(); ?>
 
