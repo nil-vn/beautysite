@@ -186,7 +186,7 @@ get_header(); ?>
 
 		<?php
 
-				$category = array('health' => array('name' => '美容と健康' , 'class' => '' , 'link' => '/category/health' ,'color' => '' ) ,'cosme' => array('name' => '美容・コスメ' , 'class' => 'listYellow', 'link' => '/category/cosme' ,'color' => 'yellow'),'trouble' => array('name' => 'お悩み・効果' , 'class' => 'listBlue', 'link' => '/category/trouble','color' => 'blue') ,'component' => array('name' => '成分・特長' , 'class' => 'listPurple' , 'link' => '/category/component' ,'color' => 'purple' ));
+				$category = array('health' => array('name' => '美容と健康' , 'class' => '' , 'link' => '/category/health' ,'color' => '' ) ,'cosme' => array('name' => 'メイク・コスメ' , 'class' => 'listYellow', 'link' => '/category/cosme' ,'color' => 'yellow'),'trouble' => array('name' => 'お悩み・効果' , 'class' => 'listBlue', 'link' => '/category/trouble','color' => 'blue') ,'component' => array('name' => '成分・特徴' , 'class' => 'listPurple' , 'link' => '/category/component' ,'color' => 'purple' ));
 				foreach ($category as $key => $cat) :
 
 				// get results
