@@ -54,7 +54,7 @@ catePurple<?php } ?>">
 </ul>
 </nav>
 <?php if (cat_is_ancestor_of( $componentCat->cat_ID, get_query_var('cat') ) || cat_is_ancestor_of( $troubleCat->cat_ID, get_query_var('cat') ) || cat_is_ancestor_of( $healthCat->cat_ID, get_query_var('cat') ) || cat_is_ancestor_of( $cosmeCat->cat_ID, get_query_var('cat') )): ?>
-	<h2><?php echo get_query_var('category_name') ?></h2>
+	<h2><?php single_cat_title() ?></h2>
 <?php endif ?>
 </header>
 <!--//.categoryHeader-->

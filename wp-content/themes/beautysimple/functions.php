@@ -199,7 +199,7 @@ function insert_fb_in_head() {
 		echo '<meta name="twitter:image" content="' . $default_image . '"/>';
 	}
 	else{
-		$thumbnail_src = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium' );
+		$thumbnail_src = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' );
 		echo '<meta property="og:image" content="' . esc_attr( $thumbnail_src[0] ) . '"/>';
 		echo '<meta name="twitter:image"  content="' . esc_attr( $thumbnail_src[0] ) . '"/>';
 	}
