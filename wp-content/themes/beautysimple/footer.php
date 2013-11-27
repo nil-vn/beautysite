@@ -18,7 +18,7 @@
 </dd>
 </dl>
 <dl>
-<dt><a href="/category/cosme">美容・コスメ</a></dt>
+<dt><a href="/category/cosme">メイク・コスメ</a></dt>
 <dd>
 <?php 
 	 $this_cat = get_category_by_slug('cosme' ); // get the category of this category archive page
