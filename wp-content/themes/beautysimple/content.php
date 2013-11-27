@@ -137,6 +137,10 @@ foreach ($category as $key => $cat) {
 </div>
 <!--//.snsBtns-->
 
+
+<?php 
+	if (get_field('show_author_infor' , get_the_id()) == 1):
+ ?>
 <aside class="relatedInfo">
 <div class="pic">
 <img src="<?php
@@ -148,7 +152,7 @@ echo get_author_image_url(get_the_author_meta('ID'));
 <?php echo get_the_author_meta( 'description' )  ?>
 </div>
 </aside>
-
+<?php endif; ?>
 
 <!--//.relatedInfo-->
 
