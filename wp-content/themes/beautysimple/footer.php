@@ -5,7 +5,7 @@
 <div class="inner clearfix">
 <nav class="contentsNav">
 <dl>
-<dt><a href="/category/health">ライフスタイル</a></dt>
+<dt><a href="/category/health">美容と健康</a></dt>
 <dd>
 <ul>
 <?php 

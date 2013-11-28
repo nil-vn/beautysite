@@ -281,6 +281,7 @@ ob_start();
 	?>
 	</ul>
 </li>
+
 </ul>
 <?php
 	$output = ob_get_contents();
