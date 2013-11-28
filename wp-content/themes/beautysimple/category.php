@@ -38,56 +38,56 @@ categoryPurple<?php } ?>">
 if (is_category('health' ) || cat_is_ancestor_of( $healthCat->cat_ID, get_query_var('cat') )) { ?>
 
 <?php if (cat_is_ancestor_of( $healthCat->cat_ID, get_query_var('cat') )): ?>
-<li><a href="/category/health">カテゴリトップへ</a></li>
+<li><a href="/category/health"><?php echo $healthCat->name; ?></a></li>
 <?php else: ?>
-<li>美容と健康</li>
+<li><?php echo $healthCat->name; ?></li>
 
 <?php endif ?>
 
 <?php } else if (is_category('cosme' ) || cat_is_ancestor_of( $cosmeCat->cat_ID, get_query_var('cat') )) { ?>
 <?php if (cat_is_ancestor_of( $cosmeCat->cat_ID, get_query_var('cat') )): ?>
-<li><a href="/category/cosme">カテゴリトップへ</a></li>
+<li><a href="/category/cosme"><?php echo $cosmeCat->name; ?></a></li>
 <?php else: ?>
-<li>メイク・コスメ</li>
+<li><?php echo $cosmeCat->name; ?></li>
 <?php endif ?>
 <?php } else if (is_category('trouble' ) || cat_is_ancestor_of( $troubleCat->cat_ID, get_query_var('cat') )) { ?>
 <?php if (cat_is_ancestor_of( $troubleCat->cat_ID, get_query_var('cat') )): ?>
-<li><a href="/category/trouble">＞カテゴリトップへ</a></li>
+<li><a href="/category/trouble"><?php echo $troubleCat->name; ?></a></li>
 <?php else: ?>
-<li>お悩み・効果</li>
+<li><?php echo $troubleCat->name; ?></li>
 <?php endif ?>
 <?php } elseif (is_category('component' ) || cat_is_ancestor_of( $componentCat->cat_ID, get_query_var('cat') )) { ?>
 <?php if (cat_is_ancestor_of( $componentCat->cat_ID, get_query_var('cat') )): ?>
-<li><a href="/category/component">＞カテゴリトップへ</a></li>
+<li><a href="/category/component"><?php echo $componentCat->name; ?></a></li>
 <?php else: ?>
-<li>成分・特徴</li>
+<li><?php echo $componentCat->name; ?></li>
 <?php endif ?>
 <?php } ?>
 <?php if (cat_is_ancestor_of( $componentCat->cat_ID, get_query_var('cat') ) || cat_is_ancestor_of( $troubleCat->cat_ID, get_query_var('cat') ) || cat_is_ancestor_of( $healthCat->cat_ID, get_query_var('cat') ) || cat_is_ancestor_of( $cosmeCat->cat_ID, get_query_var('cat') )): ?>
-	<li><?php echo get_query_var('category_name') ?></li>
+	<li><?php single_cat_title() ?></li>
 <?php endif ?>
 </ol>
 <div class="pageTtl">
 <?php if (is_category('health' )) { ?>
-<h1>美容と健康</h1>
+<h1><?php echo $healthCat->name; ?></h1>
 <?php } elseif (is_category('cosme' )) { ?>
-<h1>メイク・コスメ</h1>
+<h1><?php echo $cosmeCat->name; ?></h1>
 <?php } elseif (is_category('trouble' )) { ?>
-<h1>お悩み・効果</h1>
+<h1><?php echo $troubleCat->name; ?></h1>
 <?php } elseif (is_category('component' )) { ?>
-<h1>成分・特徴</h1>
+<h1><?php echo $componentCat->name; ?></h1>
 <?php } else { ?>
 <h1><?php single_cat_title() ?></h1>
 <?php } ?>
 
 <?php if (cat_is_ancestor_of( $healthCat->cat_ID, get_query_var('cat') )): ?>
-	<div class="flowLink"><a href="/category/health">＞カテゴリトップへ</a></div>
+	<div class="flowLink"><a href="/category/health">＞<?php echo $healthCat->name; ?></a></div>
 <?php elseif(cat_is_ancestor_of( $cosmeCat->cat_ID, get_query_var('cat') )): ?>
-	<div class="flowLink"><a href="/category/cosme">＞カテゴリトップへ</a></div>
+	<div class="flowLink"><a href="/category/cosme">＞<?php echo $cosmeCat->name; ?></a></div>
 <?php elseif(cat_is_ancestor_of( $troubleCat->cat_ID, get_query_var('cat') )): ?>
-	<div class="flowLink"><a href="/category/trouble">＞カテゴリトップへ</a></div>
+	<div class="flowLink"><a href="/category/trouble">＞<?php echo $troubleCat->name; ?></a></div>
 <?php elseif(cat_is_ancestor_of( $componentCat->cat_ID, get_query_var('cat') )): ?>
-	<div class="flowLink"><a href="/category/component">＞カテゴリトップへ</a></div>
+	<div class="flowLink"><a href="/category/component">＞<?php echo $componentCat->name; ?></a></div>
 <?php endif ?>
 
 
