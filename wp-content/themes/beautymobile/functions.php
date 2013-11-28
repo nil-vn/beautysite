@@ -229,72 +229,63 @@ function ads_content()
 add_shortcode('category-sitemap', 'category_sitemap');
 function category_sitemap()
 {
+ob_start();
 
 ?>
-<ul classs="parent_sitemap">
-<li><a href="/category/health">ライフスタイル</a></li>
+<ul class="first">
+<li><a href="/">トップページ</a></li>
 <li>
-<ul class="sub_sitemap">
-<?php 
-	 $this_cat = get_category_by_slug('health' ); // get the category of this category archive page
-  	 wp_list_categories( array(
-  	 	'child_of' => $this_cat->cat_ID,
-  	 	'title_li' => '',
-		'show_option_none'   => '',
-	) ); // list child categories
-?>
-</ul>
+	<a href="/category/health">美容と健康</a>
+	<ul class="second">
+	<?php 
+		 $this_cat = get_category_by_slug('health' ); // get the category of this category archive page
+	  	 $result = get_categories( array('child_of' => $this_cat->cat_ID) ); // list child categories
+		 foreach ($result as $key => $cat) {
+		 	echo '<li><a  href="' . get_category_link( $cat->term_id ) . '">- ' . $cat->name . '</a></li>';
+		 }
+	?>
+	</ul>
 </li>
-</ul>
-
-<ul classs="parent_sitemap">
-<li><a href="/category/cosme">メイク・コスメ</a></li>
-<li>
-<ul class="sub_sitemap">
-<?php 
-	 $this_cat = get_category_by_slug('cosme' ); // get the category of this category archive page
-	 wp_list_categories( array(
-  	 	'child_of' => $this_cat->cat_ID,
-  	 	'title_li' => '',
-		'show_option_none'   => '',
-	) ); // list child categories
-?>
-</ul>
+<li><a href="/category/cosme">メイク・コスメ</a>
+	<ul class="second">
+	<?php 
+		 $this_cat = get_category_by_slug('cosme' ); // get the category of this category archive page
+		 $result = get_categories( array('child_of' => $this_cat->cat_ID) ); // list child categories
+		 foreach ($result as $key => $cat) {
+		 	echo '<li><a  href="' . get_category_link( $cat->term_id ) . '">- ' . $cat->name . '</a></li>';
+		 }
+	?>
+	</ul>
 </li>
-</ul>
 
-<ul classs="parent_sitemap">
-<li><a href="/category/trouble">お悩み・効果</a></li>
-<li>
-<ul class="sub_sitemap">
-<?php 
-	 $this_cat = get_category_by_slug('trouble' ); // get the category of this category archive page
- 	wp_list_categories( array(
-  	 	'child_of' => $this_cat->cat_ID,
-  	 	'title_li' => '',
-		'show_option_none'   => '',
-	) ); // list child categories
-?>
-</ul>
+<li><a href="/category/trouble">お悩み・効果</a>
+	<ul class="second">
+	<?php 
+		 $this_cat = get_category_by_slug('trouble' ); // get the category of this category archive page
+	 	$result = get_categories( array('child_of' => $this_cat->cat_ID) ); // list child categories
+		 foreach ($result as $key => $cat) {
+		 	echo '<li><a  href="' . get_category_link( $cat->term_id ) . '">- ' . $cat->name . '</a></li>';
+		 }
+	?>
+	</ul>
 </li>
-</ul>
 
-<ul classs="parent_sitemap">
-<li><a href="/category/component">成分・特徴</a></li>
-<li>
-<ul class="sub_sitemap">
-<?php 
-	 $this_cat = get_category_by_slug('component' ); // get the category of this category archive page
- 	wp_list_categories( array(
-  	 	'child_of' => $this_cat->cat_ID,
-  	 	'title_li' => '',
-		'show_option_none'   => '',
-	) ); // list child categories
-?>
-</ul>
+<li><a href="/category/component">成分・特徴</a>
+	<ul class="second">
+	<?php 
+		 $this_cat = get_category_by_slug('component' ); // get the category of this category archive page
+	 	$result = get_categories( array('child_of' => $this_cat->cat_ID) ); // list child categories
+		 foreach ($result as $key => $cat) {
+		 	echo '<li><a  href="' . get_category_link( $cat->term_id ) . '">- ' . $cat->name . '</a></li>';
+		 }
+	?>
+	</ul>
 </li>
 </ul>
 <?php
+	$output = ob_get_contents();
+	ob_end_clean();
+	return $output;
 }
 
 // pagination for nextpage in content
