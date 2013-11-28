@@ -9,7 +9,8 @@
 <ul class="siteNav">
 <li><a href="/terms">利用規約</a></li>
 <li><a href="/privacy">プライバシーポリシー</a></li>
-<li><a href="/terms">利用規約</a></li>
+<li><a href="/sitemap">サイトマップ</a></li>
+<li><a href="/company">運営会社</a></li>
 </ul>
 
 <div class="copyright"><small>Copyright &copy; Cosumehouse All Rights Reserved.</small></div>

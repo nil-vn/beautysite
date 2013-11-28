@@ -424,6 +424,77 @@ function ads_content()
 	return $output;
 }
 
+add_shortcode('category-sitemap', 'category_sitemap');
+function category_sitemap()
+{
+
+?>
+<ul classs="parent_sitemap">
+<li><a href="/category/health">ライフスタイル</a></li>
+<li>
+<ul class="sub_sitemap">
+<?php 
+	 $this_cat = get_category_by_slug('health' ); // get the category of this category archive page
+  	 wp_list_categories( array(
+  	 	'child_of' => $this_cat->cat_ID,
+  	 	'title_li' => '',
+		'show_option_none'   => '',
+	) ); // list child categories
+?>
+</ul>
+</li>
+</ul>
+
+<ul classs="parent_sitemap">
+<li><a href="/category/cosme">メイク・コスメ</a></li>
+<li>
+<ul class="sub_sitemap">
+<?php 
+	 $this_cat = get_category_by_slug('cosme' ); // get the category of this category archive page
+	 wp_list_categories( array(
+  	 	'child_of' => $this_cat->cat_ID,
+  	 	'title_li' => '',
+		'show_option_none'   => '',
+	) ); // list child categories
+?>
+</ul>
+</li>
+</ul>
+
+<ul classs="parent_sitemap">
+<li><a href="/category/trouble">お悩み・効果</a></li>
+<li>
+<ul class="sub_sitemap">
+<?php 
+	 $this_cat = get_category_by_slug('trouble' ); // get the category of this category archive page
+ 	wp_list_categories( array(
+  	 	'child_of' => $this_cat->cat_ID,
+  	 	'title_li' => '',
+		'show_option_none'   => '',
+	) ); // list child categories
+?>
+</ul>
+</li>
+</ul>
+
+<ul classs="parent_sitemap">
+<li><a href="/category/component">成分・特徴</a></li>
+<li>
+<ul class="sub_sitemap">
+<?php 
+	 $this_cat = get_category_by_slug('component' ); // get the category of this category archive page
+ 	wp_list_categories( array(
+  	 	'child_of' => $this_cat->cat_ID,
+  	 	'title_li' => '',
+		'show_option_none'   => '',
+	) ); // list child categories
+?>
+</ul>
+</li>
+</ul>
+<?php
+}
+
 // add short code for display google custom search
 add_shortcode('search_result', 'search_result');
 function search_result()

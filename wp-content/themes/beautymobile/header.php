@@ -1,8 +1,6 @@
 <!DOCTYPE HTML>
 <html lang="ja" prefix="og: http://ogp.me/ns# fb: http://www.facebook.com/2008/fbml">
 <head>
-<meta charset="utf-8">
-<head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width">
 	<meta property='og:type' content='article' />
