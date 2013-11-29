@@ -992,7 +992,7 @@ a .tagMark div span {
 	static page
 -----------------------------------------------*/
 .all .static{
-    margin: 0 10px 0 40px;
+    margin: 0 0 0 40px;
 }
 .all .static p{
     font-size: 14px;
@@ -1021,6 +1021,21 @@ a .tagMark div span {
     margin: 0 0 0 10px;
 }
 
+/*static_company*/
 
-
-
+.company,.company p{
+font-size: 14px;    
+}
+.company dl dt{
+    float: left;
+    clear: left;
+    width: 9em;
+    margin-bottom: 1em;
+    border-left: 2px solid #FF7777;
+    padding-left: 0.5em;
+    display: block;
+}
+.company dl dd{
+    padding-left: 9.5em;
+    margin-bottom: 1em;
+}
