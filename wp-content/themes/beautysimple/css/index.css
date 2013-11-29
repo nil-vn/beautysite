@@ -367,11 +367,6 @@
 	font-size:0;
 	line-height:0;
 }
-.eachCateNewsArea .newsList ol li footer .date {
-	float: left;
-	font-size: 116%;
-	font-weight: normal;
-}
 .eachCateNewsArea .newsList ol li footer .tagMark {
 	float: right;
 }
