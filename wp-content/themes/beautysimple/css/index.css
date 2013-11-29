@@ -351,7 +351,7 @@
 .eachCateNewsArea .listPurple ol li a:hover {color: #A293DB;}
 
 .eachCateNewsArea .newsList ol li .newsTtl {
-	margin:0.25em 0 0 0;
+	margin:0.25em 0;
 	font-size: 166%;
 	line-height: 1.25;
 }
