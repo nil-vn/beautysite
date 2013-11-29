@@ -234,11 +234,7 @@
 	display: block;
 	clear: both;
 }
-.ranking ol.panel li .entry .txt .info .date {
-	float: left;
-}
 .ranking ol.panel li .entry .txt .info .tagMark {
-	float: right;
 	margin-top: 3px;
 }
 
