@@ -207,7 +207,7 @@
 	padding: 0 10px;
 }
 .entryHeader .entryInfo {
-	margin: 0 0 1em 0;
+	margin: 0;
 }
 .entryHeader .entryInfo:after {
 	content: "";
@@ -227,6 +227,7 @@
 .entryHeader h1 {
 	font-size: 137.5%;
 	line-height: 1.5;
+    margin: 16px 0 0;
 }
 
 /* entryBody */
@@ -537,4 +538,37 @@
 }
 .pageTypeSingle .pagination .pageMove .nextLink {
 	padding: 6px 8px;
+}
+
+
+/*---------------------------------------------
+	static
+-----------------------------------------------*/
+
+/* sitemap */
+.entryBody .first li{
+margin:20px 0 10px 20px;
+}
+.entryBody .second li{
+margin:10px 0 0 20px;
+}
+
+/* company */
+
+.entryBody .company p{
+font-size: 100%;
+margin: 0 0 1.5em 0;
+}
+.entryBody .company{
+    margin: 0 20px 40px 20px;
+}
+.company dl dt{
+    border-left: 4px solid #FF7777;
+    padding-left: 0.5em;
+}
+.company dl dd{
+    margin-bottom: 1em;
+}
+.entryBody .company a{
+color:#FFa7a7;
 }
