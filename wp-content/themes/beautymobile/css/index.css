@@ -238,6 +238,9 @@
 	margin-top: 3px;
 }
 
+.ranking .info .tagMark{
+    display: inline;
+}
 
 /*---------------------------------------------
 	news
