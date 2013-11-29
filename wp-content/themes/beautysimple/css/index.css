@@ -341,7 +341,7 @@
 .eachCateNewsArea .newsList ol li {}
 .eachCateNewsArea .newsList ol li a {
 	display: block;
-	padding: 20px 20px 22px 20px;
+	padding: 20px 20px 10px 20px;
 }
 .eachCateNewsArea .newsList ol li a:hover {
 	color: #FFA5A5;
@@ -351,14 +351,14 @@
 .eachCateNewsArea .listPurple ol li a:hover {color: #A293DB;}
 
 .eachCateNewsArea .newsList ol li .newsTtl {
-	margin: 0 0 0.25em 0;
+	margin:0.25em 0 0 0;
 	font-size: 166%;
 	line-height: 1.25;
 }
-.eachCateNewsArea .newsList ol li footer {
+.eachCateNewsArea .newsList ol li .categoryicon {
 	/zoom: 1;
 }
-.eachCateNewsArea .newsList ol li footer:after {
+.eachCateNewsArea .newsList ol li .categoryicon:after {
 	content:".";
 	display:block;
 	height:0;
@@ -367,8 +367,9 @@
 	font-size:0;
 	line-height:0;
 }
-.eachCateNewsArea .newsList ol li footer .tagMark {
-	float: right;
+
+.eachCateNewsArea .newsList ol li .categoryicon .tagMark {
+	float: left;
 }
 
 
