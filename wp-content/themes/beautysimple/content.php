@@ -144,7 +144,11 @@ foreach ($category as $key => $cat) {
 <aside class="relatedInfo">
 <div class="pic">
 <img src="<?php
-echo get_author_image_url(get_the_author_meta('ID'));
+ $author_img = get_author_image_url(get_the_author_meta('ID'));
+ if (empty($author_img)) {
+ 	$author_img = "http://www.gravatar.com/avatar.php?gravatar_id=" . md5(get_the_author_meta('email')) . "&size=120";
+ }
+ echo $author_img;
   ?>" width=120 height=120 />
 </div>
 <div class="txt">
