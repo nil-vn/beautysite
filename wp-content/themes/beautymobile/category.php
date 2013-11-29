@@ -132,6 +132,7 @@ catePurple<?php } ?>">
 	?>
 	<?php endif; ?>
 	</section>
+		
 		<article class="snsBtns">
 		<h1>最新情報ゲットはこちら！</h1>
 		<ul>
