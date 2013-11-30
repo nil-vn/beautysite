@@ -1025,3 +1025,5 @@ if (isset($category[0])){
 $cat_name = $category[0]->cat_name;}
 echo "<div class='tagMark ".$color."'><div><span>".$cat_name."</span></div></div>";
 }
+function hello(){
+	return "hello";}
