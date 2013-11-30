@@ -531,6 +531,41 @@ function search_result()
 		}?>
 </section>
 <?php
+// Pagination
+global $wp_query;
+	// num_record per page = 10
+	if ( $wp_query->max_num_pages >= 10 ):
+		if(function_exists('wp_paginate')) {
+		    echo '<div class="pagination">';
+		     wp_paginate();
+		     $current_page = isset( $wp_query->query['paged']) ?  $wp_query->query['paged'] :1;
+		     $total_items = $wp_query->found_posts;
+		     $items_per_page = $wp_query->query_vars['posts_per_page'];
+		     $from = ($current_page-1)* $items_per_page +1;
+		     $to = ($current_page == $wp_query->max_num_pages)? $total_items : $current_page * $items_per_page  ;
+		     echo '<p class="status">'.$total_items.'件中 '. $from  .' - '.$to.' を表示</p>';
+		    echo  '</div>';
+		}
+		elseif (function_exists('wp_pagenavi'))
+		{
+			wp_pagenavi();
+		}
+		else
+		{
+		$big = 999999999; // need an unlikely integer
+
+		echo paginate_links( array(
+			'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+			'format' => '?paged=%#%',
+			'current' => max( 1, get_query_var('paged') ),
+			'total' => $wp_query->max_num_pages
+		) );
+		}
+	?>
+	<?php endif; ?>
+<?php else : ?>
+	<?php get_template_part( 'content', 'none' ); ?>
+<?php endif; ?>
 }
 
 // add short code for display all category
