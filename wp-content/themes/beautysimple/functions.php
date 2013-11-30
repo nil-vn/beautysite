@@ -492,46 +492,44 @@ add_shortcode('search_result', 'search_result');
 function search_result()
 {
 ?>
-<div id='cse' style='width: 100%;'>Loading</div>
-<script src='//www.google.com/jsapi' type='text/javascript'></script>
-<script type='text/javascript'>
-google.load('search', '1', {language: 'en', style: google.loader.themes.V2_DEFAULT});
-google.setOnLoadCallback(function() {
-  var customSearchOptions = {};
-  var orderByOptions = {};
-  orderByOptions['keys'] = [{label: 'Relevance', key: ''} , {label: 'Date', key: 'date'}];
-  customSearchOptions['enableOrderBy'] = true;
-  customSearchOptions['orderByOptions'] = orderByOptions;
-  customSearchOptions['overlayResults'] = false;
-  var customSearchControl =   new google.search.CustomSearchControl('<?php echo get_option("beautysite_gcs_keys") ?>', customSearchOptions);
-  customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
-  var options = new google.search.DrawOptions();
-  options.setAutoComplete(true);
-  customSearchControl.draw('cse', options);
+<section class="entryList">
+	<?php
+		//var_dump($_GET['q']);
+		$str = 's='.$_GET['q'];
+		$query = new WP_Query($str);
+		//var_dump($query->found_posts);
+		if($query->have_posts()){
+			while ($query->have_posts()) {
+				$query->the_post();?>
+				<article class="entryPiece">
+					<a href="<?php the_permalink(); ?>">
+					<header class="entryHeader">
+						<div class="entryInfo">
+							<span class="entryDate"><?php echo get_the_date("Y/m/d" ); ?></span>
+						</div>
+						<h1><?php the_title( ); ?></h1>
+					</header>
+					<div class="entryOverview">
+						<div class="pic"> <?php the_post_thumbnail( array(300,200) ); ?></div>
+						<div class="txt">
+							<?php the_content('',FALSE,'');
+							//the_excerpt_max_charlength(140);
+							?>
+							<div class="viewMore"><span>続きを見る</span></div>
+						</div>
+					</div>
+		<!--//.entryOverview-->
+					</a>
+				</article>
+			
 
- // do search
- function parseParamsFromUrl() {
-  var params = {};
-  var parts = window.location.search.substr(1).split('\x26');
-  for (var i = 0; i < parts.length; i++) {
-    var keyValuePair = parts[i].split('=');
-    var key = decodeURIComponent(keyValuePair[0]);
-    params[key] = keyValuePair[1] ?
-        decodeURIComponent(keyValuePair[1].replace(/\+/g, ' ')) :
-        keyValuePair[1];
-  }
-  return params;
-}
-
-var urlParams = parseParamsFromUrl();
-var queryParamName = "q";
-if (urlParams[queryParamName]) {
-  customSearchControl.execute(urlParams[queryParamName]);
-}
-
-
-}, true);
-</script>
+		<?php 
+			}
+		}
+		else{
+			echo "Not found ...";
+		}?>
+</section>
 <?php
 }
 
