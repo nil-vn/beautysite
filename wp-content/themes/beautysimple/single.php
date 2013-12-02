@@ -49,13 +49,13 @@ $subCategoryLink = array();
 <ol class="topicPath">
 <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">TOP</a></li>
 <?php if ( $color == "" ) { ?>
-<li><a href="<?php echo $categorylink ?>">美容と健康</a></li>
+<li><a href="<?php echo $categorylink ?>"><?php echo $healthCat->name; ?></a></li>
 <?php } else if ( $color == "categoryYellow" ) { ?>
-<li><a href="<?php echo $categorylink ?>">お悩み・効果</a></li>
+<li><a href="<?php echo $categorylink ?>"><?php echo $cosmeCat->name; ?></a></li>
 <?php } else if ( $color == "categoryBlue" ) { ?>
-<li><a href="<?php echo $categorylink ?>">お悩み・効果</a></li>
+<li><a href="<?php echo $categorylink ?>"><?php echo $troubleCat->name; ?></a></li>
 <?php } elseif ( $color == "categoryPurple" ) { ?>
-<li><a href="<?php echo $categorylink ?>">成分・特長</a></li>
+<li><a href="<?php echo $categorylink ?>"><?php echo $componentCat->name; ?></a></li>
 <?php } ?>
 <?php if (count($subCategoryLink)): ?>
   <li><a href="<?php echo $subCategoryLink['url'] ?>"><?php echo $subCategoryLink['name'] ?></a></li>
@@ -65,8 +65,18 @@ $subCategoryLink = array();
 </ol>
 
 <div class="pageTtl">
-<h1>ダイエット</h1>
-<div class="flowLink"><a href="<?php echo $categorylink ?>">＞カテゴリトップへ</a></div>
+<h1><?php echo $subCategoryLink['name'] ?></h1>
+
+<?php if ( $color == "" ): ?>
+  <div class="flowLink"><a href="/category/health">＞<?php echo $healthCat->name; ?></a></div>
+<?php elseif( $color == "categoryYellow" ): ?>
+  <div class="flowLink"><a href="/category/cosme">＞<?php echo $cosmeCat->name; ?></a></div>
+<?php elseif( $color == "categoryBlue"  ): ?>
+  <div class="flowLink"><a href="/category/trouble">＞<?php echo $troubleCat->name; ?></a></div>
+<?php elseif( $color == "categoryPurple" ): ?>
+  <div class="flowLink"><a href="/category/component">＞<?php echo $componentCat->name; ?></a></div>
+<?php endif ?>
+
 </div>
 </header>
 			<?php /* The loop */ ?>
