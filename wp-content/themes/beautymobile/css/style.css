@@ -17,7 +17,9 @@ a:hover,a:active{
 .wrap {
 	min-width: 320px;
 }
-
+.bold{
+	font-weight:bold;
+}
 
 /*---------------------------------------------
 	header
