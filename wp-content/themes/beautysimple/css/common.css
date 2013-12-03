@@ -150,6 +150,10 @@ a:hover{
 	filter: alpha(opacity=70);
 }
 
+.bold{
+	font-weight:bold;
+}
+
 /* header
 ------------------------------------------------------------*/
 .globalHeader {
