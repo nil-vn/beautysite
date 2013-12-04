@@ -15,7 +15,10 @@ if( $related_posts ) {
 <div class="inner">
 <ul>
 <?php
-foreach( $related_posts as $item  ) {
+foreach( $related_posts as $key => $item  ) {
+	if ($key > 3) {
+		break;
+	}
  ?>
 <li><a href="<?php echo get_permalink( $item->ID )   ?>" style="height: 239px;">
 		<?php if (date("Y/m/d") ==  date("Y/m/d", strtotime($item->post_date))) {
