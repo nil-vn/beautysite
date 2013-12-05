@@ -7,16 +7,22 @@ $cosmeCat = get_category_by_slug('cosme' );
 $troubleCat = get_category_by_slug('trouble' );
 $componentCat = get_category_by_slug('component' );
 global $post;
+
 $related_posts = MRP_get_related_posts( $post->ID, 1, 0 );
-if( $related_posts ) {
+if( $related_posts) {
 ?>
 <section class="recommendList">
 <h1>関連のおすすめ記事</h1>
 <div class="inner">
 <ul>
 <?php
+$counter = 0;
 foreach( $related_posts as $key => $item  ) {
-	if ($key > 3) {
+	if (get_post_status($item->ID) != 'publish' ) {
+		continue;
+	}
+	$counter++;
+	if ($counter > 4) {
 		break;
 	}
  ?>
@@ -170,7 +176,7 @@ $top_daily = tptn_pop_posts( array(
 		'daily' => TRUE,
 		'echo' => FALSE,
 		'strict_limit' => TRUE,
-		'posts_only' => TRUE, 'limit' => 6)) ;
+		'posts_only' => TRUE, 'limit' => 7)) ;
 
 ?>
 
@@ -178,10 +184,19 @@ $top_daily = tptn_pop_posts( array(
 <section class="recommendList02">
 <h1>この記事を読んだ人は、こんな記事も読んでいます</h1>
 <ul>
-<?php foreach ($top_daily as $key => $dp) {
+<?php
+ $counter = 0;
+ foreach ($top_daily as $key => $dp) {
   // if ($key == 6) {
   // 	break;
   // }
+  if (get_the_ID() == $dp->ID) {
+  	continue;
+  }
+  $counter++;
+  if ($counter > 6) {
+  	 break;
+  }
   $item = get_post($dp->ID );
  ?>
 <li><a href="<?php echo get_permalink( $item->ID )   ?>">
