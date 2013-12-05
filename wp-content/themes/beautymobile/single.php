@@ -19,16 +19,20 @@ $category = get_the_category();
 $categorylink = "/category/health";
 $subCategoryLink = array();
  $color = "";
+ $tagColor = "";
   foreach ($category as $key => $cat) {
   	if ($cosmeCat->cat_ID == $cat->cat_ID || cat_is_ancestor_of( $cosmeCat->cat_ID, $cat->cat_ID )) {
   		$color = "cateYellow";
+  		$tagColor = "yellow";
       $categorylink = "/category/cosme";
 	  
   	} elseif ($troubleCat->cat_ID == $cat->cat_ID  || cat_is_ancestor_of( $troubleCat->cat_ID, $cat->cat_ID )) {
   		$color = "cateBlue";
+  		$tagColor = "blue";
       $categorylink = "/category/trouble";
   	} elseif ($componentCat->cat_ID == $cat->cat_ID || cat_is_ancestor_of( $componentCat->cat_ID, $cat->cat_ID )) {
   		$color = "catePurple";
+  		$tagColor = "purple";
       $categorylink = "/category/component";
   	}
     // find sub category
@@ -58,7 +62,7 @@ $subCategoryLink = array();
 <header class="entryHeader">
 	<div class="entryInfo">
 		<p class="date"><?php echo the_date('Y/m/d');?></p>
-		<div class="tagMark"><?php
+		<div class="tagMark <?php echo $tagColor; ?>"><?php
 		if (isset($category[0]))
 			echo $category[0]->cat_name;
 		?></div>
@@ -121,6 +125,7 @@ $subCategoryLink = array();
 <?php
 global $post;
 $related_posts = MRP_get_related_posts( $post->ID, 1, 0 );
+$counter = 0;
 if( $related_posts ) {
 ?>
 <section class="recommendBox">
@@ -128,6 +133,13 @@ if( $related_posts ) {
 <ul>
 <?php
 foreach( $related_posts as $item  ) {
+	if (get_post_status($item->ID) != 'publish' ) {
+		continue;
+	}
+	$counter++;
+	if ($counter > 4) {
+		break;
+	}
  ?>
 <li><a href="<?php echo get_permalink( $item->ID )   ?>">
 <div class="pic"><?php
