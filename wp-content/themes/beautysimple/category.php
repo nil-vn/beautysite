@@ -134,7 +134,7 @@ if (is_category('health' ) || cat_is_ancestor_of( $healthCat->cat_ID, get_query_
 		<header class="entryHeader">
 		<div class="entryInfo">
 		<span class="entryDate"><?php echo get_the_date("Y/m/d" ); ?></span>
-		<?php if (date("Y/m/d") == get_the_date("Y/m/d" )) {
+		<?php if (check_in_week(get_the_date("Y/m/d" ))) {
 			echo '<span class="entryMark">new</span>';
 		}
 		?>

@@ -169,7 +169,7 @@ get_header(); ?>
 							// $GLOBALS['DebugMyPlugin']->panels['main']->addPR('post:',$cat,__FILE__,__LINE__ );
 
 					?>
-						<li><a href="<?php echo get_permalink() ?>"><?php if (date("Y/m/d") == get_the_date("Y/m/d" )) {
+						<li><a href="<?php echo get_permalink() ?>"><?php if (check_in_week(get_the_date("Y/m/d" ))) {
 							echo '<span class="newMark">new</span>';
 						}
 						?><?php the_title(); ?></a></li>
@@ -199,7 +199,7 @@ get_header(); ?>
 		?>
 		<?php if( $the_query->have_posts() ): ?>
 			<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-				<li><a href="<?php echo get_permalink(); ?>"><?php if (date("Y/m/d") == get_the_date("Y/m/d" )) {
+				<li><a href="<?php echo get_permalink(); ?>"><?php if (check_in_week(get_the_date("Y/m/d" ))) {
 					echo '<span class="newMark">new</span>';
 				}
 				?><?php the_title(); ?></a></li>

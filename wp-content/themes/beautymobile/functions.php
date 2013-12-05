@@ -618,3 +618,13 @@ function get_articles($category_id = '', $limit = 5)
 	// get results
 	return new WP_Query( $args );
 }
+
+function check_in_week($date_from_user)
+{
+  // Convert to timestamp
+  $start_ts = strtotime($date_from_user);
+  $end_ts = time() - 86400*7;
+
+  // Check that user date is between start & end
+  return $start_ts > $end_ts ;
+}

@@ -38,14 +38,14 @@ $subCategoryLink = array();
   }
 
   	if($color==""){
-	$cat_name = "美容と健康";
+	$cat_name = $healthCat->name;
 	}
 	elseif($color=="categoryYellow"){
-	$cat_name = "メイク・コスメ";}
+	$cat_name = $cosmeCat->name;}
 	elseif($color=="categoryBlue"){
-	$cat_name = "お悩み・効果";}
+	$cat_name = $troubleCat->name;}
 	else
-	$cat_name = "成分・特長";
+	$cat_name = $componentCat->name;;
 	  
 ?>
 

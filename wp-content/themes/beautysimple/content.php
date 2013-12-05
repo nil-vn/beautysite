@@ -27,7 +27,7 @@ foreach( $related_posts as $key => $item  ) {
 	}
  ?>
 <li><a href="<?php echo get_permalink( $item->ID )   ?>" style="height: 239px;">
-		<?php if (date("Y/m/d") ==  date("Y/m/d", strtotime($item->post_date))) {
+		<?php if (check_in_week($item->post_date)) {
 			echo '<span class="entryMark">new</span>';
 		}
 		?>
@@ -200,7 +200,7 @@ $top_daily = tptn_pop_posts( array(
   $item = get_post($dp->ID );
  ?>
 <li><a href="<?php echo get_permalink( $item->ID )   ?>">
-		<?php if (date("Y/m/d") ==  date("Y/m/d", strtotime($item->post_date))) {
+		<?php if (check_in_week($item->post_date)) {
 			echo '<span class="entryMark">new</span>';
 		}
 		?>

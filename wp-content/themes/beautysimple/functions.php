@@ -565,7 +565,7 @@ function all_category_page()
 		<header class="entryHeader">
 		<div class="entryInfo">
 		<span class="entryDate"><?php echo get_the_date("Y/m/d" ); ?></span>
-		<?php if (date("Y/m/d") == get_the_date("Y/m/d" )) {
+		<?php if (check_in_week(get_the_date("Y/m/d" ))) {
 			echo '<span class="entryMark">new</span>';
 		}
 		?>
@@ -999,6 +999,17 @@ function get_articles($category_id = '', $limit = 5)
 	// get results
 	return new WP_Query( $args );
 }
+
+function check_in_week($date_from_user)
+{
+  // Convert to timestamp
+  $start_ts = strtotime($date_from_user);
+  $end_ts = time() - 86400*7;
+
+  // Check that user date is between start & end
+  return $start_ts > $end_ts ;
+}
+
 /**
 * Function create a tagMark for the post (color tag, category name).
 * Return string $color, string $cat_name.

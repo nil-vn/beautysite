@@ -25,13 +25,13 @@ catePurple<?php } ?>">
 
 <header class="categoryHeader">
 <?php if (is_category('health' )  || cat_is_ancestor_of( $healthCat->cat_ID, get_query_var('cat') ) ) { ?>
-<h1>美容と健康<a href="#">＋</a></h1>
+<h1><?php echo $healthCat->name; ?><a href="#">＋</a></h1>
 <?php } elseif (is_category('cosme' )  || cat_is_ancestor_of( $cosmeCat->cat_ID, get_query_var('cat') )) { ?>
-<h1>メイク・コスメ<a href="#">＋</a></h1>
+<h1><?php echo $cosmeCat->name; ?><a href="#">＋</a></h1>
 <?php } elseif (is_category('trouble' ) || cat_is_ancestor_of( $troubleCat->cat_ID, get_query_var('cat') )) { ?>
-<h1>お悩み・効果<a href="#">＋</a></h1>
+<h1><?php echo $troubleCat->name; ?><a href="#">＋</a></h1>
 <?php } elseif (is_category('component' ) || cat_is_ancestor_of( $componentCat->cat_ID, get_query_var('cat') )) { ?>
-<h1>成分・特長<a href="#">＋</a></h1>
+<h1><?php echo $componentCat->name; ?><a href="#">＋</a></h1>
 <?php } ?>
 <nav class="subCateNav">
 <ul>
@@ -68,7 +68,7 @@ catePurple<?php } ?>">
 		<article class="entryPiece"><a href="<?php the_permalink(); ?>">
 		<div class="pic"><?php the_post_thumbnail( 'mobile-category-thumb' ); ?></div>
 		<div class="txt">
-		<h1><?php if (date("Y/m/d") == get_the_date("Y/m/d" )) {
+		<h1><?php if (check_in_week(get_the_date("Y/m/d" ))) {
 							echo '<span class="newMark">new</span>';
 						}
 						?><?php the_title( ); ?></h1>

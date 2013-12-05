@@ -203,7 +203,7 @@ get_header(); ?>
 
 					?>
 						<li><a href="<?php echo get_permalink() ?>">
-						<div class="newsTtl"><?php if (date("Y/m/d") == get_the_date("Y/m/d" )) {
+						<div class="newsTtl"><?php if (check_in_week(get_the_date("Y/m/d" ))) {
 							echo '<span class="entryMark">new</span>';
 						}
 						?><?php the_title(); ?></div>
@@ -249,7 +249,7 @@ get_header(); ?>
 		<?php if( $the_query->have_posts() ): ?>
 			<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
 				<section>
-				<a href="<?php echo get_permalink(); ?>"><?php if (date("Y/m/d") == get_the_date("Y/m/d" )) {
+				<a href="<?php echo get_permalink(); ?>"><?php if (check_in_week(get_the_date("Y/m/d" ))) {
 					echo '<span class="entryMark">new</span>';
 				}
 				?>
