@@ -226,7 +226,7 @@ function ads_content()
 	if (! is_single()) {
 		return '';
 	}
-  	$content = '<div class="adEntryIn"><div class="inner">' .get_option("beautysite_gads_keys") . '</div></div>';
+  	$content = '<div class="adEntryIn"><div class="inner"><center>' .get_option("beautysite_gads_keys") . '</center></div></div>';
   	ob_start();
 	eval("?>$content<?php ");
 	$output = ob_get_contents();
