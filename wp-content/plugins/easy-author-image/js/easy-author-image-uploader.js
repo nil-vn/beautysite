@@ -16,7 +16,8 @@ jQuery(document).ready(function($){
 		// var image_url = $('img',html).attr('src');
 		var image_url =  html.match(/(https?:\/\/[^\s]+)/g)[0];
 		image_url = image_url.replace('"','');
-		//alert(html);
+		// alert(html);
+		// alert(image_url);
 		$('#author_profile_picture_url').val(image_url); // updates our hidden field that will update our author's meta when the form is saved
 		tb_remove();
 		$('#author_profile_picture_preview img').attr('src',image_url);

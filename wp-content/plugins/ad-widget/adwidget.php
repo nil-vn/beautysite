@@ -305,6 +305,10 @@ class AdWidget_ImageWidget extends WP_Widget
         $link   = @$instance['w_link'];
         $img    = @$instance['w_img'];
         $resize = @$instance['w_resize'];
+        $tag = @$instance['w_adv'];
+        if (empty($tag)) {
+            $tag = $link;
+        }
         $id     = rand(1, 100000);
 
         if($resize == 'yes')
@@ -334,7 +338,7 @@ class AdWidget_ImageWidget extends WP_Widget
         // }
         // else
         // {
-            echo "<a target='_blank' href='$link' alt='".$link."'><img $resize_s src='$img' alt='".$link."' /></a>";
+            echo "<a target='_blank' href='$link' alt='".$tag."'><img $resize_s src='$img' alt='".$tag."' /></a>";
         // }
         if (isset($instance['w_end_html']) && !empty($instance['w_end_html'])) {
             echo $instance['w_end_html'];

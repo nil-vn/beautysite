@@ -55,11 +55,7 @@
 	<header class="globalHeader">
 	<div class="headLine clearfix">
 	<h1><?php bloginfo( 'description' ); ?></h1>
-	<div class="searchFormArea">
-
-	<?php get_search_form(); ?>
-
-	</div>
+	
 	<!--//.searchFormArea-->
 	</div>
 	<!--//.headLine-->

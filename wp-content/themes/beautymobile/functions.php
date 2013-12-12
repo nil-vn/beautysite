@@ -223,7 +223,15 @@ add_action( 'customize_preview_init', 'beautymobile_customize_preview_js' );
 add_shortcode('ads-content', 'ads_content');
 function ads_content()
 {
-	return '';
+	if (! is_single()) {
+		return '';
+	}
+  	$content = '<div class="adEntryIn"><div class="inner">' .get_option("beautysite_gads_keys") . '</div></div>';
+  	ob_start();
+	eval("?>$content<?php ");
+	$output = ob_get_contents();
+	ob_end_clean();
+	return $output;
 }
 
 add_shortcode('category-sitemap', 'category_sitemap');

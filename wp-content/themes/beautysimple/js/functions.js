@@ -98,13 +98,3 @@ jQuery(document).ready(function($){
     $(".topicPath li:not(:last)").append("＞");
 });
 
-// 記事詳細　サイドボックス操作
-jQuery(document).ready(function($){
-	var topPos = 250;
-	
-	$(window).scroll(function(){
-		var value = $(this).scrollTop();
-		var sideBoxMove = Math.floor(topPos +  value);
-		$(".sideBox").css("top", sideBoxMove+"px");	
-	});	
-});

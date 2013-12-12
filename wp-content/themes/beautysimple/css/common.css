@@ -31,7 +31,7 @@ time, mark, audio, video {
 }
 body {
     line-height:1;
-	min-width:1300px;
+	min-width:1080px;
 }
 article,aside,details,figcaption,figure,
 footer,header,hgroup,menu,nav,section { 
@@ -96,7 +96,7 @@ body {
 /* Fonts
 ------------------------------------------------------------*/
 body {
-	font-family: 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', 'メイリオ', Meiryo, Osaka, 'ＭＳ Ｐゴシック', sans-serif;
+	font-family: "メイリオ","ヒラギノ角ゴ Pro W3","MS PGothic","MS UI Gothic",Helvetica,Arial,sans-serif;
 	line-height: 1.4;
 }
 /* ie7 */
@@ -117,7 +117,7 @@ html:not(:target) body {
 }
 
 input {
-	font-family: 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', 'メイリオ', Meiryo, Osaka, 'ＭＳ Ｐゴシック', sans-serif;
+	font-family: "メイリオ","ヒラギノ角ゴ Pro W3","MS PGothic","MS UI Gothic",Helvetica,Arial,sans-serif;
 }
 
 
@@ -157,9 +157,9 @@ a:hover{
 /* header
 ------------------------------------------------------------*/
 .globalHeader {
-	width: 1100px;
+	width: 1040px;
 	margin: 0 auto;
-	padding: 0 100px;
+	padding: 0;
 }
 
 /* headLine */
@@ -290,7 +290,7 @@ a:hover{
 }
 .globalFooter .toppageLink {
 	position: relative;
-	width: 1100px;
+	width: 1060px;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -313,9 +313,9 @@ a:hover{
 	
 }
 .globalFooter .footerContent01 > .inner {
-	width: 1100px;
+	width: 1060px;
 	margin: 0 auto;
-	padding: 35px 100px;
+	padding: 35px 0;
 }
 .globalFooter .footerContent01 .inner .contentsNav {
 	float: left;
@@ -327,7 +327,7 @@ a:hover{
 /* .footerContent01 .contentsNav */
 .globalFooter .footerContent01 .contentsNav dl {
 	float: left;
-	width: 170px;
+	width: 162px;
 	margin: 0 20px 0 0;
 	padding: 0 10px 10px 10px;
 	background: #fff;
@@ -363,6 +363,7 @@ a:hover{
 	color: #fff;
 	font-size: 16px;
 	text-align: center;
+	font-weight:normal;
 }
 .globalFooter .footerContent01 .sns ul {
 	margin: 0 0 1em 0;
@@ -422,9 +423,9 @@ a:hover{
 	color: #fff;
 }
 .globalFooter .footerContent02 .inner {
-	width: 1100px;
+	width: 1060px;
 	margin: 0 auto;
-	padding: 20px 100px 30px 100px;
+	padding: 20px 0 50px 0;
 }
 .globalFooter .footerContent02 .inner ul {
 	float: left;

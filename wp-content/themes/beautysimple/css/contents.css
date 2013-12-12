@@ -6,20 +6,20 @@
 /* contentsWrap
 ======================================================================*/
 .contentsWrap {
-	width: 1140px;
+	width: 1080px;
 	margin: 0 auto;
-	padding: 30px 80px 0 80px;
-	background: transparent url(../img/common/bg_contents_top.png) no-repeat center top;
+	padding: 30px 0 20px 0;
+	background: transparent url(../img/common/bg_contents_top.gif) no-repeat center top;
 }
 .contentsWrap .contentsWrapInner {
-	width: 1100px;
+	width: 1040px;
 	padding: 0 20px;
-	background: transparent url(../img/common/bg_contents.png) repeat-y center top;
+	background: transparent url(../img/common/bg_contents.gif) repeat-y center top;
 }
 .contentsWrap .contentsWrapInner .contents {
 	position: relative;
 	top: -25px;
-	width: 1100px;
+	width: 1040px;
 	padding: 0 0 20px 0;
 	background: #fff;
 }
@@ -27,7 +27,7 @@
 /* layout2Col
 ======================================================================*/
 .layout2Col {
-	width: 1100px;
+	width: 1040px;
 	padding: 20px 0 0 0;
 	/zoom: 1;
 }
@@ -42,11 +42,11 @@
 }
 .layout2Col .mainCol {
 	float: left;
-	width: 670px;
+	width: 650px;
 }
 .layout2Col .subCol {
 	float: right;
-	width: 360px;
+	width: 340px;
 }
 
 
@@ -66,7 +66,7 @@
 -----------------------------------------------*/
 .pageTtl {
 	margin: 0 0 16px 0;
-	padding: 0 0 12px 0;
+	padding: 0 0 8px 0;
 	background: url(../img/contents/line_green_l.png) no-repeat left bottom;
 }
 .pageTtl h1 {
@@ -74,9 +74,9 @@
 	padding: 0 0 0 50px;
 	background: url(../img/contents/icon_pink.png) no-repeat 6px top;
 	color: #F26C6C;
-	font-size: 250%;
+	font-size: 196%;
 	font-weight: normal;
-	line-height: 1.25;
+	line-height: 1.5;
 }
 .categoryYellow .pageTtl h1 {
 	background: url(../img/contents/icon_yw.png) no-repeat 6px top;
@@ -126,6 +126,7 @@
 	background: #FFA8A8;
 	color: #fff;
 	line-height: 1.1;
+	font-size:94%;
 }
 .mainCol .tagLinks a:hover,
 .mainCol .tagLinks a.active {
@@ -141,6 +142,7 @@
 }
 .categoryBlue .tagLinks a {
 	background: #5EAFD7;
+	font-size:94%;
 }
 .categoryBlue .tagLinks a:hover,
 .categoryBlue .tagLinks a.active {
@@ -197,7 +199,7 @@
 }
 .entryPiece .entryHeader > h1 {
 	margin: 0 0 0 20px;
-	font-size: 250%;
+	font-size: 200%;
 	font-weight: normal;
 	line-height: 1.25;
 }
@@ -218,7 +220,7 @@
 }
 .entryHeader .recommendList h1 {
 	color: #49A9A9;
-	font-size: 22px;
+	font-size: 144%;
 	font-weight: normal;
 }
 .entryHeader .recommendList .inner {
@@ -238,8 +240,8 @@
 .entryHeader .recommendList ul li a {
 	position: relative;
 	display: block;
-	width: 150px;
-	padding: 6px;
+	width: 151px;
+	padding: 3px;
 	background: #fff;
 	-webkit-transition: background 0.2s ease;
 	-moz-transition: background 0.2s ease;
@@ -260,8 +262,9 @@
 	border: 1px solid #DCEDEA;
 }
 .entryHeader .recommendList ul li .pic img {
-	max-width: 148px;
-	vertical-align: top; 
+	max-width: 149px;
+	vertical-align: top;
+	width:149px; 
 }
 .entryHeader .recommendList ul li h2 {
 	margin: 0 0 0.5em 0;
@@ -287,35 +290,44 @@
 }
 .snsBtns ul li {
 	display: inline-block;
-	margin: 0 3px;
+	margin: 0 6px;
 	vertical-align: middle;
 }
 .snsBtns ul li.twtr {
 	overflow: hidden;
 	width: 98px;
 }
-
+.snsBtns ul li.twtr2{
+	width: 66px;
+}
 /* sideBox */
 .sideBox {
-	position: absolute;
-	top: 250px;
-	left: -100px;
+	position:fixed;
+	bottom: 0px;
+	right: 0px;
 	z-index: 10000;
-	width: 88px;
-	min-height: 315px;
-	border: 6px solid #49A9A9;
-	background: #fff;
+	background: url("../img/common/sns_bg.gif") repeat-x scroll center top;
+	width:100%;
+	height:32px;
 }
 .sideBox ul.snsBtns {
 	margin: 0;
-	padding: 8px 0;
+	padding: 7px 20px 6px 30px;
+	overflow:hidden;
+	position:relative;
+	zoom:1;
 }
 .sideBox ul.snsBtns li {
-	margin: 0 0 8px 0;
-	text-align: center;
+	float:right;
+	padding:0 5px;
+	line-height:0;
 }
-
-
+iframe.twitter-share-button {
+  width: 90px!important;
+}
+.twtr2 iframe.twitter-share-button {
+  width: 66px!important;
+}
 
 /*	entryOverview
 -----------------------------------------------*/
@@ -356,11 +368,11 @@
 }
 .entryPiece .entryOverview .txt {
 	float: right;
-	width: 300px;
+	width: 290px;
 	padding: 3px 0 0 0;
 	font-size: 116%;
 	font-weight: normal;
-	line-height: 1.5;
+	line-height: 1.7;
 }
 
 .pageTypeCategory .entryPiece a .entryOverview .txt {
@@ -420,16 +432,36 @@
 	margin: 3px 20px 15px 0;
 }
 .entryBody p {
-	margin: 0 0 1.5em 0;
-	font-size: 133%;
-	line-height: 1.7;
+	margin: 0 0 1em 0;
+	font-size: 116%;
+	line-height: 1.8;
 }
 .entryBody h2 {
-	margin: 0 0 0.5em 0;
+	margin: 2em 0 0.5em 0;
 	color: #459F9F;
-	font-size: 250%;
-	font-weight: normal;
+	font-size: 183%;
+	font-weight: bold;
 	line-height: 1.25;
+}
+.entryBody h3{
+	border-bottom: 1px dotted #49A9A9;
+    color: #49A9A9;
+    font-size: 166%;
+    font-weight: normal;
+    margin: 2em 0 1em;
+	font-weight:bold;
+}
+.entryBody a{
+	color:#FF7777;
+	text-decoration:underline;
+	font-size:124%;
+}
+.entryBody a:hover{
+	text-decoration:none;
+}
+
+.entryBody .img{
+	text-align:center;
 }
 
 /* adEntryIn */
@@ -443,17 +475,18 @@
 	overflow: hidden;
 	padding: 30px 10px 0 10px;
 	background: url(../img/contents/line_green_l.png) no-repeat left top;
+	text-align:center;
 }
 .adEntryIn .adLeft {
 	float: left;
-	max-width: 300px;
+	max-width: 340px;
 }
 .adEntryIn .adRight {
 	float: right;
-	max-width: 300px;
+	max-width: 340px;
 }
 .adEntryIn .adLeft img {
-	max-width: 300px;
+	max-width: 340px;
 }
 .adEntryIn .adRight img {
 	max-width: 280px;
@@ -486,7 +519,7 @@
 	line-height: 1.7;
 }
 .relatedInfo .txt h1 {
-	margin: 0 0 1em 0;
+	margin: 0 0 0.5em 0;
 	color: #459F9F;
 	font-weight: normal;
 }
@@ -512,7 +545,7 @@
 .recommendList02 ul li a {
 	position: relative;
 	display: block;
-	width: 200px;
+	width: 194px;
 	margin: 0 4px 12px 0;
 	padding: 6px;
 	background: #fff;
@@ -535,19 +568,20 @@
 	border: 1px solid #DCEDEA;
 }
 .recommendList02 ul li .pic img {
-	max-width: 198px;
+	max-width: 192px;
 	vertical-align: top; 
 }
 .recommendList02 ul li h2 {
 	margin: 0 0 0.5em 0;
 	padding: 0 0.5em 0.25em 0.5em;
 	border-bottom: 1px solid #ccc;
-	font-size: 133%;
+	font-size: 124%;
 }
 .recommendList02 ul li a .txt {
-	padding: 0 0.5em 0.25em 0.5em;
-	font-size: 116%;
+	padding: 0 0.5em 0.5em 0.5em;
+	font-size: 100%;
 	font-weight: normal;
+	line-height:1.5;
 }
 .recommendList02 ul li footer {
 	overflow: hidden;
@@ -568,7 +602,7 @@
 .subCol {
 }
 .subCol .sideTtl {
-	width: 348px;
+	width: 328px;
 	height: 32px;
 	margin: 0 0 10px 0;
 	padding: 8px 0 0 12px;
@@ -643,7 +677,7 @@
 }
 .entryRanking ol li a {
 	display: block;
-	width: 360px;
+	width: 340px;
 	padding: 1em 0;
 	border-bottom: 1px solid #DCEDEA;
 	line-height: 1.4;
@@ -676,14 +710,16 @@
 }
 .entryRanking ol li .pic {
 	float: left;
-	width: 120px;
+	width: 100px;
 	padding: 0 6px 0 0;
 	vertical-align: top;
 }
 .entryRanking ol li .pic img {
-	max-width: 120px;
+	max-width: 100px;
 	border: 1px solid #DCEDEA;
 	vertical-align: top;
+	width:100px;
+	height:65px;
 }
 .entryRanking ol li a:hover .pic img {
 	opacity: 0.7;
@@ -695,12 +731,12 @@
 }
 .entryRanking ol li .txt {
 	float: left;
-	width: 305px;
-	padding: 0 6px 0 3px;
+	width: 280px;
+	padding: 0 0 0 3px;
 	vertical-align: top;
 }
 .entryRanking ol li .txt .ttl {
-	font-size: 133%;
+	font-size: 116%;
 }
 .entryRanking ol li a .txt .tagMark {
 	padding: 0.5em 0.5em 0 0.5em;
@@ -723,7 +759,11 @@
 .entryRanking ol li.rank2 .rank {	background-position: -50px 0%;}
 .entryRanking ol li.rank3 .rank {	background-position: -100px 0%;}
 
-
+.entryRanking ol li.rank1 .txt,
+.entryRanking ol li.rank2 .txt,
+.entryRanking ol li.rank3 .txt {
+	width:159px;
+}
 
 /*	tagLinksArea
 -----------------------------------------------*/
@@ -765,7 +805,7 @@
 	border: 1px solid #FFA8A8;
 	border-left-width: 6px;
 	background: #fff;
-	font-size: 113%;
+	font-size: 100%;
 	line-heiht: 1.1;
 }
 .tagLinksArea .tagLinks.yellow a {	border: 1px solid #F1B767;border-left-width: 6px;}
@@ -806,18 +846,28 @@
 
 /*	qcArea
 -----------------------------------------------*/
-.layout2Col .subCol .qcArea {
-	margin: 0 auto 30px auto;
+
+.layout2Col .subCol .adArea .inner {
+	max-width: 320px;
+	padding: 17px;
+	border: 1px solid #ccc;
+	margin-bottom:20px;
+	width:300px;
 }
-.layout2Col .subCol .qcArea .inner {
-	max-width: 330px;
-	padding: 9px;
-	border: 1px solid #46A0A0;
-}
-.layout2Col .subCol .qcArea .inner img {
+.layout2Col .subCol .adArea .inner img {
 	vertical-align: bottom;
 }
 
+/*	rakuten
+-----------------------------------------------*/
+.layout2Col .subCol .rakuten_motionWidget{
+	width:320px;
+	margin-bottom:20px;
+}
+.layout2Col .subCol iframe{
+	margin-bottom:20px;
+	text-align:left;
+}
 
 
 /*
@@ -836,8 +886,8 @@ a .tagMark {
 .tagMark div,
 a .tagMark div {
 	display: inline-block;
-	padding: 3px 1.1em;
-    padding: 4px 1.1em 2px 1.1em\9; /* IE8 and below */
+	padding: 3px 0.7em;
+    padding: 4px 0.7em 2px 1.1em\9; /* IE8 and below */
 	border-radius: 19px;
 	background: #FF9797;	
 	color: #fff;
@@ -863,17 +913,43 @@ a .tagMark div span {
 
 /*
 	topicPath
------------------------------------------------*/
+-----------------------------------------------
 .topicPath {
 	overflow: hidden;
 	margin: 0 0 20px 0;
 	padding: 0.45em 0.5em 0.25em 0.5em;
 	background: #DCEDEA;
-	line-height: 1.25;
+	line-height: 1;
+	position:relative;
 }
 .topicPath li {
 	float: left;
-	padding: 0 0 0 0.35em;
+	padding: 0 0 0 0.2em;
+}
+/*.topicPath li:after {
+	content: " ＞";
+}
+.topicPath li:last-child:after {
+	content: none;
+}
+.topicPath li a {
+	display: inline-block;
+	padding: 0 0.5em 0 0;
+}*/
+
+/*
+	topicPath
+-----------------------------------------------*/
+.topicPath {
+	margin: 0 0 20px 0;
+	padding: 0.45em 0.5em;
+	background: #DCEDEA;
+	line-height: 1;
+}
+.topicPath li {
+	display:inline;
+	padding: 0 0 0 0.2em;
+	font-size:83%;
 }
 /*.topicPath li:after {
 	content: " ＞";
@@ -885,6 +961,11 @@ a .tagMark div span {
 	display: inline-block;
 	padding: 0 0.5em 0 0;
 }
+
+
+
+
+
 
 
 /*

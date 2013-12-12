@@ -2,7 +2,7 @@
 <html lang="ja" prefix="og: http://ogp.me/ns# fb: http://www.facebook.com/2008/fbml">
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width,maximum-scale=1.3,user-scalable=yes">
 	<meta property='og:type' content='article' />
 	<meta property='og:site_name' content='CosmeHouse' />
 	<meta property='fb:app_id' content='1374639112783802' />

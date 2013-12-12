@@ -264,11 +264,24 @@
 }
 .entryBody h2 {
 	margin: 0 10px 1em 10px;
-	padding: 0 0 0 0.5em;
-	border-left: 3px solid #49A9A9;
 	color: #49A9A9;
-	font-size: 112.5%;
+	font-size: 116%;
 	line-height: 1.5;
+}
+.entryBody h3{
+	margin: 0 10px 1em 10px;
+	border-bottom: 1px dotted #49A9A9;
+    color: #49A9A9;
+    font-size: 108%;
+	font-weight:bold;
+}
+.entryBody a{
+	color:#FF7777;
+	text-decoration:underline;
+	font-size:108%;
+}
+.entryBody img{
+	width:300px;
 }
 
 /* recommendBox */
@@ -465,6 +478,9 @@
 .adBox > * {
 	max-width: 100%;
 	min-width: 300px;
+}
+.adBox .inner img{
+	width:100%;
 }
 
 /*---------------------------------------------

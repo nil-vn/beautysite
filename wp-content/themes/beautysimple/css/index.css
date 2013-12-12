@@ -33,9 +33,9 @@
 	font-size:0;
 	line-height:0;
 }
-.topInfoArea .leftSide {	float: left;width: 600px;height: 400px;}
-.topInfoArea .rightSide {	float: right; width: 500px;}
-.topInfoArea .rightSide section {	height: 200px;}
+.topInfoArea .leftSide {	float: left;width: 570px;height: 380px;}
+.topInfoArea .rightSide {	float: right; width: 470px;}
+.topInfoArea .rightSide section {	height: 190px; overflow:hidden; position:relative; zoom:1;}
 .topInfoArea img {	vertical-align: top;}
 
 /* topInfo01 */
@@ -49,14 +49,15 @@
 	padding: 10px;
 	background: #fff;
 	background: rgba(255,255,255, 0.8);
+	width:530px;
 }
 .topInfoArea .topInfo01 .txt h1 {
 	font-size: 166%;
 }
 .topInfoArea .topInfo01 .txt p {
-	font-size: 116%;
+	font-size: 100%;
 	font-weight: normal;
-	line-height: 1.5;
+	line-height: 1.7;
 }
 .topInfoArea .topInfo01 .pic {
 	position: absolute;
@@ -78,20 +79,21 @@
 .topInfoArea .topInfo02 .txt {
 	float: right;
 	width: 160px;
-	padding: 20px;
+	padding: 15px 15px 10px 20px;
+	height:185px;
 }
 .topInfoArea .topInfo02 .txt h1 {
 	margin: 0 0 0.5em 0;
 	font-size: 133%;
 }
 .topInfoArea .topInfo02 .txt p {
-	font-size: 116%;
+	font-size: 100%;
 	font-weight: normal;
-	line-height: 1.5;
+	line-height: 1.7;
 }
 .topInfoArea .topInfo02 .pic {
 	float: left;
-	width: 300px;
+	width: 270px;
 }
 /* topInfo03 */
 .topInfoArea .topInfo03 {
@@ -116,13 +118,13 @@
 	font-size: 133%;
 }
 .topInfoArea .topInfo03 .txt p {
-	font-size: 116%;
+	font-size: 100%;
 	font-weight: normal;
-	line-height: 1.5;
+	line-height: 1.7;
 }
 .topInfoArea .topInfo03 .pic {
 	float: right;
-	width: 300px;
+	width: 270px;
 }
 
 .topInfoArea a .pic img {
@@ -131,6 +133,12 @@
 	-moz-transition: opacity 0.3s ease;
 	-o-transition: opacity 0.3s ease;
 	transition: opacity 0.3s ease;
+	width:280px;
+	height:190px;
+}
+.topInfoArea .leftSide a .pic img {
+	width:570px;
+	height:380px;
 }
 .topInfoArea a:hover .pic img {
 	opacity: 0.7;
@@ -142,7 +150,7 @@
 	rankingArea
 =====================================================*/
 .rankingArea {
-	width: 1060px;
+	width: 1000px;
 	margin: 0 auto 40px auto;
 }
 .rankingArea header {
@@ -165,7 +173,7 @@
 	padding: 10px 0 0 72px;
 	background: url(../img/contents/icon_crown.gif) no-repeat 15px center;
 	color: #459F9F;
-	font-size: 216%;
+	font-size: 188%;
 	font-weight: normal;
 }
 .rankingArea header ul {
@@ -173,28 +181,28 @@
 }
 .rankingArea header ul li {
 	float: left;
-	margin: 0 0 0 10px;
+	margin: 0 0 0 6px;
 	background:url(../img/contents/ranknav.png) top left no-repeat;
 	text-indent: -9999px;
 }
 .rankingArea header ul li:hover {
 	cursor: pointer;
 }
-.rankingArea header ul li.ranknav01 { width:140px; height:50px; background-position:-10px -550px; }
-.rankingArea header ul li.ranknav02 { width:150px; height:50px; background-position:-10px -490px; }
-.rankingArea header ul li.ranknav03 { width:150px; height:50px; background-position:-10px -430px; }
-.rankingArea header ul li.ranknav04 { width:150px; height:50px; background-position:-10px -190px; }
-.rankingArea header ul li.ranknav05 { width:150px; height:50px; background-position:-10px -70px; }
+.rankingArea header ul li.ranknav01 { width:136px; height:50px; background-position:-10px -531px; }
+.rankingArea header ul li.ranknav02 { width:145px; height:50px; background-position:-10px -473px; }
+.rankingArea header ul li.ranknav03 { width:145px; height:50px; background-position:-10px -415px; }
+.rankingArea header ul li.ranknav04 { width:145px; height:50px; background-position:-10px -183px; }
+.rankingArea header ul li.ranknav05 { width:145px; height:50px; background-position:-10px -67px; }
 .rankingArea header ul li.ranknav01:hover,
-.rankingArea header ul li.ranknav01.active { width:140px; height:50px; background-position:-10px -370px; }
+.rankingArea header ul li.ranknav01.active { width:136px; height:50px; background-position:-10px -357px; }
 .rankingArea header ul li.ranknav02:hover,
-.rankingArea header ul li.ranknav02.active { width:150px; height:50px; background-position:-10px -310px; }
+.rankingArea header ul li.ranknav02.active { width:145px; height:50px; background-position:-10px -299px; }
 .rankingArea header ul li.ranknav03:hover,
-.rankingArea header ul li.ranknav03.active { width:150px; height:50px; background-position:-10px -250px; }
+.rankingArea header ul li.ranknav03.active { width:145px; height:50px; background-position:-10px -241px; }
 .rankingArea header ul li.ranknav04:hover,
-.rankingArea header ul li.ranknav04.active { width:150px; height:50px; background-position:-10px -130px; }
+.rankingArea header ul li.ranknav04.active { width:145px; height:50px; background-position:-10px -125px; }
 .rankingArea header ul li.ranknav05:hover,
-.rankingArea header ul li.ranknav05.active { width:150px; height:50px; background-position:-10px -10px; }
+.rankingArea header ul li.ranknav05.active { width:145px; height:50px; background-position:-10px -10px; }
 
 .rankingArea .inner {
 	text-align: center;
@@ -206,7 +214,7 @@
 }
 .rankingArea .inner section a {
 	display: block;
-	width: 302px;
+	width: 290px;
 	padding: 6px 20px 16px 20px;
 	background: #fff;
 	-webkit-transition: background 0.3s ease;
@@ -221,8 +229,11 @@
 	margin: 0 0 5px 0;
 }
 .rankingArea section .pic {
-	width: 300px;
+	width: 290px;
 	margin: 0 0 10px 0;
+}
+.rankingArea section .pic img{
+	width:290px;
 }
 .rankingArea section .pic {
 	border: 1px solid #BEDCD7;
@@ -234,15 +245,15 @@
 	margin: 0 0 6px 0;
 	padding: 0 1px 4px 1px;
 	border-bottom: 1px solid #BEDCD7;
-	font-size: 200%;
-	line-height: 1.25;
+	font-size: 144%;
+	line-height: 1.4;
 	text-align: left;
 }
 .rankingArea section p {
 	padding: 0 1px 4px 1px;
-	font-size: 116%;
+	font-size: 100%;
 	font-weight: normal;
-	line-height: 1.5;
+	line-height: 1.7;
 	text-align: left;
 }
 .rankingArea section footer {
@@ -271,7 +282,7 @@
 	eachCateNewsArea
 =====================================================*/
 .eachCateNewsArea {
-	width: 1060px;
+	width: 1000px;
 	margin: 0 auto 40px auto;
 }
 .eachCateNewsArea header {
@@ -303,7 +314,7 @@
 }
 .eachCateNewsArea .newsList {
 	display: inline-block;
-	width: 247px;
+	width: 232px;
 	margin: 0 1px 0 0;
 	border: 4px solid #FFA8A8;
 	text-align: left;
@@ -314,11 +325,11 @@
 .eachCateNewsArea .listPurple {border-color: #A293DB;}
 
 .eachCateNewsArea .newsList .cateTtl {
-	width: 247px;
-	height: 92px;
+	width: 232px;
+	height: 86px;
 	background: #FFA8A8 url(../img/contents/bg_ttl_pink.png) no-repeat center top;
 	color: #fff;
-	font-size: 116%;
+	font-size: 100%;
 	font-weight: bold;
 	text-align: center;
 }
@@ -333,15 +344,12 @@
 	line-height: 1.1;
 	vertical-align: bottom;
 }
-.eachCateNewsArea .newsList .cateTtl a:hover {
-	border-bottom: 2px dashed #fff;
-}
 
 .eachCateNewsArea .newsList ol {}
 .eachCateNewsArea .newsList ol li {}
 .eachCateNewsArea .newsList ol li a {
 	display: block;
-	padding: 20px 20px 10px 20px;
+	padding: 20px 15px 10px 15px;
 }
 .eachCateNewsArea .newsList ol li a:hover {
 	color: #FFA5A5;
@@ -351,8 +359,8 @@
 .eachCateNewsArea .listPurple ol li a:hover {color: #A293DB;}
 
 .eachCateNewsArea .newsList ol li .newsTtl {
-	margin:0.25em 0;
-	font-size: 166%;
+	margin:0.3em 0;
+	font-size: 144%;
 	line-height: 1.25;
 }
 .eachCateNewsArea .newsList ol li .categoryicon {
@@ -377,7 +385,7 @@
 	recommendArea
 =====================================================*/
 .recommendArea {
-	width: 1060px;
+	width: 1000px;
 	margin: 0 auto 60px auto;
 }
 .recommendArea header {
@@ -414,7 +422,7 @@
 .recommendArea section a {
 	display: block;
 	position: relative;
-	width: 247px;
+	width: 232px;
 	padding: 8px 6px 10px 6px;
 	text-align: left;
 	background: #fff;
@@ -437,20 +445,21 @@
 }
 .recommendArea section .pic img {
 	vertical-align: bottom;
+	width:230px;
 }
 .recommendArea section h1 {
 	margin: 0 0 6px 0;
 	padding: 0 1px 4px 1px;
 	border-bottom: 1px solid #BEDCD7;
-	font-size: 166%;
-	line-height: 1.25;
+	font-size: 144%;
+	line-height: 1.4;
 	text-align: left;
 }
 .recommendArea section p {
 	padding: 0 1px 4px 1px;
-	font-size: 116%;
+	font-size: 100%;
 	font-weight: normal;
-	line-height: 1.5;
+	line-height: 1.7;
 	text-align: left;
 }
 .recommendArea section footer {
